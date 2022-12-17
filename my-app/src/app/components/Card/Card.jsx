@@ -8,7 +8,11 @@ import './cardStyles.scss';
 function Card() {
 return (
     <div className='card'>
-        <h1>Nom de ma carte</h1>
+        <div className='card__header'>
+            <h3>Nom de ma carte</h3>
+            <h3>+</h3>
+
+        </div>
        <Task/>
        <Task/> 
        <Task/> 

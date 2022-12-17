@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import './taskStyles.scss';
 
@@ -10,8 +10,8 @@ return (
     </div>
 );
 }
-Task.propTypes = {};
+// Task.propTypes = {};
 
-Task.defaultProps = {};
+// Task.defaultProps = {};
 
 export default React.memo(Task);
