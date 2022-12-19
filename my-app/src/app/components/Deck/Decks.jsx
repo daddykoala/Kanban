@@ -1,26 +1,33 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
+
 //import PropTypes from 'prop-types';
 
-import Card from '../Card/Card';
-import CreateCard from '../form/createCard';
-import './deckStyles.scss';
+import Card from "../Card/Card";
+import CreateCard from "../form/createCard";
+import "./deckStyles.scss";
 
 function Decks() {
-return (
-    <div className='board'>
-        <h1>titre tableau
-        </h1>
-        <section className='board__card'>
+  const listTableaux = useSelector((state) => state.tableau.tableauName);
 
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <CreateCard/>
+  const {lists} = listTableaux[0]
+  
+  console.log(listTableaux,lists
+      );
+  return (
+      <div className="board">
+      <h1>{listTableaux.name}</h1>
+      <section className="board__card">
 
-        </section>
+        {lists.map((element, index)=>{
+            const {task} = element
+            return <Card key={index} names={element.name} tasks={task} />;
+        })},
+
+        <CreateCard />
+      </section>
     </div>
-);
+  );
 }
 //Decks.propTypes = {};
 

@@ -5,15 +5,16 @@ import { useSelector } from 'react-redux';
 import './sidebarStyles.scss';
 
 function Sidebar() {
-    const tableauName = useSelector(state => state.tableauName)
-    console.log(tableauName,);
+    const tableauName = useSelector(state => state.tableau.tableauName)
+console.log(tableauName,'sidebar');
 return (
     <div>
         <section className='sidebar'>
         <h2>tableaux</h2>
         <div>
         <h2>mes tableaux</h2>
-        <span>{tableauName}</span>
+        {tableauName.map((element)=><span>{element.name}</span>
+        )}
         
 
         </div>

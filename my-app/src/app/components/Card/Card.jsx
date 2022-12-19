@@ -5,19 +5,21 @@ import Task from '../task/Task';
 
 import './cardStyles.scss';
 
-function Card() {
+function Card({names,tasks}) {
+    console.log(names,tasks,"je passe par la");
 return (
     <div className='card'>
         <div className='card__header'>
-            <h3>Nom de ma carte</h3>
+            <h3>{names.name}</h3>
             <h3>+</h3>
 
         </div>
-       <Task/>
-       <Task/> 
-       <Task/> 
-       <Task/> 
-       <Task/>  
+       {tasks.map((element,index)=> 
+       <Task
+       key={index}
+       name={element.name}
+       id={element.id}/>  
+       )}
     </div>
 );
 }
