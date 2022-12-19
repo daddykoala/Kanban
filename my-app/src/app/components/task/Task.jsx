@@ -3,10 +3,11 @@ import React from 'react';
 
 import './taskStyles.scss';
 
-function Task() {
+function Task({name,id}
+    ) {
 return (
-    <div>
-        taches
+    <div key={id}>
+        {name}
     </div>
 );
 }
