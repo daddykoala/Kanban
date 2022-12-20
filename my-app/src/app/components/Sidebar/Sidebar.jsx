@@ -5,11 +5,24 @@ import { useSelector } from 'react-redux';
 import Titles from "./Titles";
 
 import './sidebarStyles.scss';
+import { useState } from 'react';
 
 function Sidebar() {
     const titles = useSelector(state => state.tableau.tableauName)
+    const [display,setDisplay]=useState('none')
     console.log(titles ,'hello');
 
+    const toggleClassname= e => {
+        if (display === 'none'){
+
+            setDisplay('selected')
+        }
+        if (display === 'selected'){
+
+            setDisplay('none')
+        }
+
+    }
 return (
     <div>
         <section className='sidebar'>
@@ -21,6 +34,8 @@ return (
         <Titles
         names={element.name}
         key={element.index}
+        className={display}
+        onClick={toggleClassname}
         />
 
         )}

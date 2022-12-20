@@ -41,6 +41,12 @@ function TableauReducer(state = INITIALSTATE, action) {
         tableauName: action.payload,
       };
     }
+      case "ADDTASK": {
+        return {
+          ...state,
+          tableauName: action.payload,
+        };
+    }
     default:
       return state;
   }

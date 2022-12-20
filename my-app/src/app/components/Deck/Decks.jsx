@@ -11,15 +11,16 @@ function Decks() {
   const listTableaux = useSelector((state) => state.tableau.tableauName);
 
   const {lists} = listTableaux[0]
+  console.log(listTableaux,'decks');
 
   return (
       <div className="board">
       <h1>{listTableaux.name}</h1>
-      <section className="board__card">
+      <section id={listTableaux.id} className="board__card">
 
         {lists.map((element, index)=>{
             const {task} = element
-            return <Card key={index} names={element.name} tasks={task} />;
+            return <Card key={index} id={element.id} names={element.name} tasks={task} />;
         })},
 
         <CreateCard />
