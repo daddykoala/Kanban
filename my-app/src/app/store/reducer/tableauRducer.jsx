@@ -35,6 +35,12 @@ const INITIALSTATE = {
 
 function TableauReducer(state = INITIALSTATE, action) {
   switch (action.type) {
+    case "ADDTABLEAU": {
+      return {
+        ...state,
+        tableauName: action.payload,
+      };
+    }
     default:
       return state;
   }

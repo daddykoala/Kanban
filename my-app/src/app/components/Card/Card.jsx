@@ -6,7 +6,7 @@ import Task from '../task/Task';
 import './cardStyles.scss';
 
 function Card({names,tasks}) {
-    console.log(names,tasks,"je passe par la");
+
 return (
     <div className='card'>
         <div className='card__header'>

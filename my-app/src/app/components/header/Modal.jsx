@@ -1,18 +1,23 @@
 //import PropTypes from 'prop-types';
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "./modalStyles.scss";
 
 function Modal() {
+
   const [modal, setModal] = useState(false);
   const [tableauxArr, setTableauxArr] = useState(
     useSelector((state) => state.tableau.tableauName)
   );
+
   const [stateInput, setStateInput] = useState();
-  console.log(tableauxArr, stateInput, "header");
+  const dispatch = useDispatch()
+
 
   const addTableau = (e) => {
+    console.log('je passe ici');
     e.preventDefault();
     const newArr = [...tableauxArr];
     const newTableau = {};
@@ -22,13 +27,21 @@ function Modal() {
     newArr.push(newTableau);
     setTableauxArr(newArr);
     setStateInput('')
+    dispatch({
+      type: "ADDTABLEAU",
+      payload:tableauxArr
+    })
+    console.log(tableauxArr,'nouveau state?');
   };
+
   const linkedinput = (e) => {
     setStateInput(e);
   };
   const toggleModal = () => {
     setModal(!modal);
   };
+
+
   return (
     <div>
       <button onClick={toggleModal} className="btn-modal">
@@ -51,7 +64,7 @@ function Modal() {
                 placeholder="mon tableau ici"
                 value={stateInput}
               />
-<button type="submit" onSubmit={addTableau}></button>
+<button type="submit" onClick={addTableau}>ok</button>
               </form>
             </div>
           </div>

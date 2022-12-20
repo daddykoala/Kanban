@@ -2,18 +2,27 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import Titles from "./Titles";
+
 import './sidebarStyles.scss';
 
 function Sidebar() {
-    const tableauName = useSelector(state => state.tableau.tableauName)
-console.log(tableauName,'sidebar');
+    const titles = useSelector(state => state.tableau.tableauName)
+    console.log(titles ,'hello');
+
 return (
     <div>
         <section className='sidebar'>
         <h2>tableaux</h2>
         <div>
         <h2>mes tableaux</h2>
-        {tableauName.map((element)=><span>{element.name}</span>
+        {titles.map((element)=>
+
+        <Titles
+        names={element.name}
+        key={element.index}
+        />
+
         )}
         
 
