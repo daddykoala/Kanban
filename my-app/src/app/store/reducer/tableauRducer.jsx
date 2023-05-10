@@ -41,10 +41,16 @@ function TableauReducer(state = INITIALSTATE, action) {
         tableauName: action.payload,
       };
     }
+    case "ADDLIST": {
+      return {
+        ...state,
+        ListName: action.payload,
+      };
+    }
       case "ADDTASK": {
         return {
           ...state,
-          tableauName: action.payload,
+          taskName: action.payload,
         };
     }
     default:
