@@ -2,15 +2,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+
 // import Titles from "./Titles";
 
 import './sidebarStyles.scss';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 function Sidebar() {
-    const titles = useSelector(state => state.user.user)
-    console.log("log titles",titles);
-    const [display,setDisplay]=useState('none')
+//je recupere le state de user
+    const userState = useSelector(state => state.user.user);
+    //je met l'array souhaité dans un state
+    // const [titles,setTitles]=useState(null)
+
+    // useEffect(() => {
+    //     if(userState && userState.user && userState.user.table) {
+    //       setTitles(userState);
+    //     }
+    //   }, [userState]);
+
+    console.log("log titles",userState);
+    // const [display,setDisplay]=useState('none')
     ;
 
     // const toggleClassname= e => {
@@ -30,12 +41,12 @@ return (
         <h2>tableaux</h2>
         <div>
         <h2>mes tableaux</h2>
-        {titles.table && titles.table.map((element, index )=>
+        {userState.table && userState.table.map((element, index )=>
 
         <h3 
         names={element.name}
         key={element.index}
-        className={display}
+        // className={display}
         // onClick={toggleClassname}
          >
         {element.name}
@@ -55,4 +66,4 @@ return (
 
 //sidebar.defaultProps = {};
 
-export default React.memo(Sidebar);
+export default Sidebar;
