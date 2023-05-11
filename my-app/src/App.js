@@ -4,7 +4,7 @@ import { useGetContentByUserQuery } from './app/store/api/api';
 import { setUser } from './app/store/reducer/userSlice';
 // import Decks from './app/components/Deck/Decks';
 // import Header from './app/components/header/Header';
-// import Sidebar from './app/components/Sidebar/Sidebar';
+import Sidebar from './app/components/Sidebar/Sidebar';
 
 
 
@@ -16,14 +16,14 @@ const dispatch = useDispatch();
 const data = useGetContentByUserQuery(1);
 
 useEffect(() => {
-  if (data) {
+  if (data.isSuccess) {
     dispatch(setUser(data.data));
   }
 }, [data, dispatch]);
 
 const state = useSelector((state) => state);
 console.log("coucou",state);
-console.log("hello",data);
+
 
 
 // essai pour voir ce que contient data
@@ -38,9 +38,9 @@ console.log(data);
 
   return (
     <div className="App">
-      {/* <Header/>
+      {/* <Header/> */}
       <Sidebar/>
-      <Decks/> */}
+      {/* <Decks/> */}
       
 
       

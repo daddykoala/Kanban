@@ -2,41 +2,44 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Titles from "./Titles";
+// import Titles from "./Titles";
 
 import './sidebarStyles.scss';
 import { useState } from 'react';
 
 function Sidebar() {
-    const titles = useSelector(state => state.tableau.tableauName)
+    const titles = useSelector(state => state.user.user)
+    console.log("log titles",titles);
     const [display,setDisplay]=useState('none')
-    console.log(titles ,'hello');
+    ;
 
-    const toggleClassname= e => {
-        if (display === 'none'){
+    // const toggleClassname= e => {
+    //     if (display === 'none'){
 
-            setDisplay('selected')
-        }
-        if (display === 'selected'){
+    //         setDisplay('selected')
+    //     }
+    //     if (display === 'selected'){
 
-            setDisplay('none')
-        }
+    //         setDisplay('none')
+    //     }
 
-    }
+    // }
 return (
     <div>
         <section className='sidebar'>
         <h2>tableaux</h2>
         <div>
         <h2>mes tableaux</h2>
-        {titles.map((element)=>
+        {titles.maps((element)=>
 
-        <Titles
-        names={element.name}
-        key={element.index}
-        className={display}
-        onClick={toggleClassname}
-        />
+        <h3>
+            names={element.name}
+            key={element.index}
+            className={display}
+            {/* onClick={toggleClassname} */}
+
+        </h3>
+        
 
         )}
         

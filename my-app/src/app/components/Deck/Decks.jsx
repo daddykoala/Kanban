@@ -11,7 +11,7 @@ function Decks() {
   const listTableaux = useSelector((state) => state.tableau.tableauName);
 
   const {lists} = listTableaux[0]
-  console.log(listTableaux,'decks');
+  // console.log(listTableaux,'decks');
 
   return (
       <div className="board">
