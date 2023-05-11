@@ -30,13 +30,15 @@ return (
         <h2>tableaux</h2>
         <div>
         <h2>mes tableaux</h2>
-        {titles.maps((element)=>
+        {titles.table && titles.table.map((element, index )=>
 
-        <h3>
-            names={element.name}
-            key={element.index}
-            className={display}
-            {/* onClick={toggleClassname} */}
+        <h3 
+        names={element.name}
+        key={element.index}
+        className={display}
+        // onClick={toggleClassname}
+         >
+        {element.name}
 
         </h3>
         
