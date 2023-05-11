@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { useGetContentByUserQuery } from './app/store/api/api';
-
-import Decks from './app/components/Deck/Decks';
-import Header from './app/components/header/Header';
-import Sidebar from './app/components/Sidebar/Sidebar';
+import { setUser } from './app/store/reducer/userSlice';
+// import Decks from './app/components/Deck/Decks';
+// import Header from './app/components/header/Header';
+// import Sidebar from './app/components/Sidebar/Sidebar';
 
 
 
@@ -12,18 +12,38 @@ import './App.css';
 
 function App() {
 const dispatch = useDispatch();
-const {data, error, isLoading, isError } = useGetContentByUserQuery(1);
+
+const data = useGetContentByUserQuery(1);
+
+useEffect(() => {
+  if (data) {
+    dispatch(setUser(data.data));
+  }
+}, [data, dispatch]);
+
+const state = useSelector((state) => state);
+console.log("coucou",state);
+console.log("hello",data);
+
+
+// essai pour voir ce que contient data
+if (data.isLoading){return <div>Loading...</div> };
+if (data.isError){return <div>error</div> };
 console.log(data);
-if (isLoading){return <div>Loading...</div> };
-if (isError){return <div>error</div> };
+
+
+
 
 
 
   return (
     <div className="App">
-      <Header/>
+      {/* <Header/>
       <Sidebar/>
-      <Decks/>
+      <Decks/> */}
+      
+
+      
         
       
     </div>
