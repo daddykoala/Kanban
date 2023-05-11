@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetContentByUserQuery } from "./app/store/api/api";
 import { setUser } from "./app/store/reducer/userSlice";
-// import Decks from "./app/components/Deck/Decks";
+import Decks from "./app/components/Deck/Decks";
 
-// import Header from "./app/components/header/Header";
+import Header from "./app/components/header/Header";
 import Sidebar from "./app/components/Sidebar/Sidebar";
 
 import "./App.css";
@@ -24,7 +24,7 @@ function App() {
 
   const state = useSelector((state) => state);
   console.log("coucou", state.user);
-  
+
   if (data.isLoading) {
     console.log("data je passe par is loading");
     return <div>Loading...</div>;
@@ -40,8 +40,8 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Header /> */}
-      {/* <Sidebar /> */}
+      <Header />
+      <Sidebar />
       {/* <Decks /> */}
     </div>
   );

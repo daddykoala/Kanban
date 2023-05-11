@@ -11,14 +11,6 @@ import { useState,useEffect } from 'react';
 function Sidebar() {
 //je recupere le state de user
     const userState = useSelector(state => state.user.user);
-    //je met l'array souhaité dans un state
-    // const [titles,setTitles]=useState(null)
-
-    // useEffect(() => {
-    //     if(userState && userState.user && userState.user.table) {
-    //       setTitles(userState);
-    //     }
-    //   }, [userState]);
 
     console.log("log titles",userState);
     // const [display,setDisplay]=useState('none')
