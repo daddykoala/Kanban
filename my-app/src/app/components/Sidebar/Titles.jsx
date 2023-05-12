@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Titles({names,key,className}) {
+function Titles({names,index,className}) {
   return (
-    <div key={key}>{names}</div>
+    <div key={index}>{names}</div>
   )
 }
 

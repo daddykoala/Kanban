@@ -17,23 +17,23 @@ function App() {
 
   useEffect(() => {
     if (data.isSuccess) {
-      console.log("data je passe par isSuccess");
+      
       dispatch(setUser(data.data));
     }
   }, [data,dispatch]);
 
   const state = useSelector((state) => state);
-  console.log("coucou", state.user);
+
 
   if (data.isLoading) {
-    console.log("data je passe par is loading");
+   
     return <div>Loading...</div>;
   }
   if (data.isError) {
-    console.log("data je passe par is error");
+    
     return <div>error</div>;
   }
-  console.log(data);
+  
   
 
   // essai pour voir ce que contient data

@@ -3,7 +3,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 
-// import Titles from "./Titles";
+
+
+import Titles from "./Titles";
 
 import './sidebarStyles.scss';
 import { useState ,useEffect } from 'react';
@@ -14,7 +16,6 @@ function Sidebar() {
     if (userState === undefined || userState === null) {
         return <div> marche pas </div>
     }
-    console.log("log titles",userState);
     // const [display,setDisplay]=useState('none')
     ;
 
@@ -29,6 +30,7 @@ function Sidebar() {
     //     }
 
     // }
+
 return (
     <div>
         <section className='sidebar'>
@@ -37,15 +39,15 @@ return (
         <h2>mes tableaux</h2>
         {userState.table && userState.table.map((element, index )=>
 
-        <h3 
+        <Titles 
         names={element.name}
-        key={element.index}
+        key={index}
         // className={display}
         // onClick={toggleClassname}
          >
         {element.name}
 
-        </h3>
+        </Titles>
         
 
         )}
