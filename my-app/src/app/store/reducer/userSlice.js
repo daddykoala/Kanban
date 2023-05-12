@@ -16,12 +16,16 @@ export const userSlice = createSlice({
       
       state.user = action.payload
       
+    },
+
+    addTable: (state, action) => {
+      state.user.table.push(action.payload)
     }
 
   },
   
 })
 
-export const { setUser } = userSlice.actions;
+export const { setUser , addTable } = userSlice.actions;
 
 export default userSlice.reducer;

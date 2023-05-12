@@ -11,6 +11,7 @@ export const userApi = createApi({
     }),
     //je crée un tableau pour un user
     addTableByUser: builder.mutation({
+      
       //j'envoi un objet json avec l'id du user et le nom du tableau
       query: (body) => ({
         url: `tables`,

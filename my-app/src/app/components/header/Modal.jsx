@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useAddTableByUserMutation } from "../../store/api/api";
+import { addTable } from "../../store/reducer/userSlice";
 
 import "./modalStyles.scss";
 
@@ -10,18 +11,28 @@ function Modal() {
   const [modal, setModal] = useState(false);
   const [stateInput, setStateInput] = useState();
 
-  const user_id = useSelector((state) => state.user.user);
+  const user_id = useSelector((state) => state.user.user)
   
   
   const dispatch = useDispatch();
+  
   const [addTableMutation] = useAddTableByUserMutation();
 
-  const addTableau = (e) => {
-    // au click j'ajoute un tableau a mon user
+  
+  const addTableau = async (e) => {
     e.preventDefault();
-    //je log l'objet que je vais envoyer
-    dispatch(addTableMutation({name:stateInput, user_id: user_id.id }));
-    setStateInput("");
+    console.log(e.target.value);
+    try {
+      const result = await addTableMutation({ name: stateInput, userId: user_id.id });
+      console.log(result);
+      //attention a jouter un state identique dans les clefs sinon ca ne render pas.
+      dispatch(addTable(result.data))
+      console.log("hey hey", user_id);
+      setStateInput("");
+    }
+    catch (error){
+      console.error(error)
+    }
   };
 
   const linkedinput = (e) => {

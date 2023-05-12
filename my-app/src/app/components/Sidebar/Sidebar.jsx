@@ -1,62 +1,56 @@
 //import PropTypes from 'prop-types';
-import React from 'react';
-import { useSelector } from 'react-redux';
-
-
-
+import React from "react";
+import { useSelector } from "react-redux";
 
 import Titles from "./Titles";
 
-import './sidebarStyles.scss';
-import { useState ,useEffect } from 'react';
+import "./sidebarStyles.scss";
+// import { useState } from "react";
 
 function Sidebar() {
-//je recupere le state de user
-    const userState = useSelector(state => state.user.user);
-    if (userState === undefined || userState === null) {
-        return <div> marche pas </div>
-    }
-    // const [display,setDisplay]=useState('none')
-    ;
+  //je recupere le state de user
+  const userState = useSelector((state) => state.user.user);
 
-    // const toggleClassname= e => {
-    //     if (display === 'none'){
+  if (userState === undefined || userState === null) {
+    return <div> marche pas </div>;
+  }
 
-    //         setDisplay('selected')
-    //     }
-    //     if (display === 'selected'){
+  //j'ecoute les changemebt de state de user
 
-    //         setDisplay('none')
-    //     }
+  // const [display,setDisplay]=useState('none')
+  // const toggleClassname= e => {
+  //     if (display === 'none'){
 
-    // }
+  //         setDisplay('selected')
+  //     }
+  //     if (display === 'selected'){
 
-return (
+  //         setDisplay('none')
+  //     }
+
+  // }
+
+  return (
     <div>
-        <section className='sidebar'>
+      <section className="sidebar">
         <h2>tableaux</h2>
         <div>
-        <h2>mes tableaux</h2>
-        {userState.table && userState.table.map((element, index )=>
-
-        <Titles 
-        names={element.name}
-        key={index}
-        // className={display}
-        // onClick={toggleClassname}
-         >
-        {element.name}
-
-        </Titles>
-        
-
-        )}
-        
-
+          <h2>mes tableaux</h2>
+          {userState.table &&
+            userState.table.map((element, index) => (
+              <Titles
+                names={element.name}
+                key={index}
+                // className={display}
+                // onClick={toggleClassname}
+              >
+                {element.name}
+              </Titles>
+            ))}
         </div>
-        </section>
+      </section>
     </div>
-);
+  );
 }
 //sidebar.propTypes = {};
 
