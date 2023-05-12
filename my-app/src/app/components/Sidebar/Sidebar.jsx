@@ -6,12 +6,14 @@ import { useSelector } from 'react-redux';
 // import Titles from "./Titles";
 
 import './sidebarStyles.scss';
-import { useState,useEffect } from 'react';
+import { useState ,useEffect } from 'react';
 
 function Sidebar() {
 //je recupere le state de user
     const userState = useSelector(state => state.user.user);
-
+    if (userState === undefined || userState === null) {
+        return <div> marche pas </div>
+    }
     console.log("log titles",userState);
     // const [display,setDisplay]=useState('none')
     ;

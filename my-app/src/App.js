@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     if (data.isSuccess) {
-      console.log("data je passe par set user");
+      console.log("data je passe par isSuccess");
       dispatch(setUser(data.data));
     }
   }, [data,dispatch]);
@@ -33,10 +33,10 @@ function App() {
     console.log("data je passe par is error");
     return <div>error</div>;
   }
+  console.log(data);
   
 
   // essai pour voir ce que contient data
-  console.log(data);
 
   return (
     <div className="App">
