@@ -41,6 +41,8 @@ function Sidebar() {
               <Titles
                 names={element.name}
                 key={index}
+                tableId={element.id}
+                userId={userState.id}
                 // className={display}
                 // onClick={toggleClassname}
               >

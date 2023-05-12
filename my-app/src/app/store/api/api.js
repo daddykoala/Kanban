@@ -18,11 +18,21 @@ export const userApi = createApi({
         method: "POST",
         body: { name: body.name, user_id: body.userId },
       }),
+
     }),
+
+    deleteTableByUser: builder.mutation({
+      query: (id) => ({
+        url: `tables/${id}`,
+        method: "DELETE",
+      }),
+    }),
+
+
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 //j'exporte les hooks pour les utiliser dans les composants fonctionnels
-export const { useGetContentByUserQuery, useAddTableByUserMutation } = userApi;
+export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation } = userApi;
