@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useGetContentByUserQuery } from "./app/store/api/api";
+
 import { setUser } from "./app/store/reducer/userSlice";
 import Decks from "./app/components/Deck/Decks";
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import { Routes,Route } from 'react-router-dom';
 import Header from "./app/components/header/Header";
 import Sidebar from "./app/components/Sidebar/Sidebar";
 
@@ -12,7 +13,6 @@ import "./App.css";
 function App() {
 
   const dispatch = useDispatch();
-
   const data = useGetContentByUserQuery(1);
 
   useEffect(() => {
@@ -21,8 +21,6 @@ function App() {
       dispatch(setUser(data.data));
     }
   }, [data,dispatch]);
-
- 
 
 
   if (data.isLoading) {
@@ -36,7 +34,7 @@ function App() {
   
   
 
-  // essai pour voir ce que contient data
+  // essai pour voir ce que contient data2
 
   return (
     
@@ -46,7 +44,7 @@ function App() {
       <Header />
       <Sidebar />
       <Routes>
-        <Route path="/decks/:tableId" element={<Decks />} />
+        <Route path="/decks/:id" element={<Decks />} />
       </Routes>
     </div>
   

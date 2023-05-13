@@ -21,13 +21,13 @@ function Modal() {
   
   const addTableau = async (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+   
     try {
       const result = await addTableMutation({ name: stateInput, userId: user_id.id });
-      console.log(result);
+     
       //attention a jouter un state identique dans les clefs sinon ca ne render pas.
       dispatch(addTable(result.data))
-      console.log("hey hey", user_id);
+     
       setStateInput("");
     }
     catch (error){

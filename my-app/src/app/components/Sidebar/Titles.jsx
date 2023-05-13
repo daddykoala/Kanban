@@ -12,7 +12,7 @@ import { BsFillTrash2Fill,BsPencilFill } from 'react-icons/bs';
 
 function Titles({names,index, className, tableId,userId}) {
   
-  console.log(typeof tableId);
+  
   const dispatch = useDispatch();
   const [deleteTableMutation] = useDeleteTableByUserMutation();
   // const getContentUserQuery = useGetContentByUserQuery();
@@ -21,7 +21,7 @@ function Titles({names,index, className, tableId,userId}) {
     try  {
     // au click je recupere l'id du tableaupour le delete en bdd
     const result= await deleteTableMutation(tableId);
-    console.log(result);
+
     if (result) {
       
       dispatch(removeTable(tableId));

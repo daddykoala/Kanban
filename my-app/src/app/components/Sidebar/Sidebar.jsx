@@ -42,7 +42,9 @@ function Sidebar() {
           {userState.table &&
             userState.table.map((element, index) => (
               //l'element sera titles
-<Link to={`/decks/${element.id}`} key={index}>
+             
+
+<Link to={`/decks/${parseInt(element.id)}`} key={index}>
 
               <Titles
                 names={element.name}

@@ -9,6 +9,10 @@ export const userApi = createApi({
     getContentByUser: builder.query({
       query: (id) => `users/${id}`,
     }),
+
+    getListsByTable: builder.query({
+      query: (id) => `lists/`,
+    }),
     //je crée un tableau pour un user
     addTableByUser: builder.mutation({
       
@@ -35,4 +39,4 @@ export const userApi = createApi({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 //j'exporte les hooks pour les utiliser dans les composants fonctionnels
-export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation } = userApi;
+export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery } = userApi;

@@ -17,7 +17,7 @@ function CardModal() {
 
 
   const addTask = (e) => {
-    console.log('je passe ici');
+    
     e.preventDefault();
     const newArr = [...tableauxArr];
     const newTableau = {};
@@ -38,7 +38,7 @@ function CardModal() {
       type: "ADDTASK",
       payload:tableauxArr
     })
-    console.log(tableauxArr,'nouveau state?');
+    
   };
 
   const linkedinput = (e) => {

@@ -4,7 +4,7 @@ function createCard() {
     return (
         
         <div className='card__header'>
-            <h3>ajout d'une carte</h3>
+            <h3>ajout d'une liste</h3>
             <h3>+</h3>
 
         </div>

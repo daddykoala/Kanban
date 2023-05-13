@@ -22,7 +22,7 @@ export const userSlice = createSlice({
       state.user.table.push(action.payload)
     },
     removeTable: (state, action) => {
-      console.log(action.payload);
+     
       const TableId = action.payload
       state.user.table = state.user.table.filter((table) => table.id !== TableId)
     }
