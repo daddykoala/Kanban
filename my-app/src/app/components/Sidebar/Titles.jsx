@@ -1,6 +1,6 @@
 import { useDeleteTableByUserMutation , useGetContentByUserQuery
   } from '../../store/api/api';
-  import { setUser } from '../../store/reducer/userSlice';
+  import { setUser,removeTable } from '../../store/reducer/userSlice';
 
   import { useDispatch } from 'react-redux';
 
@@ -19,8 +19,11 @@ function Titles({names,index,className, tableId,userId}) {
     try  {
     // au click je recupere l'id du tableaupour le delete en bdd
     const result= await deleteTableMutation(tableId);
-    console.log(result);  
-    dispatch(setUser(result.data));
+    console.log(result);
+    if (result) {
+      
+      dispatch(removeTable(tableId));
+    }  
 
     }catch(error){
       console.error(error);

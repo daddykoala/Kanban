@@ -20,12 +20,17 @@ export const userSlice = createSlice({
 
     addTable: (state, action) => {
       state.user.table.push(action.payload)
+    },
+    removeTable: (state, action) => {
+      console.log(action.payload);
+      const TableId = action.payload
+      state.user.table = state.user.table.filter((table) => table.id !== TableId)
     }
 
   },
   
 })
 
-export const { setUser , addTable } = userSlice.actions;
+export const { setUser , addTable , removeTable } = userSlice.actions;
 
 export default userSlice.reducer;
