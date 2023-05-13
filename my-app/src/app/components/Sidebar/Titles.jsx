@@ -1,6 +1,7 @@
-import { useDeleteTableByUserMutation , useGetContentByUserQuery
-  } from '../../store/api/api';
-  import { setUser,removeTable } from '../../store/reducer/userSlice';
+import { Link } from 'react-router-dom';
+import { useDeleteTableByUserMutation } from '../../store/api/api';
+  import {removeTable } from '../../store/reducer/userSlice';
+  import { useParams } from 'react-router-dom';
 
   import { useDispatch } from 'react-redux';
 
@@ -9,7 +10,8 @@ import React from 'react';
 
 import { BsFillTrash2Fill,BsPencilFill } from 'react-icons/bs'; 
 
-function Titles({names,index,className, tableId,userId}) {
+function Titles({names,index, className, tableId,userId}) {
+  
   console.log(typeof tableId);
   const dispatch = useDispatch();
   const [deleteTableMutation] = useDeleteTableByUserMutation();
@@ -37,6 +39,9 @@ function Titles({names,index,className, tableId,userId}) {
 
 
   return (
+    <>
+    <Link to={`/decks/:${tableId}`} >
+    
     <div key={index} >{names} 
     <span className="titles__button">
       <BsPencilFill/>
@@ -45,6 +50,8 @@ function Titles({names,index,className, tableId,userId}) {
       </span>
       
     </div>
+    </Link>
+    </>
   )
 }
 

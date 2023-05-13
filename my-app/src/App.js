@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useGetContentByUserQuery } from "./app/store/api/api";
 import { setUser } from "./app/store/reducer/userSlice";
-// import Decks from "./app/components/Deck/Decks";
-
+import Decks from "./app/components/Deck/Decks";
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import Header from "./app/components/header/Header";
 import Sidebar from "./app/components/Sidebar/Sidebar";
 
@@ -39,12 +39,18 @@ function App() {
   // essai pour voir ce que contient data
 
   return (
+    
+
+    
     <div className="App">
       <Header />
       <Sidebar />
-      {/* <Decks /> */}
+      <Routes>
+        <Route path="/decks/:tableId" element={<Decks />} />
+      </Routes>
     </div>
-  );
+  
+);
 }
 
 export default App;

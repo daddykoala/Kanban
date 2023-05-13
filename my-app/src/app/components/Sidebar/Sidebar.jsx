@@ -2,7 +2,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+
 import Titles from "./Titles";
+import { Link } from "react-router-dom";
 
 import "./sidebarStyles.scss";
 // import { useState } from "react";
@@ -36,8 +38,12 @@ function Sidebar() {
         <h2>tableaux</h2>
         <div>
           <h2>mes tableaux</h2>
+
           {userState.table &&
             userState.table.map((element, index) => (
+              //l'element sera titles
+<Link to={`/decks/${element.id}`} key={index}>
+
               <Titles
                 names={element.name}
                 key={index}
@@ -48,6 +54,7 @@ function Sidebar() {
               >
                 {element.name}
               </Titles>
+</Link>
             ))}
         </div>
       </section>
