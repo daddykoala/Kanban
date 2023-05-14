@@ -2,7 +2,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 
 //import PropTypes from 'prop-types';
 
@@ -11,10 +11,8 @@ import CreateCard from "../form/createCard";
 import "./deckStyles.scss";
 
 function Decks() {
-  //const { id } = useParams();
-
-
-  const id = 44;
+  const { id } = useParams();
+  // const id =44
   const userState = useSelector((state) => state.user.user);
 
 
@@ -25,20 +23,29 @@ function Decks() {
 
   useEffect(() => {
     if (userState && userState.table) {
-
-      const tables = userState.table;
+     
+      const tables = userState.table ;
       setTableau(tables);
-      const foundTable = userState.table.find((table) => table.id === id);
+      const foundTable = userState.table.find(table => table.id === id);
 
+     
+      
     }
-  }, [userState, id]);
+  }, [userState, id])
+
+
+  //je boucle sur tableau pour avor des consoles log du type de tableau.id
+
+const table = tableau && tableau.find((element) => element.id === parseInt(id));
+
+
+
+
+
 
   return (
     <div className="board">
-      <CreateCard
-      tableId=
-      {id} />
-      
+      <CreateCard />
     </div>
   );
 }

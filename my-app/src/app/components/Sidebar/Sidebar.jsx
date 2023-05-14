@@ -44,7 +44,7 @@ function Sidebar() {
               //l'element sera titles
              
 
-<Link to={`/decks/${parseInt(element.id)}`} key={index}>
+<Link to={`/decks/${element.id}`} key={index}>
 
               <Titles
                 names={element.name}

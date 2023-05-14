@@ -32,6 +32,14 @@ export const userApi = createApi({
       }),
     }),
 
+      postListByUser: builder.mutation({
+        query: (body) => ({
+          url: `lists/`,
+          method: "POST",
+          body: { name: body.name, tableId: body.tableId },
+      }),
+    }),
+
 
   }),
 });
@@ -39,4 +47,5 @@ export const userApi = createApi({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 //j'exporte les hooks pour les utiliser dans les composants fonctionnels
-export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery } = userApi;
+export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery ,
+usePostListByUserMutation } = userApi;

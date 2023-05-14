@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-import "./CardModaleStyles.scss";
+import "./ListModaleStyles.scss";
 
-function CardModal() {
+function ListModal() {
 
   const [modal, setModal] = useState(false);
   const [tableauxArr, setTableauxArr] = useState(
@@ -80,8 +80,8 @@ function CardModal() {
     </div>
   );
 }
-//CardModal.propTypes = {};
+//ListModal.propTypes = {};
 
-//CardModal.defaultProps = {};
+//ListModal.defaultProps = {};
 
-export default React.memo(CardModal);
+export default React.memo(ListModal);
