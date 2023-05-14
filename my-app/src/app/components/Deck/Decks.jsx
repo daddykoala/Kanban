@@ -41,10 +41,12 @@ function Decks() {
       
 
   return (
-    <div className="board">
-      <CreateCard
-      tableId=
-      {id} />
+    <section className="deck">
+      <div className="deck__add__list">
+      <CreateCard />
+      </div>
+<div className="deck__board">
+
       {//je crée toutles listes de mon tableau
       lists.map((list) => {
          return (
@@ -53,13 +55,16 @@ function Decks() {
               title={list.name}
               id={list.id}
               position={list.position}
+              
               // cards={list.card}
               
             />
           );
         })}
+</div>
+      
 
-    </div>
+    </section>
   );
 }
 //Decks.propTypes = {};

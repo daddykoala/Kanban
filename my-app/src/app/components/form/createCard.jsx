@@ -33,7 +33,7 @@ function CreateCard({ tableId }) {
   }
 
   return (
-    <div className="card__header">
+    <div >
       <form onSubmit={handleSubmit}>
         <input type="text" value={inputValue} onChange={handleInputChange} />
         <h3>ajout d'une liste</h3>

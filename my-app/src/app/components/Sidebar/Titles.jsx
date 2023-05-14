@@ -36,10 +36,10 @@ function Titles({ names, index, className, tableId, userId }) {
       <Link to={`/decks/${tableId}`} >
         <div key={index}>
           {names}
-          <span className="titles__button">
+          <button className="titles__button">
             <BsPencilFill />
             <BsFillTrash2Fill onClick={handlDeleteTable} />
-          </span>
+          </button>
         </div>
       </Link>
     </>
