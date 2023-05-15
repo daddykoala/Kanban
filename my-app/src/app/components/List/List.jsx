@@ -15,7 +15,7 @@ import { modifyList ,removeList} from "../../store/reducer/userSlice";
 
 import "./ListStyles.scss";
 
-function List({ id, key, title, position,tableId }) {
+function List({ id, key, title, position ,tableId}) {
   const dispatch = useDispatch();
  
 
@@ -44,7 +44,6 @@ function List({ id, key, title, position,tableId }) {
 
   const handleTitleSubmit = async () => {
     setIsEditing(false);
-
     try {
         console.log("id", id);
         
@@ -64,8 +63,8 @@ function List({ id, key, title, position,tableId }) {
     //je recupere l'id pour dele la liste en bdd
     const result = deleteListByTable(id);
     if (result) {
-        dispatch(removeList({id , tableId}))
-        console.log("j'ai supprimer la liste");
+      
+    dispatch(removeList({id,tableId}))
 
     }
  //je suprime la lsite en bdd
@@ -96,7 +95,7 @@ function List({ id, key, title, position,tableId }) {
         )}
         <div className="utils">
           <button>
-            <AiFillEdit style={{ marginRight: "10px" }} />
+            <AiFillEdit onClick={handleTitleClick} style={{ marginRight: "10px" }} />
           </button>
           <button onClick={handleDelete}>
             <AiFillDelete />

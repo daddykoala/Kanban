@@ -45,7 +45,7 @@ export const userSlice = createSlice({
     },
     //je supprime une liste 
     removeList: (state, action) => {
-      console.log("mon action", action.payload);
+      console.log("mon action dans mon reducer", action.payload);
       const listId = action.payload.id;
       //je retrouve l'index de la table a laquelle je supprime une liste 
       const tableIndex = state.user.table.findIndex(

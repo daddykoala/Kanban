@@ -54,7 +54,7 @@ export const userApi = createApi({
 
 
       modifyListByTable: builder.mutation({
-        query: ({name,id}) => ({
+        query: ({name,id,position}) => ({
           url: `lists/${id}`,
           method: "PATCH",
           body: { name: name },
