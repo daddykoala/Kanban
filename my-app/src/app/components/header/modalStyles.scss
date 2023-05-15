@@ -1,48 +1,81 @@
+@use'../../../styles/vars.scss' as vars;
+
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom:0;
-    background:rgba(49,49,49,0.8);
+    height:100px;
+    width: 100%;
+    background:vars.$alt-color;
     transition: 1000ms;
-    // backdrop-filter: blur(5px);
+    z-index: -1;
+    transform: translateY(-100%);
 }
-
-.modal {
-    border-radius: 0.5rem;
-    border-color: aqua;
-    position: absolute;
-    z-index: 2;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: #fffefe;
-    height: 100px;
-    width:300px;
+.overlay.open {
+    transform: translateY(33%);
+  }
     
-    &__content{
+    .modal__content{
+        background: #f5c4c4;
+        height: 100%;
+        width:100%;
+        margin-top: 0;
+        border: solid 1px vars.$title-color;
+        border-radius: 0 0 5px 5px;
         box-sizing: border-box;
-        line-height: 1.4;
-    }
-    & p {
-        font-size: 1.3rem;
-        font-weight: bold;
-        margin: 0;
-        margin-top: 1rem;
+        // line-height: 1.4;
+        display: flex;
 
+        &__form{
+            margin-left: 1.8rem;
+        }
+        &__title{
+            color: vars.$title-color;
+            
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0;
+            margin-top: 1rem;
+            
+        }
+        &__input, &__button {
+            box-sizing: border-box;
+            line-height: 35px;
+            vertical-align: middle;
+            margin-top: 0.5rem;
+          }
+          
+          &__input{
+            width: 70%;
+            height:35px;
+            font-size: 1.3rem;
+            border: none;
+            outline: none;
+            transition: 1000ms;
+            
+          }
+          &__input:focus{
+            border-bottom:1px solid vars.$title-color;
+        
+            outline: none;
+            
+          }
+          
+          &__button{
+            height: 35px;
+            color: vars.$title-color;
+            width: 35px;
+            background: vars.$alt-color;
+            border-radius: 0 5px 5px 0;
+          }
     }
-    & input {
-        width: 98%;
-        margin-top: 1rem;
-        font-size: 1.3rem;
 
-    }
 
-}
 
 .close__modal {
     position: absolute;
-    top:5px;
+    top:15px;
     right: 5px;
 }

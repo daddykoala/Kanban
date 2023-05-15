@@ -8,7 +8,7 @@ import { Routes,Route } from 'react-router-dom';
 import Header from "./app/components/header/Header";
 import Sidebar from "./app/components/Sidebar/Sidebar";
 
-import "./App.css";
+import "./styles/App.scss";
 
 
 function App() {
@@ -43,7 +43,8 @@ function App() {
     
     <div className="App">
       <Header />
-      <Sidebar />
+      {/* <Sidebar />
+      < Decks /> */}
       <Routes>
           <Route path="/decks/:decksId" element={<Decks />} />
       </Routes>

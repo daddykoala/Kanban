@@ -34,39 +34,40 @@ function Modal() {
   const linkedinput = (e) => {
     setStateInput(e);
   };
-  const toggleModal = () => {
+  const handlemodale = () => {
     setModal(!modal);
   };
 
   return (
     <div>
-      <button onClick={toggleModal} className="btn-modal">
+      <button onClick={handlemodale} className="btn-modal">
         Créer
       </button>
 
-      {modal && (
-        <div className="overlay">
-          <div className="modal">
+      <div className={`overlay ${modal ? 'open' : ''}`}>
+        
             <div className="modal__content">
-              <form action="submit">
-                <p>créer votre tableau</p>
-                <button onClick={toggleModal} className="close__modal">
+              <form classname="modal__content__form" action="submit">
+                <p className="modal__content__title">créer votre tableau</p>
+                <span onClick={handlemodale} className="close__modal">
                   x
-                </button>
-                <input
+                </span>
+                <div className="modal__content__submit">
+                <input className="modal__content__input"
                   onChange={(e) => linkedinput(e.target.value)}
                   type="text"
                   placeholder="mon tableau ici"
                   value={stateInput}
                 />
-                <button type="submit" onClick={addTableau}>
+                <button className="modal__content__button" type="submit" onClick={addTableau}>
                   ok
                 </button>
+
+                </div>
               </form>
             </div>
-          </div>
+          
         </div>
-      )}
     </div>
   );
 }

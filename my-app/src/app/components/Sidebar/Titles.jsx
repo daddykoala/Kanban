@@ -76,7 +76,7 @@ function Titles({ names, index, className, tableId, userId }) {
         </button>
           </form>
         ) : (
-          <div onClick={handleTitleClick}>{names}</div>
+          <div >{names}</div>
         )}
       </Link>
       {isEditing ? null : (
