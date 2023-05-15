@@ -9,7 +9,7 @@ import Header from "./app/components/header/Header";
 import Sidebar from "./app/components/Sidebar/Sidebar";
 
 import "./App.css";
-import DecksDefault from "./app/components/Deckdefault/DecksDefault";
+
 
 function App() {
 
@@ -45,10 +45,7 @@ function App() {
       <Header />
       <Sidebar />
       <Routes>
-        <Route exact path="/decks" element={<> <DecksDefault /> <Header/> <Sidebar /> </> }/>
           <Route path="/decks/:decksId" element={<Decks />} />
-          
-        
       </Routes>
     </div>
   

@@ -32,10 +32,10 @@ export const userApi = createApi({
     }),
 
     modifyTableByUser: builder.mutation({
-      query: (body,id) => ({
+      query: ({name,id}) => ({
         url: `tables/${id}`,
         method: "PATCH",
-        body: { name: body.name },
+        body: { name: name },
       }),
     }),
     //recupération des listes du user en bddd

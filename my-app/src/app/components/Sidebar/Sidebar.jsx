@@ -1,5 +1,5 @@
 //import PropTypes from 'prop-types';
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 
@@ -12,6 +12,10 @@ import "./sidebarStyles.scss";
 function Sidebar() {
   //je recupere le state de user
   const userState = useSelector((state) => state.user.user);
+  
+   useEffect(() => {
+      console.log("userState", userState);
+    }, [userState]);
 
   if (userState === undefined || userState === null) {
     return <div> marche pas </div>;

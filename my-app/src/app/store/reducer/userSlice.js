@@ -20,9 +20,11 @@ export const userSlice = createSlice({
     //je supprime une table 
     removeTable: (state, action) => {
       const TableId = action.payload;
+      console.log("mon id", TableId);
       state.user.table = state.user.table.filter(
         (table) => table.id !== TableId
       );
+      console.log("mon state apres mon delete", state.user.table);
     },
 
     addList: (state, action) => {

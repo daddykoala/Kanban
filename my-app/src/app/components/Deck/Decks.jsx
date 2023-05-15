@@ -12,20 +12,23 @@ import "./deckStyles.scss";
 
 function Decks() {
   //const { id } = useParams();
-  const id = 44;
+  const id = 62;
   const userState = useSelector((state) => state.user.user);
   const [tableau, setTableau] = useState(null);
   const [lists, setLists] = useState([]);
 
   //je vien recup mon tableau avec le params
- useEffect(() => {
+  useEffect(() => {
     if (userState && userState.table) {
-
       const tables = userState.table;
       setTableau(tables);
       const foundTable = userState.table.find((table) => table.id === id);
-      const foundList = foundTable.list;
-      setLists(foundList);
+      if (foundTable) {
+        const foundList = foundTable.list;
+        setLists(foundList);
+      } else {
+        setLists([]); // Si aucune table n'est trouvée, initialiser les listes comme un tableau vide
+      }
     }
   }, [userState, id]);
 
@@ -34,34 +37,35 @@ function Decks() {
       // console.log("lists en dhors use effect", lists,typeof lists, typeof lists[0,1,3] );
       
 
-  return (
-    <section className="deck">
-      <div className="deck__add__list">
-      <CreateCard 
-      tableId={id} />
-      </div>
-<div className="deck__board">
-
-      {//je crée toutles listes de mon tableau
-      lists.map((list) => {
-         return (
-            <List
-              key={list.id}
-              title={list.name}
-              id={list.id}
-              position={list.position}
-              tableId={id}
+      return (
+        <section className="deck">
+          <div className="deck__add__list">
+            <CreateCard tableId={id} />
+          </div>
+          <div className="deck__board">
+            {
+              // Affichez les listes si elles existent
+              lists.length > 0 ?
+              lists.map((list) => {
+                return (
+                  <List
+                    key={list.id}
+                    title={list.name}
+                    id={list.id}
+                    position={list.position}
+                    tableId={id}
+                  />
+                );
+              })
+              :
               
-              // cards={list.card}
+              <p>let's go organizations !!!</p>
               
-            />
-          );
-        })}
-</div>
+            }
+          </div>
+        </section>
+      );
       
-
-    </section>
-  );
 }
 //Decks.propTypes = {};
 

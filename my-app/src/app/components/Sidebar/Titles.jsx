@@ -1,55 +1,52 @@
 import { Link } from "react-router-dom";
-import { useDeleteTableByUserMutation,useModifyTableByUserMutation } from "../../store/api/api";
+import {
+  useDeleteTableByUserMutation,
+  useModifyTableByUserMutation,
+} from "../../store/api/api";
 import { removeTable } from "../../store/reducer/userSlice";
 import { useParams } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
-
-import React , {useState}from "react";
-
+import React, { useState } from "react";
 import { BsFillTrash2Fill, BsPencilFill } from "react-icons/bs";
 
 function Titles({ names, index, className, tableId, userId }) {
   const dispatch = useDispatch();
   const [deleteTableMutation] = useDeleteTableByUserMutation();
-  const [modifyTableByUser] = useModifyTableByUserMutation();
-
+  const [modifyTableByUser] = useModifyTableByUserMutation()
   //modifcation du nom de tableau
   const [isEditing, setIsEditing] = useState(false);
   const [input, setInput] = useState("");
-  const [value, setValue] = useState("");
 
-  // const getContentUserQuery = useGetContentByUserQuery();
-
-  // modifyTableByUser: builder.mutation({
-  //   query: (id) => ({
-  //     url: `tables/${id}`,
-  //     method: "PATCH",
-  //     body: { name: body.name },
-  //   }),
   const handleTitleChange = (e) => {
     setInput(e.target.value);
-    console.log(input);
   };
+
+  async function handleTitleSubmit(e) {
+    console.log("je passe dans le submit", tableId);
+    e.preventDefault();
+    setIsEditing(false);
+    try {
+      console.log("je passe dans le try", tableId);
+      const result = await modifyTableByUser({ id: tableId, name: input });
+      if (result) {
+        console.log("je passe dans le reducer", result.data);
+        dispatch(modifyTableByUser(result.data));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const handleTitleBlur = () => {
     setIsEditing(false);
   };
 
+  const handleTitleClick = () => {
+    setIsEditing(true);
+    setInput(names); // Set current name as the input value
+  };
 
 
-async function handleModifyTable() { 
-  try {
-    console.log("je rentre dans mon handleModifyTable", tableId);
-    const result = await modifyTableByUser({ tableId, });
-    if (result) {
-      console.log("result", result.data);
-      dispatch(modifyTableByUser(result.data));
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
 
   async function handlDeleteTable() {
     try {
@@ -64,17 +61,35 @@ async function handleModifyTable() {
   }
 
   return (
-    <>
-      <Link to={`/decks/${tableId}`} >
-        <div key={index}>
-          {names}
-          <button className="titles__button">
-            <BsPencilFill onClick={handleModifyTable}/>
-            <BsFillTrash2Fill onClick={handlDeleteTable} />
-          </button>
-        </div>
+    <div key={index}>
+      <Link to={`/decks/${tableId}`}>
+        {isEditing ? (
+          <form onSubmit={handleTitleSubmit}>
+            <input
+              value={input}
+              onChange={handleTitleChange}
+              onBlur={handleTitleBlur}
+              autoFocus
+            />
+            <button type="submit" className="titles__button__submit"  >
+          <BsPencilFill />
+        </button>
+          </form>
+        ) : (
+          <div onClick={handleTitleClick}>{names}</div>
+        )}
       </Link>
-    </>
+      {isEditing ? null : (
+      <div className="button-container">
+        <button className="titles__button" onClick={handleTitleClick}>
+          <BsPencilFill />
+        </button>
+        <button onClick={handlDeleteTable}>
+          <BsFillTrash2Fill />
+        </button>
+      </div>
+    )}
+    </div>
   );
 }
 
