@@ -45,13 +45,16 @@ export const userSlice = createSlice({
     },
     //je supprime une liste 
     removeList: (state, action) => {
-      const listId = action.payload;
+      console.log("mon action", action.payload);
+      const listId = action.payload.id;
       //je retrouve l'index de la table a laquelle je supprime une liste 
       const tableIndex = state.user.table.findIndex(
-        (t) => t.id === action.payload.table_id
+        (t) => t.id === action.payload.tableId
       );
+      console.log("mon index", tableIndex);
       //je supprime la liste de la table
       state.user.table[tableIndex].list = state.user.table[tableIndex].list.filter((list) => list.id !== listId);
+      console.log("mon state apres mon submit", state.user.table[tableIndex]);
      
     },
     //je modifie la liste dans le tableau apres changement d'une des valeurs

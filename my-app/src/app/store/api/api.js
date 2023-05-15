@@ -45,10 +45,10 @@ export const userApi = createApi({
 
     //création d'une liste pour un tableau
       postListByUser: builder.mutation({
-        query: (body) => ({
+        query: ({name,tableId}) => ({
           url: `lists/`,
           method: "POST",
-          body: { name: body.name, tableId: body.tableId },
+          body: { name: name, tableId:tableId },
       }),
     }),
 

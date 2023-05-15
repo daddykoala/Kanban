@@ -4,9 +4,10 @@ import { useDispatch ,useSelector} from "react-redux";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { RiAddBoxLine } from "react-icons/ri";
 import { FaPen } from "react-icons/fa";
+// api
+import { useModifyListByTableMutation , useDeleteListByTableMutation } from "../../store/api/api";
 
-import { useModifyListByTableMutation } from "../../store/api/api";
-import { modifyList } from "../../store/reducer/userSlice";
+import { modifyList ,removeList} from "../../store/reducer/userSlice";
 
 //J'importe mes query;
 
@@ -14,15 +15,16 @@ import { modifyList } from "../../store/reducer/userSlice";
 
 import "./ListStyles.scss";
 
-function List({ id, key, title, position }) {
+function List({ id, key, title, position,tableId }) {
   const dispatch = useDispatch();
  
 
   const [input, setInput] = useState("");
   const [value, setValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-
-  const [modifyListByTable, { data, isSuccess }] =
+// const api
+    const [deleteListByTable] =useDeleteListByTableMutation();
+  const [modifyListByTable] =
     useModifyListByTableMutation();
 
   //modifie la value de l'input
@@ -42,7 +44,7 @@ function List({ id, key, title, position }) {
 
   const handleTitleSubmit = async () => {
     setIsEditing(false);
-    console.log("je passe is editing a false ");
+
     try {
         console.log("id", id);
         
@@ -50,18 +52,24 @@ function List({ id, key, title, position }) {
       console.log("result", result.data);
       if (result) {
         console.log("j'ai eu mon result et je rentre dans la condition", typeof id);
-console.log("result", result.data);
+
         dispatch(modifyList(result.data));
-        //si ok je modifie le titre de la liste
-        //je modifi le state
-        //j'apelle mon api ici
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    //je recupere l'id pour dele la liste en bdd
+    const result = deleteListByTable(id);
+    if (result) {
+        dispatch(removeList({id , tableId}))
+        console.log("j'ai supprimer la liste");
+
+    }
+ //je suprime la lsite en bdd
+  };
 
   const handleAdd = () => {};
 
@@ -69,7 +77,7 @@ console.log("result", result.data);
     <div className="list" key={key} id={id} position={position}>
       <div className="list__header">
         {isEditing ? (
-          <form onClick={handleTitleSubmit}>
+          <form onSubmit={handleTitleSubmit}>
             <input
               className="list__header__title"
               value={input}
@@ -77,7 +85,7 @@ console.log("result", result.data);
               onBlur={handleTitleBlur}
               autoFocus
             />
-            <button>
+            <button type="submit">
               <FaPen />
             </button>
           </form>
@@ -90,12 +98,10 @@ console.log("result", result.data);
           <button>
             <AiFillEdit style={{ marginRight: "10px" }} />
           </button>
-          <button>
+          <button onClick={handleDelete}>
             <AiFillDelete />
           </button>
-          <button>
-            <RiAddBoxLine />
-          </button>
+          
         </div>
       </div>
       {/* {tasks.map((element,index)=> 

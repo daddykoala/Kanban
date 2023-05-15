@@ -27,17 +27,12 @@ function Titles({ names, index, className, tableId, userId }) {
     try {
       // au click je recupere l'id du tableaupour le delete en bdd
       const result = await deleteTableMutation(tableId);
-
       if (result) {
         dispatch(removeTable(tableId));
       }
     } catch (error) {
       console.error(error);
     }
-
-    // je dispatch le nouveau user dans le store
-
-    //je vais devoir dispatcher le nouveau user dans le store
   }
 
   return (

@@ -20,14 +20,10 @@ function Modal() {
 
   
   const addTableau = async (e) => {
-    e.preventDefault();
-   
+    e.preventDefault();   
     try {
       const result = await addTableMutation({ name: stateInput, userId: user_id.id });
-     
-      //attention a jouter un state identique dans les clefs sinon ca ne render pas.
       dispatch(addTable(result.data))
-     
       setStateInput("");
     }
     catch (error){
@@ -61,7 +57,6 @@ function Modal() {
                   onChange={(e) => linkedinput(e.target.value)}
                   type="text"
                   placeholder="mon tableau ici"
-                  
                   value={stateInput}
                 />
                 <button type="submit" onClick={addTableau}>

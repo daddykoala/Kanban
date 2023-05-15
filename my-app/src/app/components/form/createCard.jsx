@@ -19,8 +19,9 @@ function CreateCard({ tableId }) {
       });
       if (isSuccess && data) {
         //je dispatch mon action
+        console.log("data", data);
         dispatch(addList(data));
-        console.log(userState);
+        
       }
       setInputValue("");
     } catch (error) {

@@ -12,18 +12,12 @@ import "./deckStyles.scss";
 
 function Decks() {
   //const { id } = useParams();
-
-
   const id = 44;
   const userState = useSelector((state) => state.user.user);
-
-
-
   const [tableau, setTableau] = useState(null);
   const [lists, setLists] = useState([]);
 
   //je vien recup mon tableau avec le params
-
  useEffect(() => {
     if (userState && userState.table) {
 
@@ -43,7 +37,8 @@ function Decks() {
   return (
     <section className="deck">
       <div className="deck__add__list">
-      <CreateCard />
+      <CreateCard 
+      tableId={id} />
       </div>
 <div className="deck__board">
 
@@ -55,6 +50,7 @@ function Decks() {
               title={list.name}
               id={list.id}
               position={list.position}
+              tableId={id}
               
               // cards={list.card}
               
