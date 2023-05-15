@@ -54,25 +54,31 @@ export const userSlice = createSlice({
       state.user.table[tableIndex].list = state.user.table[tableIndex].list.filter((list) => list.id !== listId);
      
     },
-  },
-  //je modifie la liste dans le tableau apres changement d'une des valeurs
+    //je modifie la liste dans le tableau apres changement d'une des valeurs
     modifyList: (state, action) => {
       console.log("mon action", action.payload);
-     
+    
       const tableIndex = state.user.table.findIndex(
         (t) => t.id === action.payload.table_id
       );
       if (tableIndex !== -1) {
-        console.log("mon action", action.payload);
-        // Ajouter la nouvelle liste à la copie du tableau
-        const updatedTable = {
-          ...state.user.table[tableIndex],
-          list: [...state.user.table[tableIndex].list, action.payload],
-        };
-        state.user.table[tableIndex] = updatedTable;
+        const listIndex = state.user.table[tableIndex].list.findIndex(
+          (l) => l.id === action.payload.id
+        );
+    
+        if (listIndex !== -1) {
+          // Si la liste existe déjà, la remplacer par la nouvelle liste
+          state.user.table[tableIndex].list[listIndex] = action.payload;
+        } else {
+          // Si la liste n'existe pas, l'ajouter à la fin du tableau
+          state.user.table[tableIndex].list.push(action.payload);
+        }
+    
+        console.log("mon state apres mon submit", state.user.table[tableIndex]);
       }
-
     },
+    
+  },
       
 
 });

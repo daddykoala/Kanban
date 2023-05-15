@@ -16,7 +16,7 @@ import "./ListStyles.scss";
 
 function List({ id, key, title, position }) {
   const dispatch = useDispatch();
-  
+ 
 
   const [input, setInput] = useState("");
   const [value, setValue] = useState("");
@@ -50,8 +50,8 @@ function List({ id, key, title, position }) {
       console.log("result", result.data);
       if (result) {
         console.log("j'ai eu mon result et je rentre dans la condition", typeof id);
-
-        dispatch(modifyList({ table_id: result.data.table_id }));
+console.log("result", result.data);
+        dispatch(modifyList(result.data));
         //si ok je modifie le titre de la liste
         //je modifi le state
         //j'apelle mon api ici
