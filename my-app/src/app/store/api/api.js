@@ -6,16 +6,15 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3002" }),
   endpoints: (builder) => ({
+
+    //recupération des données user 
     getContentByUser: builder.query({
       query: (id) => `users/${id}`,
     }),
 
-    getListsByTable: builder.query({
-      query: (id) => `lists/`,
-    }),
+    
     //je crée un tableau pour un user
-    addTableByUser: builder.mutation({
-      
+    addTableByUser: builder.mutation({   
       //j'envoi un objet json avec l'id du user et le nom du tableau
       query: (body) => ({
         url: `tables`,
@@ -32,6 +31,19 @@ export const userApi = createApi({
       }),
     }),
 
+    modifyTableByUser: builder.mutation({
+      query: (body,id) => ({
+        url: `tables/${id}`,
+        method: "PATCH",
+        body: { name: body.name },
+      }),
+    }),
+    //recupération des listes du user en bddd
+    getListsByTable: builder.query({
+      query: (id) => `lists/${id}`,
+    }),
+
+    //création d'une liste pour un tableau
       postListByUser: builder.mutation({
         query: (body) => ({
           url: `lists/`,
@@ -41,11 +53,32 @@ export const userApi = createApi({
     }),
 
 
-  }),
-});
+      modifyListByTable: builder.mutation({
+        query: ({name,id}) => ({
+          url: `lists/${id}`,
+          method: "PATCH",
+          body: { name: name },
+        }),
+      }),
+
+        deleteListByTable: builder.mutation({
+          query: (id) => ({
+            url: `lists/${id}`,
+            method: "DELETE",
+          }),
+        }),
+        
+  
+    }),
+
+
+  })
+
+ 
+
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 //j'exporte les hooks pour les utiliser dans les composants fonctionnels
 export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery ,
-usePostListByUserMutation } = userApi;
+useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation  } = userApi;

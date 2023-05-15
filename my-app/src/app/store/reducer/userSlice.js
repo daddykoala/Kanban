@@ -13,16 +13,18 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
-
+//je push le nouveau tableau dans user
     addTable: (state, action) => {
       state.user.table.push(action.payload);
     },
+    //je supprime une table 
     removeTable: (state, action) => {
       const TableId = action.payload;
       state.user.table = state.user.table.filter(
         (table) => table.id !== TableId
       );
     },
+
     addList: (state, action) => {
       console.log("mon action", action.payload);
       // Trouver l'index du tableau avec l'ID spécifié
@@ -41,9 +43,40 @@ export const userSlice = createSlice({
         console.log("mon state apres mon submit", state.user.table[tableIndex]);
       }
     },
+    //je supprime une liste 
+    removeList: (state, action) => {
+      const listId = action.payload;
+      //je retrouve l'index de la table a laquelle je supprime une liste 
+      const tableIndex = state.user.table.findIndex(
+        (t) => t.id === action.payload.table_id
+      );
+      //je supprime la liste de la table
+      state.user.table[tableIndex].list = state.user.table[tableIndex].list.filter((list) => list.id !== listId);
+     
+    },
   },
+  //je modifie la liste dans le tableau apres changement d'une des valeurs
+    modifyList: (state, action) => {
+      console.log("mon action", action.payload);
+     
+      const tableIndex = state.user.table.findIndex(
+        (t) => t.id === action.payload.table_id
+      );
+      if (tableIndex !== -1) {
+        console.log("mon action", action.payload);
+        // Ajouter la nouvelle liste à la copie du tableau
+        const updatedTable = {
+          ...state.user.table[tableIndex],
+          list: [...state.user.table[tableIndex].list, action.payload],
+        };
+        state.user.table[tableIndex] = updatedTable;
+      }
+
+    },
+      
+
 });
 
-export const { setUser, addTable, removeTable, addList } = userSlice.actions;
+export const { setUser, addTable, removeTable, addList, removeList, modifyList } = userSlice.actions;
 
 export default userSlice.reducer;

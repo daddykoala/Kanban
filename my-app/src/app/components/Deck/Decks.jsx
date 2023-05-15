@@ -37,7 +37,7 @@ function Decks() {
 
 
 
-      console.log("lists en dhors use effect", lists,typeof lists, typeof lists[0,1,3] );
+      // console.log("lists en dhors use effect", lists,typeof lists, typeof lists[0,1,3] );
       
 
   return (

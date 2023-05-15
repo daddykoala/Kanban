@@ -14,6 +14,15 @@ function Titles({ names, index, className, tableId, userId }) {
   const [deleteTableMutation] = useDeleteTableByUserMutation();
   // const getContentUserQuery = useGetContentByUserQuery();
 
+  // modifyTableByUser: builder.mutation({
+  //   query: (id) => ({
+  //     url: `tables/${id}`,
+  //     method: "PATCH",
+  //     body: { name: body.name },
+  //   }),
+
+
+
   async function handlDeleteTable() {
     try {
       // au click je recupere l'id du tableaupour le delete en bdd
