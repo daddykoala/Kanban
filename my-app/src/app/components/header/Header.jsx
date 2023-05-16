@@ -6,6 +6,7 @@ import {GoDiffAdded} from 'react-icons/go';
 
 
 import Modal from './Modal'
+import AuthModal from '../form/AuthModale';
 import './headerStyles.scss';
 
 function Header() {
@@ -30,6 +31,7 @@ return (
           )}
           <div className='header__login'>
             <Modal/>
+          <AuthModal/>
           </div>
         </header>
       );

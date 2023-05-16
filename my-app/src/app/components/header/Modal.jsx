@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useAddTableByUserMutation } from "../../store/api/api";
 import { addTable } from "../../store/reducer/userSlice";
 
+import {GoDiffAdded} from 'react-icons/go';
+
 import "./modalStyles.scss";
 
 function Modal() {
@@ -41,13 +43,13 @@ function Modal() {
   return (
     <div>
       <button onClick={handlemodale} className="btn-modal">
-        Créer
+      <GoDiffAdded/>
       </button>
 
       <div className={`overlay ${modal ? 'open' : ''}`}>
         
             <div className="modal__content">
-              <form classname="modal__content__form" action="submit">
+              <form className="modal__content__form" action="submit">
                 <p className="modal__content__title">créer votre tableau</p>
                 <span onClick={handlemodale} className="close__modal">
                   x

@@ -40,6 +40,10 @@ header{
         font-size: 1.5rem;
         color:vars.$title-color;
     }
+    &__login{
+        display: flex;
+        align-items: center;
+    }
 }
 .btn-modal{
     margin-left: auto;

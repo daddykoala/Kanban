@@ -8,13 +8,14 @@ import { Routes,Route } from 'react-router-dom';
 import Header from "./app/components/header/Header";
 import Sidebar from "./app/components/Sidebar/Sidebar";
 
+
 import "./styles/App.scss";
 
 
 function App() {
 
   const dispatch = useDispatch();
-  const data = useGetContentByUserQuery(1);
+  const data = useGetContentByUserQuery(2);
 
   useEffect(() => {
     if (data.isSuccess) {
@@ -43,9 +44,10 @@ function App() {
     
     <div className="App">
       <Header />
-      {/* <Sidebar />
-      < Decks /> */}
+      <Sidebar />
+      < Decks />
       <Routes>
+          {/* <Route path="/" element={<Decks />} /> */}
           <Route path="/decks/:decksId" element={<Decks />} />
       </Routes>
     </div>

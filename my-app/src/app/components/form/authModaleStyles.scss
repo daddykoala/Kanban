@@ -1,0 +1,80 @@
+@use'../../../styles/vars.scss' as vars;
+
+
+
+.auth{ 
+    min-width: 230px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: vars.$title-color 1px solid ;
+    border-radius: 5px;
+    top: 200px; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: white; 
+    padding: 1em;
+    z-Index: 1000 ;
+    background-color: vars.$primary-color;
+    
+
+
+    &__button{
+        margin-top: 1em;
+        width: 100%;
+       display: flex;
+       justify-content: space-evenly;
+
+       &__connect{
+        margin-top: 0.5em;
+        background-color: vars.$title-color;
+        color:vars.$light-color;
+        padding: 0.5em;
+        border-radius: 5px;
+    }
+    &__quit{
+        //dans le coin a droite
+        position: absolute;
+        top: 0;
+        right: 0;
+        // margin: 0.5em;
+        color:vars.$title-color;
+        padding: 0.5em;
+
+    }
+    }
+    & form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+    }
+    & label {
+        display: flex;
+        flex-direction: column;
+
+        text-align: center;
+        margin-top: 0.5em;
+        font-size: 16px;
+        color: vars.$title-color;
+        font-weight: bold;
+        border: none;
+        & input{
+            border: none;
+            outline:none;
+            transition: ease-in-out 0.3s;
+            margin-top: 0.2em;
+        }
+        & :focus{
+            border: none;
+            outline:none;
+            border-bottom: 1px solid vars.$title-color;
+        }
+        
+    }
+
+}

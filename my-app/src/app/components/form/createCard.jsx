@@ -5,7 +5,7 @@ import { addList } from "../../store/reducer/userSlice";
 
 function CreateCard({ tableId }) {
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.user.user.table.list);
+
   const [postListbyUser, { data, isSuccess }] = usePostListByUserMutation();
     const [inputValue, setInputValue] = useState("");
 
@@ -26,6 +26,8 @@ function CreateCard({ tableId }) {
       setInputValue("");
     } catch (error) {
       console.log(error);
+
+      
     }
   }
 
