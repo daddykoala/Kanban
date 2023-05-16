@@ -1,19 +1,26 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const token = localStorage.getItem('accessToken');
+
 // Define a service using a base URL and expected endpoints
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3002" }),
+  baseQuery: fetchBaseQuery({
+     baseUrl: "http://localhost:3002",
+     prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      headers.set('Content-Type', 'application/json');
+      return headers;
+    },
+    }),
   endpoints: (builder) => ({
 
     //recupération des données user 
     getContentByUser: builder.query({
       query: (id) => `users/${id}`,
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
+      
     }),
 
     loginUser: builder.mutation({

@@ -12,13 +12,20 @@ import "./sidebarStyles.scss";
 function Sidebar() {
   //je recupere le state de user
   const userState = useSelector((state) => state.user.user);
+  const tokenState = useSelector((state) => state.auth);
   
    useEffect(() => {
       console.log("userState", userState);
-    }, [userState]);
+      console.log(tokenState);
+    }, [userState,tokenState]);
 
   if (userState === undefined || userState === null) {
-    return <div> marche pas </div>;
+    return <div className="sidebar">
+      <h2>tableaux</h2>
+      <div>
+        <h2>mes tableaux</h2>
+        </div>;
+    </div>
   }
 
   //j'ecoute les changemebt de state de user
@@ -35,33 +42,30 @@ function Sidebar() {
   //     }
 
   // }
-
+  
   return (
     <div>
       <section className="sidebar">
         <h2>tableaux</h2>
         <div>
           <h2>mes tableaux</h2>
-
-          {userState.table &&
+  
+          {userState.table[0] ? (
             userState.table.map((element, index) => (
-              //l'element sera titles
-             
-
-<Link to={`/decks/${element.id}`} key={index}>
-
-              <Titles
-                names={element.name}
-                key={index}
-                tableId={element.id}
-                userId={userState.id}
-                // className={display}
-                // onClick={toggleClassname}
-              >
-                {element.name}
-              </Titles>
-</Link>
-            ))}
+              <Link to={`/decks/${element.id}`} key={index}>
+                <Titles
+                  names={element.name}
+                  key={index}
+                  tableId={element.id}
+                  userId={userState.id}
+                >
+                  {element.name}
+                </Titles>
+              </Link>
+            ))
+          ) : (
+            <p>Créez vos premiers tableaux</p>
+          )}
         </div>
       </section>
     </div>

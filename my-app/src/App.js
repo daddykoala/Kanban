@@ -14,25 +14,25 @@ import "./styles/App.scss";
 
 function App() {
 
-  const dispatch = useDispatch();
-  const data = useGetContentByUserQuery(2);
+  // const dispatch = useDispatch();
+  // const data = useGetContentByUserQuery(2);
 
-  useEffect(() => {
-    if (data.isSuccess) {
+  // useEffect(() => {
+  //   if (data.isSuccess) {
       
-      dispatch(setUser(data.data));
-    }
-  }, [data,dispatch]);
+  //     dispatch(setUser(data.data));
+  //   }
+  // }, [data,dispatch]);
 
 
-  if (data.isLoading) {
+  // if (data.isLoading) {
    
-    return <div>Loading...</div>;
-  }
-  if (data.isError) {
+  //   return <div>Loading...</div>;
+  // }
+  // if (data.isError) {
     
-    return <div>error</div>;
-  }
+  //   return <div>error</div>;
+  // }
   
   
 
@@ -45,9 +45,9 @@ function App() {
     <div className="App">
       <Header />
       <Sidebar />
-      < Decks />
+      {/* < Decks /> */}
       <Routes>
-          <Route path="/" element={<Decks />} />
+          {/* <Route path="/" element={<Decks />} /> */}
           <Route path="/decks/:decksId" element={<Decks />} />
       </Routes>
     </div>

@@ -59,7 +59,7 @@ function Decks() {
               })
               :
               
-              <p>let's go organizations !!!</p>
+              <p>let's go Connect !!!</p>
               
             }
           </div>
