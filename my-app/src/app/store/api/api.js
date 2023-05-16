@@ -1,6 +1,6 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+const token = localStorage.getItem('accessToken');
 // Define a service using a base URL and expected endpoints
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -10,6 +10,19 @@ export const userApi = createApi({
     //recupération des données user 
     getContentByUser: builder.query({
       query: (id) => `users/${id}`,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    }),
+
+    loginUser: builder.mutation({
+      
+      query: ({email}) => ({
+        url: `users/findByEmail`,
+        method: 'POST',
+        body: {email:email},
+      }),
     }),
 
     
@@ -81,4 +94,4 @@ export const userApi = createApi({
 // auto-generated based on the defined endpoints
 //j'exporte les hooks pour les utiliser dans les composants fonctionnels
 export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery ,
-useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation  } = userApi;
+useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation ,useLoginUserMutation } = userApi;
