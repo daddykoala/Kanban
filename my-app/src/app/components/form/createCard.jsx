@@ -27,7 +27,7 @@ function CreateCard({ tableId }) {
     } catch (error) {
       console.log(error);
 
-      
+
     }
   }
 
