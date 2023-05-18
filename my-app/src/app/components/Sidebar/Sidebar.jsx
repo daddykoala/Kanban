@@ -12,12 +12,12 @@ import "./sidebarStyles.scss";
 function Sidebar() {
   //je recupere le state de user
   const userState = useSelector((state) => state.user.user);
-  const tokenState = useSelector((state) => state.auth);
+  const tokenState = useSelector((state) => state.auth.token);
   
    useEffect(() => {
       console.log("userState", userState);
-      console.log(tokenState);
-    }, [userState,tokenState]);
+      
+    }, [userState]);
 
   if (userState === undefined || userState === null) {
     return <div className="sidebar">
@@ -69,7 +69,7 @@ function Sidebar() {
         </div>
       </section>
     </div>
-  );
+  )
 }
 //sidebar.propTypes = {};
 

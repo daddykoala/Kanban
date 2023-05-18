@@ -42,7 +42,7 @@ function Modal() {
 
   return (
     <div>
-      <button onClick={handlemodale} className="btn-modal">
+      <button onClick={handlemodale} className="btn-modal btn-modal-créer">
       <GoDiffAdded/>
       </button>
 

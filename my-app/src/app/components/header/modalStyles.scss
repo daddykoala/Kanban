@@ -1,5 +1,7 @@
 @use'../../../styles/vars.scss' as vars;
 
+
+
 .overlay {
     position: absolute;
     top: 0;
@@ -12,6 +14,7 @@
     transition: 1000ms;
     z-index: -1;
     transform: translateY(-100%);
+    
 }
 .overlay.open {
     transform: translateY(33%);

@@ -47,7 +47,7 @@ function App() {
       <Sidebar />
       {/* < Decks /> */}
       <Routes>
-          {/* <Route path="/" element={<Decks />} /> */}
+          <Route path="/" element={<Decks />} />
           <Route path="/decks/:decksId" element={<Decks />} />
       </Routes>
     </div>

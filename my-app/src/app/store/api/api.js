@@ -7,7 +7,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
      baseUrl: "http://localhost:3002",
      prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
+      const token = getState().auth.auth;
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -40,6 +40,11 @@ export const userApi = createApi({
         url: `tables`,
         method: "POST",
         body: { name: body.name, user_id: body.userId },
+        onError: (error) => {
+          // Gérer l'erreur ici
+          console.log( error);
+          // Vous pouvez également déclencher une action, afficher un message d'erreur, etc.
+        },
       }),
 
     }),
