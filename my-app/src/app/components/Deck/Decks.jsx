@@ -11,17 +11,18 @@ import CreateCard from "../form/createCard";
 import "./deckStyles.scss";
 
 function Decks() {
-  const { id } = useParams();
+  const { decksId } = useParams();
   const userState = useSelector((state) => state.user.user);
   const [tableau, setTableau] = useState(null);
   const [lists, setLists] = useState([]);
-
+console.log(decksId);
   //je vien recup mon tableau avec le params
   useEffect(() => {
+    console.log(decksId);
     if (userState && userState.table) {
       const tables = userState.table;
       setTableau(tables);
-      const foundTable = userState.table.find((table) => table.id === id);
+      const foundTable = userState.table.find((table) => table.id === decksId);
       if (foundTable) {
         const foundList = foundTable.list;
         setLists(foundList);
@@ -29,7 +30,7 @@ function Decks() {
         setLists([]); // Si aucune table n'est trouvée, initialiser les listes comme un tableau vide
       }
     }
-  }, [userState, id]);
+  }, [userState, decksId]);
 
 
 
@@ -39,14 +40,10 @@ function Decks() {
       return (
         <section className="deck">
           <div className="deck__add__list">
-            <CreateCard tableId={id} />
+            <CreateCard tableId={decksId} />
           </div>
           <div className="deck__board">
-            <div className="list"></div>
-            <div className="list"></div>
-            <div className="list"></div>
-            <div className="list"></div>
-            <div className="list"></div>
+           
             {
               // Affichez les listes si elles existent
               lists.length > 0 ?
@@ -57,7 +54,7 @@ function Decks() {
                     title={list.name}
                     id={list.id}
                     position={list.position}
-                    tableId={id}
+                    tableId={decksId}
                   />
                 );
               })
@@ -75,4 +72,4 @@ function Decks() {
 
 //Decks.defaultProps = {};
 
-export default React.memo(Decks);
+export default Decks;

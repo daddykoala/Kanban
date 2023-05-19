@@ -10,11 +10,13 @@ function CreateCard({ tableId }) {
   const [Editing, setEditing] = useState(false);
 
   const [postListbyUser, { data, isSuccess }] = usePostListByUserMutation();
+  const [name, setName] = useState("");
     const [inputValue, setInputValue] = useState("");
 
   // j'enregistre ma nouvelle liste en bdd
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log("tableId", tableId);
     try {
       await postListbyUser({
         name: inputValue,
@@ -40,6 +42,9 @@ function CreateCard({ tableId }) {
     setEditing(false);
   }
   function handleInputChange(e) {
+    console.log(Editing);
+    console.log(name,inputValue);
+    setName(e.target.value);
     setInputValue(e.target.value);
   }
 
@@ -48,16 +53,14 @@ function CreateCard({ tableId }) {
       {Editing ? (
         <div >
         <form className="create__card" onSubmit={handleSubmit}>
-        <button onClick={opensForm}>
-        <IoMdAddCircleOutline className={`create__card__button ${ Editing ? "rotate" : ""} `}/>
-      </button>
-      <div className="input__anim">
-
-            <input className="create__card__input maj"type="text" value={inputValue} onChange={handleInputChange} />
-          
-             <button className="create__card__button__input maj" onClick={closeForm}><IoSend/></button>
-      </div>
-        </form>
+  <button type="submit" onClick={opensForm}>
+    <IoMdAddCircleOutline className={`create__card__button ${Editing ? "rotate" : ""}`} />
+  </button>
+  <div className="input__anim">
+    <input className="create__card__input maj" type="text" value={inputValue} onChange={handleInputChange} />
+    <button className="create__card__button__input maj" onClick={closeForm}><IoSend /></button>
+  </div>
+</form>
     
         </div>
       ) : (
