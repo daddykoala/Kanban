@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { useAddTableByUserMutation } from "../../store/api/api";
 import { addTable } from "../../store/reducer/userSlice";
 
-import {GoDiffAdded} from 'react-icons/go';
+import { GoDiffAdded } from "react-icons/go";
+import {IoSend} from "react-icons/io5"
 
 import "./modalStyles.scss";
 
@@ -13,23 +14,24 @@ function Modal() {
   const [modal, setModal] = useState(false);
   const [stateInput, setStateInput] = useState();
 
-  const user_id = useSelector((state) => state.user.user)
-  
-  
+  const user_id = useSelector((state) => state.user.user);
+
   const dispatch = useDispatch();
-  
+
   const [addTableMutation] = useAddTableByUserMutation();
 
-  
   const addTableau = async (e) => {
-    e.preventDefault();   
+    e.preventDefault();
     try {
-      const result = await addTableMutation({ name: stateInput, userId: user_id.id });
-      dispatch(addTable(result.data))
+      const result = await addTableMutation({
+        name: stateInput,
+        userId: user_id.id,
+      });
+      dispatch(addTable(result.data));
+      handlemodale();
       setStateInput("");
-    }
-    catch (error){
-      console.error(error)
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -42,34 +44,29 @@ function Modal() {
 
   return (
     <div className="table__modal">
-      <button onClick={handlemodale} className="btn-modal btn-modal-créer">
-      <GoDiffAdded/>
+      <button onClick={handlemodale} className={`btn-modal btn-modal-créer ${modal ? "rotate" : ""}`}>
+        <GoDiffAdded />
       </button>
-
-      <div className={`overlay ${modal ? 'open' : ''}`}>
+      {modal ? (
+      <form className={`table__modal__content__form ${modal ? "open" : ""}`}
+      type="submit">
+        <input
+          className="table__modal__content__input"
+          onChange={(e) => linkedinput(e.target.value)}
+          type="text"
+          // placeholder="mon tableau ici"
+          value={stateInput}
+        />
+        <button
+          className="modal__content__button"
+          type="submit"
+          onClick={addTableau}
+        >
+          <IoSend/>
+        </button>
+      </form>) : null
         
-            <div className="table__modal__content">
-              <form className="table__modal__content__form" type="submit">
-               
-                <span onClick={handlemodale} className="table__close__modal">
-                  x
-                </span>
-                <div className="table__modal__content__submit">
-                <input className="table__modal__content__input"
-                  onChange={(e) => linkedinput(e.target.value)}
-                  type="text"
-                  placeholder="mon tableau ici"
-                  value={stateInput}
-                />
-                <button className="modal__content__button" type="submit" onClick={addTableau}>
-                  ok
-                </button>
-
-                </div>
-              </form>
-            </div>
-          
-        </div>
+      }
     </div>
   );
 }

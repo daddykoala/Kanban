@@ -16,7 +16,9 @@ export const userApi = createApi({
     },
     }),
   endpoints: (builder) => ({
-
+    getMe: builder.query({
+      query: () => '/users/me',
+    }),
     //recupération des données user 
     getContentByUser: builder.query({
       query: (id) => `users/${id}`,
@@ -121,4 +123,5 @@ export const userApi = createApi({
 // auto-generated based on the defined endpoints
 //j'exporte les hooks pour les utiliser dans les composants fonctionnels
 export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery ,
-useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation ,useLoginUserMutation , useRegisterUserMutation } = userApi;
+useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation ,useLoginUserMutation , useRegisterUserMutation 
+,useGetMeQuery} = userApi;

@@ -1,4 +1,60 @@
 @use'../../../styles/vars.scss' as vars;
 
 
+.btn-modal-créer.rotate{
+  transition: transform border-radius 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform: rotate(45deg);
+  border-radius: 50%;
 
+}
+.table__modal{
+  display: flex;
+  align-items: center;
+  max-width: 350px;
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  &__content__form{
+    display: flex;
+    background-color: white;
+    border-radius: 0 25px 25px 0;
+     width: 0%;
+     display:hidden;
+     
+  }
+  &__content__input{
+    width: 85%;
+
+    margin: 0;
+    border:none;
+    outline: none;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:focus{
+      border-bottom: 2px solid vars.$title-color;
+
+    }
+  }
+  &__content__form.open{
+    width: 100%;
+    animation: extend 0.5s forwards;
+  }
+  form :nth-child(1){
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    margin-bottom: 4px;
+    color: vars.$title-color;
+  }
+}
+
+
+@keyframes extend{
+  0%{
+    width: 0;
+    
+  }
+  100%{
+    width: 100%;
+    
+  }
+}
