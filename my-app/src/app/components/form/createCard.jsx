@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { usePostListByUserMutation } from "../../store/api/api";
 import { addList } from "../../store/reducer/userSlice";
+import{IoMdAddCircleOutline} from "react-icons/io"
 
 function CreateCard({ tableId }) {
   const dispatch = useDispatch();
@@ -37,10 +38,10 @@ function CreateCard({ tableId }) {
 
   return (
     <div >
-      <form onSubmit={handleSubmit}>
+      <form className="create__card"onSubmit={handleSubmit}>
         <input type="text" value={inputValue} onChange={handleInputChange} />
         <h3>ajout d'une liste</h3>
-        <button>+</button>
+        <button className="create__card__button"><IoMdAddCircleOutline/></button>
       </form>
     </div>
   );

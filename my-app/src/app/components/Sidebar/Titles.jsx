@@ -41,7 +41,8 @@ function Titles({ names, index, className, tableId, userId }) {
     setIsEditing(false);
   };
 
-  const handleTitleClick = () => {
+  const handleTitleClick = (event) => {
+    event.preventDefault();
     setIsEditing(true);
     setInput(names); // Set current name as the input value
   };
@@ -64,14 +65,14 @@ function Titles({ names, index, className, tableId, userId }) {
     <div className="title" key={index}>
       <Link to={`/decks/${tableId}`}>
         {isEditing ? (
-          <form onSubmit={handleTitleSubmit}>
+          <form  type="submit" onSubmit={handleTitleSubmit}>
             <input
               value={input}
               onChange={handleTitleChange}
               onBlur={handleTitleBlur}
               autoFocus
             />
-            <button type="submit" className="titles__button__submit"  >
+            <button  className="titles__button__submit"  >
           <BsPencilFill />
         </button>
           </form>
@@ -84,7 +85,7 @@ function Titles({ names, index, className, tableId, userId }) {
         <button className="titles__button" onClick={handleTitleClick}>
           <BsPencilFill />
         </button>
-        <button onClick={handlDeleteTable}>
+        <button className="titles__button" onClick={handlDeleteTable}>
           <BsFillTrash2Fill />
         </button>
       </div>
