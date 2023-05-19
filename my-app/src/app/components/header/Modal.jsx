@@ -41,21 +41,21 @@ function Modal() {
   };
 
   return (
-    <div>
+    <div className="table__modal">
       <button onClick={handlemodale} className="btn-modal btn-modal-créer">
       <GoDiffAdded/>
       </button>
 
       <div className={`overlay ${modal ? 'open' : ''}`}>
         
-            <div className="modal__content">
-              <form className="modal__content__form" action="submit">
-                <p className="modal__content__title">créer votre tableau</p>
-                <span onClick={handlemodale} className="close__modal">
+            <div className="table__modal__content">
+              <form className="table__modal__content__form" type="submit">
+               
+                <span onClick={handlemodale} className="table__close__modal">
                   x
                 </span>
-                <div className="modal__content__submit">
-                <input className="modal__content__input"
+                <div className="table__modal__content__submit">
+                <input className="table__modal__content__input"
                   onChange={(e) => linkedinput(e.target.value)}
                   type="text"
                   placeholder="mon tableau ici"
