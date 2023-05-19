@@ -43,6 +43,11 @@ function Decks() {
             <CreateCard tableId={id} />
           </div>
           <div className="deck__board">
+            <div className="list"></div>
+            <div className="list"></div>
+            <div className="list"></div>
+            <div className="list"></div>
+            <div className="list"></div>
             {
               // Affichez les listes si elles existent
               lists.length > 0 ?
@@ -58,9 +63,9 @@ function Decks() {
                 );
               })
               :
-              
+
               <p>let's go Connect !!!</p>
-              
+ 
             }
           </div>
         </section>

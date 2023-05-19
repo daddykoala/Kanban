@@ -7,3 +7,15 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+
+@media screen and (max-width: 400px) {
+    .list{
+        margin-top: 2rem;
+        width: 90%;
+        border-radius: 10px;
+        
+        
+    }
+    
+}
