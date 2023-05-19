@@ -49,7 +49,7 @@ function CreateCard({ tableId }) {
         <div >
         <form className="create__card" onSubmit={handleSubmit}>
         <button onClick={opensForm}>
-        <IoMdAddCircleOutline className="create__card__button"/>
+        <IoMdAddCircleOutline className={`create__card__button ${ Editing ? "rotate" : ""} `}/>
       </button>
       <div className="input__anim">
 
