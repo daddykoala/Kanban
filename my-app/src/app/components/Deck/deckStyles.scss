@@ -1,31 +1,133 @@
-@use'../../../styles/vars.scss' as vars;
-.deck{
-display: flex;
-flex-direction: column;
-background-color: rgba(255, 199, 199, 0.319) ;
-width: 100%;
-align-items: center;
-
-
+@use "../../../styles/vars.scss" as vars;
+.deck {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 199, 199, 0.319);
+  align-items: flex-start;
 }
-.deck__board{
-    display: flex;
-    flex-wrap: wrap;
-    right: 0;
-    justify-content: space-around;
-    // max-width: 800px;
-    
+.deck__board {
+  display: flex;
+  flex-wrap: wrap;
+  right: 0;
+  justify-content: space-around;
+  // max-width: 800px;
 }
-.list{
-    
-    
-    width: 250px;
-    height: 200px;
-    border: 1px solid vars.$title-color;
-    box-shadow: 0 0 5px rgba(182, 117, 117, 0.5);
-    border-radius: 10px;
+.list {
+  width: 250px;
+  height: 200px;
+  border: 1px solid vars.$title-color;
+  box-shadow: 0 0 5px rgba(182, 117, 117, 0.5);
+  border-radius: 10px;
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+
+.create__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__button {
+    width: 100px;
+    height: 100px;
+    margin-left: 2rem;
     margin-top: 2rem;
-    margin-left: 1rem;
+    color: white;
+    background-image: vars.$gradient-color-title;
+    align-items: center;
 
+    border-radius: 100%;
+    box-shadow: 0 0 5px vars.$gradient-color-title;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__input {
+    
+    border: none;
+    width: 450px;
+    height: 40px;
+    transition: 0.5s;
+    border-bottom: 2px vars.$gradient-color-title;
+    animation: expand 0.5s forwards;
+
+    
+    &:focus {
+      outline: none;
+      border-bottom: 1px vars.$gradient-color-title;
+    }
+  }
 }
+.create__card__button__input{
+    background: white;
+    color: vars.$title-color;
+    height: 40px;
+    font-size: x-large;
+    width: 50px;
+    border-radius: 0 25px 25px 0  ;
+    
+    ;
+}
+.input__anim{
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-left: -0.1rem;
+}
+@keyframes expand {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 85%; /* ajustez cette valeur selon vos besoins */
+    }
+  }
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+@media screen and (max-width: 400px) {
+    
+    .create__card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
+        &__button {
+          width: 70px;
+          height: 70px;
+          margin-left: 1rem;
+          margin-top: 1rem;
+        
+         
+          align-items: center;
+      
+       
+        }
+      
+        &__input {
+          
+            border: none;
+            width: 85%;
+            height: 40px;
+            transition: border-bottom 0.5s ease-in-out;  
+            border-bottom: 2px solid transparent; 
+            ;// Utilise une couleur solide pour la démo
+  
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid vars.$title-color;  // Change à une autre couleur solide pour la démo
+  }
 
+        }
+      }
+      .input__anim{
+        display: flex;
+        align-items: center;
+        margin-top: 0.5rem;
+      
+}}
