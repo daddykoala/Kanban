@@ -1,8 +1,10 @@
 @use'../../../styles/vars.scss' as vars;
 
 header{
+
     display: flex;
     flex-direction: row;
+    
 }
 
 .header__login{

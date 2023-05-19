@@ -1,11 +1,45 @@
+@use'../../../styles/vars.scss' as vars;
+
 .sidebar{
-    position: absolute;
-    left: auto;
+  
     display: flex;
     flex-direction: column;
 
     min-width: 200px;
     width :20%;
     height: 100vh;
-    z-index: -2;
+
+    background-color: vars.$primary-color;
+    border-right: vars.$title-color solid 1px;
+    
+}
+
+
+@media screen and (max-width: 400px) {
+    
+        .sidebar {
+
+            position: absolute;
+         width: 100%;
+            margin-left: -100%;
+            transition: ease-in-out 0.5s;
+            background: linear-gradient(to bottom right, hsl(0, 95%, 76%), vars.$primary-color);
+            align-items: center;
+        & h2 {
+            margin-top: 2em;
+        }          }
+          
+          .sidebar.open {
+            margin-left: 0;
+          }
+          .sidebar__btn__quit{
+            position: absolute;
+                    top: 1em;
+             right: 1em;
+            margin: 0.5em;
+            color: vars.$title-color;
+             padding: 0.5em;
+            
+          }
+
 }

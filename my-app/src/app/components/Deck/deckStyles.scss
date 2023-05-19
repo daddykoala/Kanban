@@ -1,9 +1,10 @@
 
 .deck{
-display: block;
+display: flex;
+
 width: 70%;
 margin-left: 20%;
-z-index: -3;
+z-index: -4;
 }
 .deck__board{
     display: flex;
@@ -18,9 +19,7 @@ z-index: -3;
     // max-width: 800px;
     
 }
-.deck__add__list{
-z-index: -2;
-}
+
 
 .list{
     flex: 1 0 200px;

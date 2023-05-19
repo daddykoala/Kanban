@@ -1,8 +1,13 @@
 //import PropTypes from 'prop-types';
 import React , {useState,useEffect} from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import { useWindowSize } from '../../service/screenSize';
+import { openSidebar,closeSidebar } from '../../store/reducer/sidebarSlice';
+
 
 //icon
 import {GoDiffAdded} from 'react-icons/go';
+
 
 
 import Modal from './Modal'
@@ -11,14 +16,10 @@ import './headerStyles.scss';
 
 function Header() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const {width} = useWindowSize();
+    const dispatch = useDispatch();
+    const sidebarIsOpen = useSelector((state) => state.sidebar.isOpen);
 
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-        return () => {
-          window.removeEventListener('resize', handleResize);
-        };
-      }, []);
 return (
     
         <header className='header'>
@@ -32,6 +33,7 @@ return (
           <div className='header__login'>
             <Modal/>
           <AuthModal/>
+          { width < 768 ? <span onClick={() => dispatch(openSidebar())}>fermer</span> : null}
           </div>
         </header>
       );

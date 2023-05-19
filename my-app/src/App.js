@@ -44,11 +44,16 @@ function App() {
     
     <div className="App">
       <Header />
-      <Sidebar />
+      
       {/* < Decks /> */}
       <Routes>
-          <Route path="/" element={<Decks />} />
-          <Route path="/decks/:decksId" element={<Decks />} />
+      <Route path="/" element={
+      <div style={{display: 'flex'}} >
+    <Sidebar />
+    <Decks />
+  </div>
+} />
+          {/* <Route path="/decks/:decksId" element={<Decks />} /> */}
       </Routes>
     </div>
   
