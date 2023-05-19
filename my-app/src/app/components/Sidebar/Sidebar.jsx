@@ -62,7 +62,7 @@ function Sidebar() {
   
           {userState.table[0] ? (
             userState.table.map((element, index) => (
-              <Link to={`/decks/${element.id}`} key={index}>
+              
                 <Titles
                   names={element.name}
                   key={index}
@@ -71,7 +71,7 @@ function Sidebar() {
                 >
                   {element.name}
                 </Titles>
-              </Link>
+              
             ))
           ) : (
             <p>Créez vos premiers tableaux</p>

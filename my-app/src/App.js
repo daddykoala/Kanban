@@ -12,15 +12,15 @@ import Sidebar from "./app/components/Sidebar/Sidebar";
 import "./styles/App.scss";
 
 function App() {
-  const { data: user, refetch } = useGetMeQuery();
+  // const { data: user, refetch } = useGetMeQuery();
 
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [refetch]);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+  // if (!user) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className="App">

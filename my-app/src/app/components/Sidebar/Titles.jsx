@@ -64,34 +64,32 @@ function Titles({ names, index, className, tableId, userId }) {
   return (
     <div className="title" key={index}>
       <Link to={`/decks/${tableId}`}>
-        {isEditing ? (
-          <form  type="submit" onSubmit={handleTitleSubmit}>
-            <input
-              value={input}
-              onChange={handleTitleChange}
-              onBlur={handleTitleBlur}
-              autoFocus
-            />
-            <button  className="titles__button__submit"  >
-          <BsPencilFill />
-        </button>
-          </form>
-        ) : (
-          <div >{names}</div>
-        )}
+        {!isEditing && <div>{names}</div>}
       </Link>
-      {isEditing ? null : (
-      <div className="button-container">
-        <button className="titles__button" onClick={handleTitleClick}>
-          <BsPencilFill />
-        </button>
-        <button className="titles__button" onClick={handlDeleteTable}>
-          <BsFillTrash2Fill />
-        </button>
-      </div>
-    )}
+      {isEditing ? (
+        <form type="submit" >
+          <input
+            value={input}
+            onChange={handleTitleChange}
+            onBlur={handleTitleBlur}
+            autoFocus
+          />
+          <button type="submit" onSubmit={handleTitleSubmit} className="titles__button__submit">
+            <BsPencilFill />
+          </button>
+        </form>
+      ) : (
+        <div className="button-container">
+          <button className="titles__button" onClick={handleTitleClick}>
+            <BsPencilFill />
+          </button>
+          <button className="titles__button" onClick={handlDeleteTable}>
+            <BsFillTrash2Fill />
+          </button>
+        </div>
+      )}
     </div>
   );
-}
+      }  
 
 export default React.memo(Titles);
