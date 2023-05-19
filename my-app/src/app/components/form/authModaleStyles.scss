@@ -7,11 +7,12 @@
     
     position: absolute;
     right: 5%;
-    top: -10%;
+    top: -30px;
     border-left: 50px solid vars.$primary-color;
     border-top: 25px solid transparent;
     border-bottom: 25px solid transparent;
     transform: rotate(-63deg);
+    // z-index: 999;
 }
 .auth{ 
     min-width: 230px;
@@ -22,8 +23,9 @@
     justify-content: space-around;
     border: vars.$title-color 1px solid ;
     border-radius: 5px;
+    margin:0;
     top: 90px; 
-    left:91%;
+    right: 0;
     transform: translateX(-50%); 
     background: white; 
     padding: 1em;

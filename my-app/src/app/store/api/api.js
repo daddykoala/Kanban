@@ -23,6 +23,21 @@ export const userApi = createApi({
       
     }),
 
+    registerUser: builder.mutation({   
+      //j'envoi un objet json avec l'id du user et le nom du tableau
+      query: (body) => ({
+        url: `users/create`,
+        method: "POST",
+        body: { name: body.name, lastname: body.lastName, email: body.email, password: body.password },
+        onError: (error) => {
+          // Gérer l'erreur ici
+          console.log( error);
+          // Vous pouvez également déclencher une action, afficher un message d'erreur, etc.
+        },
+      }),
+
+    }),
+
     loginUser: builder.mutation({
       
       query: ({email}) => ({
@@ -106,4 +121,4 @@ export const userApi = createApi({
 // auto-generated based on the defined endpoints
 //j'exporte les hooks pour les utiliser dans les composants fonctionnels
 export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery ,
-useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation ,useLoginUserMutation } = userApi;
+useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation ,useLoginUserMutation , useRegisterUserMutation } = userApi;
