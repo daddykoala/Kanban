@@ -74,19 +74,39 @@
     }
 }
 
-
+@keyframes extend{
+  0%{
+    width: 0;
+    
+  }
+  100%{
+    width: 100%;
+    
+  }
+}
 .form__add__card {
     display: flex;
     flex-direction: row;
     width:100%;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+
   
     &__input {
       width: 0%;
       transition: width 2s ease-in-out;
+      animation: extend 
+      0.5s forwards;
+      outline: none;
+      border: none;
+      border: 1px 1px solid transparent;
+      border-radius: 5px;
     }
   
-    .openInput {
+    &__input.openInput {
       width: 100%;
+      border: 1px 1px solid vars.$title-color;
+      
     }
   
     &__button {

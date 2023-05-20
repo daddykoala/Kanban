@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../card/Card";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
@@ -19,7 +19,7 @@ import { modifyList, removeList } from "../../store/reducer/userSlice";
 
 import "./ListStyles.scss";
 
-function List({ id, key, title, position, tableId, tasks }) {
+function List({ id,  title, position, tableId, tasks }) {
   const dispatch = useDispatch();
 
   const [input, setInput] = useState("");
@@ -30,6 +30,9 @@ function List({ id, key, title, position, tableId, tasks }) {
   const [deleteListByTable] = useDeleteListByTableMutation();
   const [modifyListByTable] = useModifyListByTableMutation();
 
+  useEffect(() => {
+    console.log("cardEditing", cardEditing);
+  }, [cardEditing]);
   //modifie la value de l'input
   const handleTitleChange = (e) => {
     setInput(e.target.value);
@@ -37,14 +40,15 @@ function List({ id, key, title, position, tableId, tasks }) {
 
   // va  passer isEditing a true pour modifier le titre de la liste
   const handleTitleClick = () => {
-    setIsEditing(true);
+    setIsEditing(!cardEditing);
   };
 
   const handleTitleBlur = () => {
     setIsEditing(false);
   };
 
-  const handleTitleSubmit = async () => {
+  const handleTitleSubmit = async (e) => {
+e.preventDefault();
     try {
       const result = await modifyListByTable({ id, name: input });
       if (result) {
@@ -65,21 +69,25 @@ function List({ id, key, title, position, tableId, tasks }) {
 
   const handleAdd = () => {};
 
-  const handleSubmitCard = (e) => {
+  const handleSubmitCard = async (e) => {
     e.preventDefault();
     //query pour ajouter une carte
-
+    const result = await modifyListByTable({ id:id, name: input });
+    if (result) {
+      dispatch(modifyList(result.data));
+      setcardEditing(!cardEditing);
+    }
     //dispatch pour ajouter une carte
-
-    setcardEditing(false);
   };
 
-  const handleShowFormCard = () => {
-    setcardEditing(true);
+  const handleShowFormCard = (e) => {
+    e.preventDefault();
+    console.log("click", cardEditing);
+    setcardEditing(!cardEditing);
   };
 
   return (
-    <div className="list" key={key} id={id} position={position}>
+    <div className="list" key={id} id={id} position={position}>
       <div className="list__header">
         {isEditing ? (
           <form onSubmit={handleTitleSubmit}>
@@ -141,9 +149,9 @@ function List({ id, key, title, position, tableId, tasks }) {
         </form>
       </div>
 
-      {tasks.map((element, index) => (
-        <Card key={index} id={element.id} name={element.name} listId={id} />
-      ))}
+      {/* {tasks.map((element, index) => (
+        <Card  id={element.id} name={element.name} listId={id} />
+      ))} */}
     </div>
   );
 }
