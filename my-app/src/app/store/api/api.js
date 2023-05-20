@@ -104,9 +104,10 @@ export const userApi = createApi({
       }),
 
         deleteListByTable: builder.mutation({
-          query: (id) => ({
+          query: ({id,tableId}) => ({
             url: `lists/${id}`,
             method: "DELETE",
+            body: { tableId: tableId },
           }),
         }),
         

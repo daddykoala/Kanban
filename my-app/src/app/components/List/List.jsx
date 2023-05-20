@@ -58,11 +58,12 @@ e.preventDefault();
     } catch (error) {}
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     //je recupere l'id pour dele la liste en bdd
-    const result = deleteListByTable(id);
-    if (result) {
-      dispatch(removeList({ id, tableId }));
+    const result = await deleteListByTable({id,tableId});
+    if (result.data) {
+      console.log("result", result);
+      dispatch(removeList(result.data));
     }
     //je suprime la lsite en bdd
   };
