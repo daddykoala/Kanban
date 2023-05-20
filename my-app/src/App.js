@@ -31,7 +31,7 @@ function App() {
           element={
             <div style={{ display: "flex" }}>
               <Sidebar />
-              
+              <Decks />
             </div>
           }
         />

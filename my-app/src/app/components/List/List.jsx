@@ -3,6 +3,7 @@ import { useDispatch ,useSelector} from "react-redux";
 //import PropTypes from 'prop-types';
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { RiAddBoxLine } from "react-icons/ri";
+import{IoMdAddCircleOutline} from "react-icons/io"
 import { FaPen } from "react-icons/fa";
 // api
 import { useModifyListByTableMutation , useDeleteListByTableMutation } from "../../store/api/api";
@@ -22,6 +23,7 @@ function List({ id, key, title, position ,tableId}) {
   const [input, setInput] = useState("");
   const [value, setValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [cardEditing, setcardEditing] = useState(false);
 // const api
     const [deleteListByTable] =useDeleteListByTableMutation();
   const [modifyListByTable] =
@@ -43,18 +45,13 @@ function List({ id, key, title, position ,tableId}) {
   };
 
   const handleTitleSubmit = async () => {
-    setIsEditing(false);
     try {
-        
       const result = await modifyListByTable({ id, name: input });
-      
       if (result) {
-      
-
+        setIsEditing(false);
         dispatch(modifyList(result.data));
       }
-    } catch (error) {
-      
+    } catch (error) {  
     }
   };
 
@@ -70,6 +67,18 @@ function List({ id, key, title, position ,tableId}) {
   };
 
   const handleAdd = () => {};
+  const handleSubmitCard = () => {
+//query pour ajouter une carte
+
+//dispatch pour ajouter une carte
+
+
+    setcardEditing(false);
+  };
+
+  const handleShowFormCard = () => {
+    setcardEditing(true);
+  };
 
   return (
     <div className="list" key={key} id={id} position={position}>
@@ -99,9 +108,30 @@ function List({ id, key, title, position ,tableId}) {
           <button onClick={handleDelete}>
             <AiFillDelete />
           </button>
-          
+          {cardEditing ? (
+
+<form onSubmit={handleSubmitCard}>
+  <input
+    type="text"
+    placeholder="Ajouter une carte"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+  />
+  <button className="add__card"  type="submit">
+  <IoMdAddCircleOutline />
+  </button>
+
+</form>
+
+
+ ) : <button className="add__card" onClick={handleShowFormCard} type="submit">
+<IoMdAddCircleOutline />
+</button>
+  }
         </div>
       </div>
+       
+
       {/* {tasks.map((element,index)=> 
        <Card
        key={index}
