@@ -50,12 +50,12 @@ function AuthModal() {
 
   useEffect(() => {
     dispatch(setPassword(inputValuePassword));
-    console.log(password);
+   
   }, [inputValuePassword, dispatch]);
 
   useEffect(() => {
     dispatch(setPasswordValidity());
-    console.log(passwordValidity);
+
   }, [password, dispatch]);
 
   useEffect(() => {
@@ -101,8 +101,7 @@ function AuthModal() {
   const handleRegister = async (e,) => {
 
     e.preventDefault();
-    console.log("jeclick sur egister");
-    console.log("input", e.target);
+
     
     try {
       const result = await registerUser({
@@ -112,13 +111,13 @@ function AuthModal() {
         name: inputValueName
           });
       if (result && result.data) {
-        console.log(result);
+   
         alert("vous etes bien inscrit vous pouvez vos connecter");
         
         resetForm();
       }
     } catch (error) {
-      console.log(error);
+      
       throw error;
     }
 
@@ -126,7 +125,7 @@ function AuthModal() {
   const handleLogin = async (e) => {
 
     e.preventDefault();
-    console.log("input", e.target);
+    
     
     try {
       const result = await loginUser({
@@ -139,7 +138,7 @@ function AuthModal() {
         resetForm();
       }
     } catch (error) {
-      console.log(error);
+      
       throw error;
     }
 

@@ -24,14 +24,14 @@ function Sidebar() {
 
   
   useEffect(() => {
-    console.log("userState", userState);
+    ;
     
   }, [userState]);
   
-  console.log("sidebarIsOpen", sidebarIsOpen);
+
   //gestion du small screen  
   const {width} = useWindowSize();
-  console.log("width", width);
+  
   const handleCloseSidebar = () => {
     dispatch(closeSidebar());
   };
