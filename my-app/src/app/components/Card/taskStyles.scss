@@ -1,0 +1,30 @@
+@use'../../../styles/vars.scss' as vars;
+
+.card__container{
+    display: flex;
+    flex-direction: rows;
+    width: 95%;
+    justify-items: center;
+    justify-content: space-between;
+    border: solid 2px vars.$light-color;
+    border-radius: 5px; 
+    margin-top: 0.5rem;
+    margin: 0.5rem auto;
+    padding: 0.5rem 0;
+    
+
+    &:last-child{
+        margin-bottom: 0.5rem;
+    }
+
+    &__name{
+        margin-left: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+    }
+    &__checkbox{
+
+        margin-right: 0.5rem;
+    }
+}

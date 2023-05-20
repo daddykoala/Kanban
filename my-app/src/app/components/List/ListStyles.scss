@@ -4,13 +4,15 @@
 .list {
     position: relative;
     width: 250px;
-  height: 200px;
+    height: max-content;
+  max-height: 700px;
   border: 3px solid vars.$gradient-color-title;
   box-shadow: 0 0 5px vars.$dark-color;
   border-radius: 30px 0;
   margin-top: 2rem;
   margin-left: 1rem;
   overflow: hidden;
+
   &::before {
       content: "";
       filter: blur(10px);
@@ -35,26 +37,67 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
     background-color: white;
     color: vars.$title-color;
     padding: 0.8rem;
     align-items: center;
     margin :none;
-    border-bottom: 1px solid vars.$dark-color;
+    
     &__title{
         margin-left: 0.2rem;
+      
+    }
+    &__input{
+      font-size: 16px;
+      padding :0.97rem;
+      width:60%;
+    border: none;
+      outline: none;
+      border-bottom: solid 2px transparent;
+      transition: border-bottom 0.5s ease-in-out;
+
+      &:focus{
+          border-bottom:  solid 2px vars.$title-color;
+      }
+    
+    }
+    &__button{
+        font-size: 22px;
+        color: vars.$title-color;
+        width: 20%;
+        
+        box-shadow: 0 0 5px vars.$gradient-color-title;
+        
+        cursor: pointer;
+
     }
 }
-.add__card{
-   
-    width: 30px;
-    height: 30px;
-    font-size: 30px;
-    color: vars.$title-color;
-    border-radius: 100%;
-    box-shadow: 0 0 5px vars.$gradient-color-title;
-    cursor: pointer;
-}
+
+
+.form__add__card {
+    display: flex;
+    flex-direction: row;
+    width:100%;
+  
+    &__input {
+      width: 0%;
+      transition: width 2s ease-in-out;
+    }
+  
+    .openInput {
+      width: 100%;
+    }
+  
+    &__button {
+      width: 30%;
+      font-size: 30px;
+      color: white;
+      border-radius: 100%;
+      box-shadow: 0 0 5px vars.$gradient-color-title;
+      cursor: pointer;
+    }
+  }
 
 
 @media screen and (max-width: 400px) {

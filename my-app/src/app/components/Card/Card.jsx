@@ -6,8 +6,10 @@ import './taskStyles.scss';
 function Task({name,id}
     ) {
 return (
-    <div key={id}>
-        {name}
+    <div className='card__container' key={id}>
+        <h1 className='card__container__name'>{name}</h1>
+        <input className='card__container__checkbox' type="checkbox" />
+        
     </div>
 );
 }
