@@ -3,10 +3,10 @@ import {
   useDeleteTableByUserMutation,
   useModifyTableByUserMutation,
 } from "../../store/api/api";
-import { removeTable } from "../../store/reducer/userSlice";
+import { removeTable ,modifyTable} from "../../store/reducer/userSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { BsFillTrash2Fill, BsPencilFill } from "react-icons/bs";
 
 function Titles({ names, index, className, tableId, userId }) {
@@ -22,15 +22,15 @@ function Titles({ names, index, className, tableId, userId }) {
   };
 
   async function handleTitleSubmit(e) {
-    console.log("je passe dans le submit", tableId);
+  
     e.preventDefault();
-    setIsEditing(false);
     try {
-      console.log("je passe dans le try", tableId);
+      
       const result = await modifyTableByUser({ id: tableId, name: input });
       if (result) {
-        console.log("je passe dans le reducer", result.data);
-        dispatch(modifyTableByUser(result.data));
+        
+        dispatch(modifyTable(result.data));
+        setIsEditing(false);
       }
     } catch (error) {
       console.error(error);
@@ -67,14 +67,14 @@ function Titles({ names, index, className, tableId, userId }) {
         {!isEditing && <div>{names}</div>}
       </Link>
       {isEditing ? (
-        <form type="submit" >
+        <form onSubmit={handleTitleSubmit}>
           <input
             value={input}
             onChange={handleTitleChange}
             onBlur={handleTitleBlur}
             autoFocus
           />
-          <button type="submit" onSubmit={handleTitleSubmit} className="titles__button__submit">
+          <button type="submit"  className="titles__button__submit">
             <BsPencilFill />
           </button>
         </form>

@@ -20,15 +20,35 @@ export const userSlice = createSlice({
     //je supprime une table 
     removeTable: (state, action) => {
       const TableId = action.payload;
-      console.log("mon id", TableId);
+  
       state.user.table = state.user.table.filter(
         (table) => table.id !== TableId
       );
-      console.log("mon state apres mon delete", state.user.table);
+      
+    },
+    modifyTable: (state, action) => {
+      
+      //modifier le m du tableau avec l'id spécifié
+
+    
+      const tableIndex = state.user.table.findIndex(
+        (t) => t.id === action.payload.id
+      );
+      //si un element corepond a l'id je lui donne le name
+      if (tableIndex !== -1) {
+        
+        const updatedTable = {
+          ...state.user.table[tableIndex],
+          name: action.payload.name,
+        };
+        // Remplacer l'ancien tableau par le nouveau dans l'état
+        state.user.table[tableIndex] = updatedTable;
+        
+      }
     },
 
     addList: (state, action) => {
-      console.log("mon action", action.payload);
+      
       // Trouver l'index du tableau avec l'ID spécifié
       const tableIndex = state.user.table.findIndex(
         (t) => t.id === action.payload.table_id
@@ -42,26 +62,26 @@ export const userSlice = createSlice({
 
         // Remplacer l'ancien tableau par le nouveau dans l'état
         state.user.table[tableIndex] = updatedTable;
-        console.log("mon state apres mon submit", state.user.table[tableIndex]);
+        
       }
     },
     //je supprime une liste 
     removeList: (state, action) => {
-      console.log("mon action dans mon reducer", action.payload);
+      
       const listId = action.payload.id;
       //je retrouve l'index de la table a laquelle je supprime une liste 
       const tableIndex = state.user.table.findIndex(
         (t) => t.id === action.payload.tableId
       );
-      console.log("mon index", tableIndex);
+    
       //je supprime la liste de la table
       state.user.table[tableIndex].list = state.user.table[tableIndex].list.filter((list) => list.id !== listId);
-      console.log("mon state apres mon submit", state.user.table[tableIndex]);
+      
      
     },
     //je modifie la liste dans le tableau apres changement d'une des valeurs
     modifyList: (state, action) => {
-      console.log("mon action", action.payload);
+    
     
       const tableIndex = state.user.table.findIndex(
         (t) => t.id === action.payload.table_id
@@ -79,7 +99,7 @@ export const userSlice = createSlice({
           state.user.table[tableIndex].list.push(action.payload);
         }
     
-        console.log("mon state apres mon submit", state.user.table[tableIndex]);
+        
       }
     },
     
@@ -88,6 +108,6 @@ export const userSlice = createSlice({
 
 });
 
-export const { setUser, addTable, removeTable, addList, removeList, modifyList } = userSlice.actions;
+export const { setUser, addTable, removeTable, addList, removeList, modifyList, modifyTable } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -16,7 +16,7 @@ function CreateCard({ tableId }) {
   // j'enregistre ma nouvelle liste en bdd
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("tableId", tableId);
+  
     try {
       await postListbyUser({
         name: inputValue,
@@ -24,13 +24,13 @@ function CreateCard({ tableId }) {
       });
       if (isSuccess && data) {
         //je dispatch mon action
-        console.log("data", data);
+       
         dispatch(addList(data));
         
       }
       setInputValue("");
     } catch (error) {
-      console.log(error);
+      
 
 
     }
@@ -42,8 +42,7 @@ function CreateCard({ tableId }) {
     setEditing(false);
   }
   function handleInputChange(e) {
-    console.log(Editing);
-    console.log(name,inputValue);
+
     setName(e.target.value);
     setInputValue(e.target.value);
   }
@@ -58,7 +57,7 @@ function CreateCard({ tableId }) {
   </button>
   <div className="input__anim">
     <input className="create__card__input maj" type="text" value={inputValue} onChange={handleInputChange} />
-    <button className="create__card__button__input maj" onClick={closeForm}><IoSend /></button>
+    <button className="create__card__button__input maj"  onClick={closeForm}><IoSend /></button>
   </div>
 </form>
     

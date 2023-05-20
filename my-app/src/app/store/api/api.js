@@ -33,7 +33,7 @@ export const userApi = createApi({
         body: { name: body.name, lastname: body.lastName, email: body.email, password: body.password },
         onError: (error) => {
           // Gérer l'erreur ici
-          console.log( error);
+         
           // Vous pouvez également déclencher une action, afficher un message d'erreur, etc.
         },
       }),
@@ -59,7 +59,7 @@ export const userApi = createApi({
         body: { name: body.name, user_id: body.userId },
         onError: (error) => {
           // Gérer l'erreur ici
-          console.log( error);
+          
           // Vous pouvez également déclencher une action, afficher un message d'erreur, etc.
         },
       }),

@@ -30,7 +30,7 @@ function List({ id, key, title, position ,tableId}) {
   //modifie la value de l'input
   const handleTitleChange = (e) => {
     setInput(e.target.value);
-    console.log(input);
+
   };
 
   // va  passer isEditing a true pour modifier le titre de la liste
@@ -45,17 +45,16 @@ function List({ id, key, title, position ,tableId}) {
   const handleTitleSubmit = async () => {
     setIsEditing(false);
     try {
-        console.log("id", id);
         
       const result = await modifyListByTable({ id, name: input });
-      console.log("result", result.data);
+      
       if (result) {
-        console.log("j'ai eu mon result et je rentre dans la condition", typeof id);
+      
 
         dispatch(modifyList(result.data));
       }
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

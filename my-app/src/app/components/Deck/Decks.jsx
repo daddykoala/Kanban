@@ -14,18 +14,22 @@ function Decks() {
   const { decksId } = useParams();
   const userState = useSelector((state) => state.user.user);
   const [tableau, setTableau] = useState(null);
-  const [lists, setLists] = useState([]);
-console.log(decksId);
+  const [Lists, setLists] = useState([]);
+
   //je vien recup mon tableau avec le params
   useEffect(() => {
-    console.log(decksId);
+
     if (userState && userState.table) {
       const tables = userState.table;
+      console.log(userState);
       setTableau(tables);
-      const foundTable = userState.table.find((table) => table.id === decksId);
-      if (foundTable) {
-        const foundList = foundTable.list;
-        setLists(foundList);
+     console.log(tables);
+      const foundTable = userState.table.findIndex((table) => table.id === parseInt(decksId));
+      console.log(foundTable);
+      if (foundTable !== -1) {
+        // const foundList = foundTable.list;
+        setLists(userState.table[foundTable].list)
+        console.log(Lists);;
       } else {
         setLists([]); // Si aucune table n'est trouvée, initialiser les listes comme un tableau vide
       }
@@ -34,7 +38,7 @@ console.log(decksId);
 
 
 
-      // console.log("lists en dhors use effect", lists,typeof lists, typeof lists[0,1,3] );
+    
       
 
       return (
@@ -46,8 +50,8 @@ console.log(decksId);
            
             {
               // Affichez les listes si elles existent
-              lists.length > 0 ?
-              lists.map((list) => {
+              Lists.length > 0 ?
+              Lists.map((list) => {
                 return (
                   <List
                     key={list.id}

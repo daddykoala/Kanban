@@ -24,7 +24,7 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         setCredentials: (state, action) => {
-            console.log("setCredentials", action.payload);
+          
 
             state.auth = action.payload;
         }
