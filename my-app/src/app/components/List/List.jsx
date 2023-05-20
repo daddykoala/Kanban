@@ -19,7 +19,7 @@ import { modifyList, removeList } from "../../store/reducer/userSlice";
 
 import "./ListStyles.scss";
 
-function List({ id, key, title, position, tableId,tasks }) {
+function List({ id, key, title, position, tableId, tasks }) {
   const dispatch = useDispatch();
 
   const [input, setInput] = useState("");
@@ -64,7 +64,9 @@ function List({ id, key, title, position, tableId,tasks }) {
   };
 
   const handleAdd = () => {};
-  const handleSubmitCard = () => {
+
+  const handleSubmitCard = (e) => {
+    e.preventDefault();
     //query pour ajouter une carte
 
     //dispatch pour ajouter une carte
@@ -88,63 +90,60 @@ function List({ id, key, title, position, tableId,tasks }) {
               onBlur={handleTitleBlur}
               autoFocus
             />
-            <button className="list__header__button"type="submit">
+            <button className="list__header__button" type="submit">
               <FaPen />
             </button>
           </form>
         ) : (
           <div className="list__header">
-          <h1 className="list__header__title" onClick={handleTitleClick}>
-            {title}
-          </h1>
-        <div className="utils">
-          <button>
-            <AiFillEdit
-              onClick={handleTitleClick}
-              style={{ marginRight: "10px" }}
-              />
-          </button>
-          <button onClick={handleDelete}>
-            <AiFillDelete />
-          </button>
-        </div>
-        </div>
-              )}
+            <h1 className="list__header__title" onClick={handleTitleClick}>
+              {title}
+            </h1>
+            <div className="utils">
+              <button>
+                <AiFillEdit
+                  onClick={handleTitleClick}
+                  style={{ marginRight: "10px" }}
+                />
+              </button>
+              <button onClick={handleDelete}>
+                <AiFillDelete />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="card__container">
-        {cardEditing ? (
-          <form onSubmit={handleSubmitCard} className="form__add__card">
-            <input
-              className={`form__add__card__input ${
-                cardEditing ? "openInput" : ""
-              } `}
-              type="text"
-              placeholder="Ajouter une carte"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-            />
+      <div>
+        <form onSubmit={handleSubmitCard} className="form__add__card">
+          <input
+            className={`form__add__card__input ${
+              cardEditing ? "openInput" : ""
+            } `}
+            type="text"
+            placeholder="Ajouter une carte"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+          {/* gestion du formulaire de carte */}
+          {cardEditing ? (
+            <button className="form__add__card__button openInput" type="submit">
+              <IoMdAddCircleOutline />
+            </button>
+          ) : (
             <button
-              className={`form__add__card__button ${
-                cardEditing ? "openInput" : ""
-              } `}
-              type="submit"
+              className="form__add__card__button"
+              type="button"
+              onClick={handleShowFormCard}
             >
               <IoMdAddCircleOutline />
             </button>
-          </form>
-        ) : (
-          <button
-            className="form__add__card__button"
-            onClick={handleShowFormCard}
-          >
-            <IoMdAddCircleOutline />
-          </button>
-        )}
+          )}
+        </form>
       </div>
 
-      {tasks.map((element,index)=> 
-       <Card key={index} id={element.id} name={element.name} listId={id} />
-       )}
+      {tasks.map((element, index) => (
+        <Card key={index} id={element.id} name={element.name} listId={id} />
+      ))}
     </div>
   );
 }
