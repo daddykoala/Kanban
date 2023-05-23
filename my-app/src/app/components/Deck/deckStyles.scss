@@ -11,9 +11,7 @@
   flex-wrap: wrap;
   right: 0;
   justify-content: space-around;
-  // max-width: 800px;
 }
-
 
 .create__card {
   display: flex;
@@ -32,15 +30,13 @@
     border-radius: 100%;
     box-shadow: 0 0 5px vars.$gradient-color-title;
     cursor: pointer;
-    
 
-    &.rotate{
+    &.rotate {
       animation: rotation 1s forwards;
     }
   }
 
   &__input {
-    
     border: none;
     width: 450px;
     height: 40px;
@@ -48,7 +44,6 @@
     border-bottom: 2px vars.$gradient-color-title;
     animation: expand 0.5s forwards;
 
-    
     &:focus {
       outline: none;
       border-bottom: 1px vars.$gradient-color-title;
@@ -65,77 +60,64 @@
   }
 }
 
-.create__card__button__input{
-    background: white;
-    color: vars.$title-color;
-    height: 40px;
-    font-size: x-large;
-    width: 50px;
-    border-radius: 0 25px 25px 0  ;
-    
-    ;
+.create__card__button__input {
+  background: white;
+  color: vars.$title-color;
+  height: 40px;
+  font-size: x-large;
+  width: 50px;
+  border-radius: 0 25px 25px 0;
 }
-.input__anim{
-    display: flex;
-    align-items: center;
-    margin-top: 1.5rem;
-    margin-left: -0.1rem;
+.input__anim {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-left: -0.1rem;
 }
 @keyframes expand {
-    0% {
-      width: 0;
-    }
-    100% {
-      width: 85%; /* ajustez cette valeur selon vos besoins */
-    }
+  0% {
+    width: 0;
   }
-  @keyframes slide-in {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
+  100% {
+    width: 85%; /* ajustez cette valeur selon vos besoins */
   }
+}
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 @media screen and (max-width: 400px) {
-    
-    .create__card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      
-        &__button {
-          width: 70px;
-          height: 70px;
-          margin-left: 1rem;
-          margin-top: 1rem;
-        
-         
-          align-items: center;
-      
-       
-        }
-      
-        &__input {
-          
-            border: none;
-            width: 85%;
-            height: 40px;
-            transition: border-bottom 0.5s ease-in-out;  
-            border-bottom: 2px solid transparent; 
-            ;// Utilise une couleur solide pour la démo
-  
-  &:focus {
-    outline: none;
-    border-bottom: 2px solid vars.$title-color;  // Change à une autre couleur solide pour la démo
-  }
+  .create__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        }
+    &__button {
+      width: 70px;
+      height: 70px;
+      margin-left: 1rem;
+      margin-top: 1rem;
+      align-items: center;
+    }
+    &__input {
+      border: none;
+      width: 85%;
+      height: 40px;
+      transition: border-bottom 0.5s ease-in-out;
+      border-bottom: 2px solid transparent; // Utilise une couleur solide pour la démo
+      &:focus {
+        outline: none;
+        border-bottom: 2px solid vars.$title-color; // Change à une autre couleur solide pour la démo
       }
-      .input__anim{
-        display: flex;
-        align-items: center;
-        margin-top: 0.5rem;
-      
-}}
-
+    }
+  }
+  .input__anim {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+}
