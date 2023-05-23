@@ -8,7 +8,7 @@ const unsplash = createApi({
 });
 
 export const getRandomImage = () => {
-  return unsplash.photos.getRandom({ orientation: 'portrait' });
+  return unsplash.photos.getRandom({ orientation: 'landscape' });
 };
 
 export const getRandomImagePortrait = () => {
