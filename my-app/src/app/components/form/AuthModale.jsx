@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
+// import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from "react-redux";
-
-import { useGetContentByUserQuery } from "../../store/api/api";
 import { useLoginUserMutation , useRegisterUserMutation } from "../../store/api/api";
 import { setUser } from "../../store/reducer/userSlice";
 import { setCredentials } from "../../store/reducer/authSlice";
-import {
-  setPasswordValidity,
-  setPasswordValidationWidth,
-  setPassword,
-} from "../../store/reducer/authSlice";
-
+import { setPasswordValidity,setPasswordValidationWidth,setPassword,clearPassword, clearPasswordValidity} from "../../store/reducer/authSlice";
 import "./authModaleStyles.scss";
-
 import { RxAvatar } from "react-icons/rx";
 import { ImCross } from "react-icons/im";
 
@@ -43,34 +36,27 @@ function AuthModal() {
   const [inputValueEmail, setInputValueEmail] = useState("");
   const [inputValuePassword, setInputValuePassword] = useState("");
   const [inputValueLastname, setInputValueLastname] = useState("");
+
   //validation de du mot de passe.
   const { passwordValidity, passwordValidationWidth, password } = useSelector(
     (state) => state.auth
   );
 
   useEffect(() => {
-    dispatch(setPassword(inputValuePassword));
-   
-  }, [inputValuePassword, dispatch]);
-
-  useEffect(() => {
+    //MAJ mot de passe store
+    dispatch(setPassword(inputValuePassword)); 
+    //definini le nombre de true 
     dispatch(setPasswordValidity());
-
-  }, [password, dispatch]);
-
-  useEffect(() => {
-    // const validCount = passwordValidity.filter(Boolean).length;
-    let valuesToCount = [];
+    //definir la largeur de la barre de progressionQQ
     let values = Object.values(passwordValidity);
-    valuesToCount.push(values);
-    const validCount = valuesToCount[0].filter(Boolean).length;
+    const validCount = values.filter(Boolean).length;
     if (validCount === 3) {
-      //ne serajamais a 100% car index commence a zero
       const count = validCount + 1;
       dispatch(setPasswordValidationWidth(count * 25));
+    } else {
+      dispatch(setPasswordValidationWidth(validCount * 25));
     }
-    dispatch(setPasswordValidationWidth(validCount * 25));
-  }, [passwordValidity, dispatch]);
+}, [inputValuePassword, dispatch]);
 
   const openConnect = () => {
     setModalOpen(true);
@@ -89,20 +75,9 @@ function AuthModal() {
     setInputValueLastname("");
   };
 
-  const validationPassword = (e) => {
-    setPasswordValidity(inputValuePassword);
-  };
-  //fonction qui va renvoyer la valeur de complexite du mote de passe en rnevoyent le nombre de condition remplies
-  function countPasswordValidationWidth(elem) {
-    const validCount = elem.filter(Boolean).length;
-    dispatch(setPasswordValidationWidth(validCount * 25));
-  }
 
-  const handleRegister = async (e,) => {
-
+  const handleRegister = async (e) => {
     e.preventDefault();
-
-    
     try {
       const result = await registerUser({
         email: inputValueEmail,
@@ -111,9 +86,7 @@ function AuthModal() {
         name: inputValueName
           });
       if (result && result.data) {
-   
         alert("vous etes bien inscrit vous pouvez vos connecter");
-        
         resetForm();
       }
     } catch (error) {
@@ -123,10 +96,7 @@ function AuthModal() {
 
   };
   const handleLogin = async (e) => {
-
     e.preventDefault();
-    
-    
     try {
       const result = await loginUser({
         email: e.target.email.value,
@@ -135,13 +105,15 @@ function AuthModal() {
       if (result && result.data) {
         dispatch(setCredentials(result.data.token));
         dispatch(setUser(result.data.user));
+        dispatch(clearPassword());
+        dispatch(clearPasswordValidity());
         resetForm();
       }
-    } catch (error) {
-      
+    } catch (error) { 
+      dispatch(clearPassword());
+        dispatch(clearPasswordValidity());
       throw error;
     }
-
   };
   //fonction pour tout mes states locaux
   const handleInputChange = (e, stateValue) => {
@@ -182,8 +154,11 @@ function AuthModal() {
                   placeholder="lastname"
                   value={inputValueName}
                   onChange={(e) => handleInputChange(e, setInputValueName)}
+                  pattern="^[a-zA-ZÀ-ÿ ]+$"
+                  required
                 />
               </label>
+            
               <label>
                 Nom
                 <input
@@ -192,6 +167,8 @@ function AuthModal() {
                   placeholder="name"
                   value={inputValueLastname}
                   onChange={(e) => handleInputChange(e, setInputValueLastname)}
+                  pattern="^[a-zA-ZÀ-ÿ ]+$"
+                  required
                 />
               </label>
             </>
@@ -204,6 +181,9 @@ function AuthModal() {
               name="email"
               value={inputValueEmail}
               onChange={(e) => handleInputChange(e, setInputValueEmail)}
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              required
+              oninvalid="this.setCustomValidity('Veuillez remplir ce champ')"
             />
           </label>
           <label>
@@ -214,6 +194,7 @@ function AuthModal() {
               name="password"
               value={inputValuePassword}
               onChange={(e) => handleInputChange(e, setInputValuePassword)}
+              required
             />
           </label>
           <div className="password-safety">

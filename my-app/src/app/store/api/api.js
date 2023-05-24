@@ -1,12 +1,12 @@
-// Need to use the React-specific entry point to import createApi
+//j'importe createApi et fetchBaseQuery pour créer mon api
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
+//j'importe le store pour pouvoir utiliser le token
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-     baseUrl: "http://localhost:3002",
-     prepareHeaders: (headers, { getState }) => {
+    baseUrl: "http://localhost:3002",
+    prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.auth;
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
@@ -16,6 +16,23 @@ export const userApi = createApi({
     },
     }),
   endpoints: (builder) => ({
+    
+    loginUser: builder.mutation({
+      query: ({email,password}) => ({
+        url: `users/findByEmail`,
+        method: 'POST',
+        body: {email:email, password:password},
+      }),
+    }),
+    
+    
+    
+    
+    
+    
+    
+    
+    
     getMe: builder.query({
       query: () => '/users/me',
     }),
@@ -40,14 +57,7 @@ export const userApi = createApi({
 
     }),
 
-    loginUser: builder.mutation({
-      
-      query: ({email}) => ({
-        url: `users/findByEmail`,
-        method: 'POST',
-        body: {email:email},
-      }),
-    }),
+    
 
     
     //je crée un tableau pour un user

@@ -11,10 +11,8 @@ const initialState = {
 		specialChar: null,
 	},
     passwordValidationWidth: 0,
-    password: "",
-    
+    password: "", 
 };
-
 const isNumberRegex = /\d/;
 const specialCharacterRegex = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
 const oneUppercase = /[A-Z]/;
@@ -24,8 +22,6 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         setCredentials: (state, action) => {
-          
-
             state.auth = action.payload;
         }
         ,
@@ -38,15 +34,26 @@ export const authSlice = createSlice({
 				number: isNumberRegex.test(state.password) ? true : false,
 				uppercase: oneUppercase.test(state.password) ? true : false,
 				specialChar: specialCharacterRegex.test(state.password) ? true : false,
-			};
-            
+			};      
 		},
         setPasswordValidationWidth: (state, action) => {
 			state.passwordValidationWidth = Number(action.payload);
 		},
+        clearPassword: (state) => {
+            state.password = "";
+        },
+        clearPasswordValidity: (state) => {
+            state.passwordValidity = {
+                minChar: null,
+                number: null,
+                uppercase: null,
+                specialChar: null,
+            };
+
+        },
     }
 });
 
 
-export const { setCredentials,setPasswordValidity,setPasswordValidationWidth ,setPassword} = authSlice.actions;
+export const { setCredentials,setPasswordValidity,setPasswordValidationWidth ,setPassword ,clearPassword,clearPasswordValidity} = authSlice.actions;
 
