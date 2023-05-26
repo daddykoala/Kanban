@@ -55,5 +55,6 @@ export const authSlice = createSlice({
 });
 
 
-export const { setCredentials,setPasswordValidity,setPasswordValidationWidth ,setPassword ,clearPassword,clearPasswordValidity} = authSlice.actions;
+export const { setCredentials,setPasswordValidity,setPasswordValidationWidth
+     ,setPassword ,clearPassword,clearPasswordValidity} = authSlice.actions;
 

@@ -82,8 +82,6 @@ export const userSlice = createSlice({
     },
     //je modifie la liste dans le tableau apres changement d'une des valeurs
     modifyList: (state, action) => {
-    
-    
       const tableIndex = state.user.table.findIndex(
         (t) => t.id === action.payload.table_id
       );
@@ -91,24 +89,16 @@ export const userSlice = createSlice({
         const listIndex = state.user.table[tableIndex].list.findIndex(
           (l) => l.id === action.payload.id
         );
-    
         if (listIndex !== -1) {
           // Si la liste existe déjà, la remplacer par la nouvelle liste
           state.user.table[tableIndex].list[listIndex] = action.payload;
         } else {
           // Si la liste n'existe pas, l'ajouter à la fin du tableau
           state.user.table[tableIndex].list.push(action.payload);
-        }
-    
-        
+        } 
       }
     },
-    
   },
-      
-
 });
-
 export const { setUser, addTable, removeTable, addList, removeList, modifyList, modifyTable } = userSlice.actions;
-
 export default userSlice.reducer;

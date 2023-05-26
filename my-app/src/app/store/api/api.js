@@ -1,4 +1,3 @@
-//j'importe createApi et fetchBaseQuery pour créer mon api
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 //j'importe le store pour pouvoir utiliser le token
@@ -16,64 +15,35 @@ export const userApi = createApi({
     },
     }),
   endpoints: (builder) => ({
-    
     loginUser: builder.mutation({
       query: ({email,password}) => ({
         url: `users/findByEmail`,
         method: 'POST',
         body: {email:email, password:password},
       }),
-    }),
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }), 
     getMe: builder.query({
       query: () => '/users/me',
     }),
-    //recupération des données user 
     getContentByUser: builder.query({
       query: (id) => `users/${id}`,
-      
     }),
 
     registerUser: builder.mutation({   
-      //j'envoi un objet json avec l'id du user et le nom du tableau
+
       query: (body) => ({
         url: `users/create`,
         method: "POST",
-        body: { name: body.name, lastname: body.lastName, email: body.email, password: body.password },
-        onError: (error) => {
-          // Gérer l'erreur ici
-         
-          // Vous pouvez également déclencher une action, afficher un message d'erreur, etc.
-        },
+        body: { name: body.name, lastname: body.lastName, email: body.email, password: body.password },       
       }),
-
     }),
 
-    
-
-    
-    //je crée un tableau pour un user
     addTableByUser: builder.mutation({   
-      //j'envoi un objet json avec l'id du user et le nom du tableau
       query: (body) => ({
         url: `tables`,
         method: "POST",
         body: { name: body.name, user_id: body.userId },
-        onError: (error) => {
-          // Gérer l'erreur ici
-          
-          // Vous pouvez également déclencher une action, afficher un message d'erreur, etc.
-        },
       }),
-
     }),
 
     deleteTableByUser: builder.mutation({
