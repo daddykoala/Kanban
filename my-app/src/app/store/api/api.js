@@ -90,19 +90,9 @@ export const userApi = createApi({
             body: { tableId: tableId },
           }),
         }),
-        
-  
     }),
-
-
   })
 
- 
-
-
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-//j'exporte les hooks pour les utiliser dans les composants fonctionnels
 export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery ,
 useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation ,useLoginUserMutation , useRegisterUserMutation 
 ,useGetMeQuery} = userApi;

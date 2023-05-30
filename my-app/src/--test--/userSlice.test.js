@@ -1,4 +1,4 @@
-import { userSlice, setUser, addTable, removeTable, modifyTable,addList,removeList,modifyList, } from './userSlice';
+import { userSlice, setUser, addTable, removeTable, modifyTable,addList,removeList,modifyList, } from '../app/store/reducer/userSlice';
 
 describe('userSlice', () => {
   const initialState = userSlice.user;
@@ -11,6 +11,13 @@ describe('userSlice', () => {
   });
 
   it('should handle addTable', () => {
+    const table = { id: '1', name: 'Table 1', list: [] };
+    let state = userSlice.reducer(initialState, setUser({ id: '1', name: 'Test User', table: [] }));
+    state = userSlice.reducer(state, addTable(table));
+    expect(state.user.table).toContainEqual(table);
+  });
+  
+  it('should handle not addTable', () => {
     const table = { id: '1', name: 'Table 1', list: [] };
     let state = userSlice.reducer(initialState, setUser({ id: '1', name: 'Test User', table: [] }));
     state = userSlice.reducer(state, addTable(table));
