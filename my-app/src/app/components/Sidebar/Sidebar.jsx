@@ -15,14 +15,11 @@ function Sidebar() {
   const userState = useSelector((state) => state.user.user);
   const sidebarIsOpen = useSelector((state) => state.sidebar.isOpen);
   useEffect(() => {}, [userState]);
-
   //gestion du small screen
   const { width } = useWindowSize();
-
   const handleCloseSidebar = () => {
     dispatch(closeSidebar());
   };
-
   if (userState === undefined || userState === null) {
     return (
       <section className={`sidebar ${sidebarIsOpen ? "open" : ""}`}>
@@ -39,7 +36,6 @@ function Sidebar() {
       </section>
     );
   }
-
   return (
     <section className={`sidebar ${sidebarIsOpen ? "open" : ""}`}>
       {width < 768 ? (
@@ -49,7 +45,6 @@ function Sidebar() {
       ) : null}
       <div>
         <h2>mes tableaux</h2>
-
         {userState.table[0] ? (
           userState.table.map((element, index) => (
             <Titles
@@ -68,8 +63,4 @@ function Sidebar() {
     </section>
   );
 }
-//sidebar.propTypes = {};
-
-//sidebar.defaultProps = {};
-
 export default Sidebar;

@@ -21,20 +21,17 @@ describe("sidebar", () => {
     sidebar: {
       isOpen: true,
     },
-  };
-  beforeEach(() => {
-      renderWithProviders(<Sidebar />, { preloadedState });
-});
-
+  }; 
   it("should render sidebar", () => {
+    renderWithProviders(<Sidebar />, { preloadedState });
     expect(screen.getByText("mes tableaux")).toBeInTheDocument();
-  });
-
+  }); 
   // vérifie que les titres sont présents
   it("should render children", () => {
+    renderWithProviders(<Sidebar />, { preloadedState });
     const titles = screen.getAllByText(/Table \d/);
+   
     expect(titles).toHaveLength(preloadedState.user.user.table.length);
-
     // vérifie le contenu de chaque titre
     preloadedState.user.user.table.forEach((table, index) => {
       expect(titles[index]).toHaveTextContent(table.name);

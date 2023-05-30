@@ -45,6 +45,7 @@ it('should handle removeTable one table', () => {
     expect(state.user.table).toContainEqual(table1);
     expect(state.user.table).toContainEqual(table3);
 });
+
 it('should handle modifyTable', () => {
     const initialTable = { id: '1', name: 'Table 1', list: [] };
     const modifiedName = 'Modified Table 1';
