@@ -7,22 +7,21 @@
   min-width: 200px;
   width: 20%;
   height: 100vh;
-
+  background:vars.$background-color-secondary;
   border-right: vars.$title-color solid 1px;
+
+  & h1{
+    color: vars.$primary-color;
+  }
 }
+
 .title {
-  background: linear-gradient(
-      217deg,
-      rgba(245, 90, 90, 0.8),
-      rgba(255, 0, 0, 0) 70.71%
-    ),
-    linear-gradient(127deg, rgba(27, 114, 106, 0.937), rgba(0, 255, 0, 0) 70.71%),
-    linear-gradient(336deg, rgba(146, 146, 251, 0.8), rgba(0, 0, 255, 0) 70.71%);
+  background: rgba(0, 0, 0, 0.029);
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
   margin: 0.5rem;
-  color: aliceblue;
+  color: vars.$primary-color;
   box-shadow: 0 0 5px rgba(182, 117, 117, 0.5);
   border: rgb(230, 230, 230) 1px solid;
   border-radius: 5px;
