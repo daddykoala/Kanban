@@ -17,7 +17,9 @@ function App() {
   const [backgroundUrl, setBackgroundUrl] = useState(null);
 
   useEffect(() => {
-    getRandomImage().then(result => {
+
+    const orientation = window.innerWidth > 600 ? "landscape" : "portrait";
+    getRandomImage(orientation).then(result => {
       if (result.errors) {
         console.error('Erreur: ', result.errors[0]);
       } else {
