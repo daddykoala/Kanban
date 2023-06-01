@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { usePostListByUserMutation } from "../../store/api/api";
 import { addList } from "../../store/reducer/userSlice";
-// import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoMdAddCircleOutline } from "react-icons/io"
+
 import { IoSend } from "react-icons/io5";
 import { sanitizedValue } from "../../service/input";
 
@@ -61,9 +62,9 @@ function CreateCard({ tableId }) {
               onBlur={() => setIsTooltipVisible(false)}
               aria-label="fermer le formulaire"
             >
-              {/* <IoMdAddCircleOutline
+              <IoMdAddCircleOutline
                 className={`create__card__button ${Editing ? "rotate" : ""}`}
-              /> */}
+              />
               {/* // accessibilté au clavier */}
               {isTooltipVisible && (
                 <span className="tooltip">fermer le formulaire</span>

@@ -1,11 +1,10 @@
 //import PropTypes from 'prop-types';
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useWindowSize } from "../../service/screenSize";
 import { openSidebar, closeSidebar } from "../../store/reducer/sidebarSlice";
 
-//icon
-import { GoDiffAdded } from "react-icons/go";
+
 
 import Modal from "./Modal";
 import AuthModal from "../form/AuthModale";
@@ -15,7 +14,7 @@ function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { width } = useWindowSize();
   const dispatch = useDispatch();
-  const sidebarIsOpen = useSelector((state) => state.sidebar.isOpen);
+  // const sidebarIsOpen = useSelector((state) => state.sidebar.isOpen);
 
   return (
     <header className="header">
