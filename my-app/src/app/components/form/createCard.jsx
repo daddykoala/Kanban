@@ -4,6 +4,7 @@ import { usePostListByUserMutation } from "../../store/api/api";
 import { addList } from "../../store/reducer/userSlice";
 import{IoMdAddCircleOutline} from "react-icons/io"
 import {IoSend} from "react-icons/io5"
+import { sanitizedValue } from "../../service/input";
 
 function CreateCard({ tableId }) {
   const dispatch = useDispatch();
@@ -43,8 +44,8 @@ function CreateCard({ tableId }) {
   }
   function handleInputChange(e) {
 
-    setName(e.target.value);
-    setInputValue(e.target.value);
+    setName(sanitizedValue(e.target.value));
+    setInputValue(sanitizedValue(e.target.value));
   }
 
   return (

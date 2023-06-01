@@ -9,6 +9,9 @@ import "./authModaleStyles.scss";
 import { RxAvatar } from "react-icons/rx";
 import { ImCross } from "react-icons/im";
 
+import InputField from "../../service/input";
+import { sanitizedValue } from "../../service/input";
+
 function Backdrop() {
   return (
     <div
@@ -26,12 +29,15 @@ function Backdrop() {
 }
 
 function AuthModal() {
+  //gestion de la modale en locale
   const [show, setShow] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
+  //gestion des requetes
   const [loginUser] = useLoginUserMutation();
   const [registerUser] = useRegisterUserMutation();
+  //gestion des input
   const [inputValueName, setInputValueName] = useState("");
   const [inputValueEmail, setInputValueEmail] = useState("");
   const [inputValuePassword, setInputValuePassword] = useState("");
@@ -66,7 +72,6 @@ function AuthModal() {
     setModalOpen(false);
     setShow(false);
   };
-
   //clear tout mes inputs
   const resetForm = () => {
     setInputValueName("");
@@ -75,7 +80,7 @@ function AuthModal() {
     setInputValueLastname("");
   };
 
-
+//fonction pour les requetes
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -117,7 +122,7 @@ function AuthModal() {
   };
   //fonction pour tout mes states locaux
   const handleInputChange = (e, stateValue) => {
-    stateValue(e.target.value);
+    stateValue(sanitizedValue(e.target.value));
   };
   if (!show && !isModalOpen) {
     return (

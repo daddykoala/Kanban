@@ -12,6 +12,7 @@ import {
 } from "../../store/api/api";
 
 import { modifyList, removeList } from "../../store/reducer/userSlice";
+import { sanitizedValue } from "../../service/input";
 
 //J'importe mes query;
 
@@ -35,7 +36,7 @@ function List({ id,  title, position, tableId, tasks }) {
   }, [cardEditing]);
   //modifie la value de l'input
   const handleTitleChange = (e) => {
-    setInput(e.target.value);
+    setInput(sanitizedValue(e.target.value));
   };
 
   // va  passer isEditing a true pour modifier le titre de la liste
@@ -105,9 +106,9 @@ e.preventDefault();
           </form>
         ) : (
           <div className="list__header">
-            <h1 className="list__header__title" onClick={handleTitleClick}>
+            <h2 className="list__header__title" onClick={handleTitleClick}>
               {title}
-            </h1>
+            </h2>
             <div className="utils">
               <button>
                 <AiFillEdit
