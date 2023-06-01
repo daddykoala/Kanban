@@ -7,10 +7,24 @@
   border-radius: 50%;
 
 }
+
+.tooltip{
+  position: absolute;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  color: black;
+  font-size: 15px;
+  background-color: white;  
+
+  transform: translate(-100%,110%);
+  
+ 
+  cursor: pointer;    
+}
 .table__modal{
   display: flex;
   align-items: center;
-  max-width: 350px;
+  max-width: 100%;
   transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 
   &__content__form{
@@ -32,8 +46,11 @@
 
     &:focus{
       border-bottom: 2px solid vars.$title-color;
-
     }
+    
+  }
+  &__content__button:focus{
+    outline: 1px solid vars.$title-color ;
   }
   &__content__form.open{
     width: 100%;

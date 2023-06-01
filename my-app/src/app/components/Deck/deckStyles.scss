@@ -44,14 +44,14 @@
     border: none;
     width: 450px;
     height: 40px;
-    transition: 0.5s;
-    border-bottom: 2px vars.$gradient-color-title;
+    // transition: 0.5s;
+    border-bottom: 2px vars.$title-color transparent;
     animation: expand 0.5s forwards;
 
     
     &:focus {
       outline: none;
-      border-bottom: 1px vars.$gradient-color-title;
+      border-bottom: vars.$title-color solid;
     }
   }
 }
@@ -86,7 +86,7 @@
       width: 0;
     }
     100% {
-      width: 85%; /* ajustez cette valeur selon vos besoins */
+      width: 100%; 
     }
   }
   @keyframes slide-in {

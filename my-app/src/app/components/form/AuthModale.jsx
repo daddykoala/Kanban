@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-// import { useForm } from 'react-hook-form';
+
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginUserMutation , useRegisterUserMutation } from "../../store/api/api";
 import { setUser } from "../../store/reducer/userSlice";
 import { setCredentials } from "../../store/reducer/authSlice";
 import { setPasswordValidity,setPasswordValidationWidth,setPassword,clearPassword, clearPasswordValidity} from "../../store/reducer/authSlice";
 import "./authModaleStyles.scss";
+//icone
 import { RxAvatar } from "react-icons/rx";
 import { ImCross } from "react-icons/im";
-
-import InputField from "../../service/input";
+//desinfection des inputs
 import { sanitizedValue } from "../../service/input";
 
 function Backdrop() {
@@ -42,6 +42,8 @@ function AuthModal() {
   const [inputValueEmail, setInputValueEmail] = useState("");
   const [inputValuePassword, setInputValuePassword] = useState("");
   const [inputValueLastname, setInputValueLastname] = useState("");
+//accesibilité au clavier
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   //validation de du mot de passe.
   const { passwordValidity, passwordValidationWidth, password } = useSelector(
@@ -63,7 +65,7 @@ function AuthModal() {
       dispatch(setPasswordValidationWidth(validCount * 25));
     }
 }, [inputValuePassword, dispatch]);
-
+//gestion de la modale
   const openConnect = () => {
     setModalOpen(true);
     setShow(true);
@@ -126,26 +128,37 @@ function AuthModal() {
   };
   if (!show && !isModalOpen) {
     return (
-      <button className="btn-modal brilliant" onClick={openConnect}>
+      <button 
+      className="btn-modal brilliant" 
+      onClick={openConnect}
+      // accessibilité
+      onMouseEnter={() => setIsTooltipVisible(true)}
+      onMouseLeave={() => setIsTooltipVisible(false)}
+      onFocus={() => setIsTooltipVisible(true)}
+      onBlur={() => setIsTooltipVisible(false)}
+      aria-label="créer votre tableau">
         <RxAvatar />
+        {/* //accessibilté */}
+        {isTooltipVisible && <span className="tooltip">ouvrir le fenêtre de connection</span>}
       </button>
     );
   }
 
   return (
-    <>
+    <div tabindex="0">
+    
       <button className="btn-modal brilliant" onClick={openConnect}>
         <RxAvatar />
       </button>
       <Backdrop />
       <div className="auth">
         <div className="triangle"></div>
-        <button className="auth__button__quit" onClick={closeConnect}>
+        <button  className="auth__button__quit" onClick={closeConnect}>
           <ImCross />
         </button>
         <div className="auth__button">
-          <button onClick={() => setIsLogin(true)}>Se connecter</button>
-          <button onClick={() => setIsLogin(false)}>S'inscrire</button>
+          <button  onClick={() => setIsLogin(true)}>Se connecter</button>
+          <button  onClick={() => setIsLogin(false)}>S'inscrire</button>
         </div>
         <h1>{isLogin ? "Connexion" : "Inscription"}</h1>
         <form onSubmit= {isLogin ? handleLogin :handleRegister}>
@@ -246,7 +259,7 @@ function AuthModal() {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
