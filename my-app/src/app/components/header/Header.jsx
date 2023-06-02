@@ -21,9 +21,9 @@ function Header() {
       <h1 className="header__title">Trellite</h1>
       {/* Afficher le texte ou l'icône en fonction de la largeur de la fenêtre */}
       {windowWidth < 768 ? (
-        <h4 className="header__create">Créer</h4>
+        <h2 className="header__create">Créer</h2>
       ) : (
-        <h4 className="header__create">Créer</h4>
+        <h2 className="header__create">Créer</h2>
       )}
       <div className="header__login">
         <Modal />

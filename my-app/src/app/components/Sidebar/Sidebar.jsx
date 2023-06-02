@@ -28,11 +28,11 @@ function Sidebar() {
             <ImCross />
           </span>
         ) : null}
-        <div>
+        <div className='sidebar__title'>
           {/* { true ? <span>fermer</span> : null} */}
-          <h2>mes tableaux</h2>
+          <h2>Mes tableaux</h2>
         </div>
-        ;
+        
       </section>
     );
   }

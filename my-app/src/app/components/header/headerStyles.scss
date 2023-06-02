@@ -17,13 +17,16 @@ header {
   flex-direction: row;
   overflow: hidden;
   font-size: 16px;
-  border-bottom: 1px solid vars.$title-color;
+  border-bottom: 1px solid vars.$background-color-secondary;
+  & h1{
+    color: vars.$primary-color;
+  }
   &__title {
     font-family: vars.$title-font;
     font-weight: vars.$title-font-weight;
     color: vars.$title-color;
     vertical-align: middle;
-
+    
     margin: 0;
     padding: 0;
     margin-left: 1rem;
@@ -37,14 +40,14 @@ header {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
-    color: vars.$title-color;
+    color: vars.$primary-color;
   }
 }
 .btn-modal {
   margin-top: 0.5rem;
   font-family: vars.$title-font;
   font-size: 2.5rem;
-  color: vars.$title-color;
+  color: vars.$primary-color;
   margin-right: 1rem;
   &-créer {
     margin-left: 0.3rem;

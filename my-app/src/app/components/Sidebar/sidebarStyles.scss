@@ -8,10 +8,16 @@
   width: 20%;
   height: 100vh;
   background:vars.$background-color-secondary;
-  border-right: vars.$title-color solid 1px;
+  border-right: vars.$primary-color solid 1px;
 
   & h1{
     color: vars.$primary-color;
+  }
+  &__title{
+
+    & h2{
+      color: vars.$primary-color;
+    }
   }
 }
 
