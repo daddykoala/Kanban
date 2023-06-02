@@ -7,48 +7,40 @@ import { useEffect, useState } from "react";
 import List from "../List/List";
 import CreateCard from "../form/createCard";
 import "./deckStyles.scss";
+import { IoLogIn } from "react-icons/io5";
 
 function Decks() {
   const { decksId } = useParams();
+  console.log(decksId,typeof(decksId));
   const userState = useSelector((state) => state.user.user);
-  
+
   const [tableName,setTableName] = useState("");
   const [Lists, setLists] = useState([]);
 
-  useEffect(() => {
-    if (userState && userState.table) {
-      const foundTable = userState.table.find((table) =>
-      table.id === parseInt(decksId));
-      console.log(foundTable);
-      if (foundTable) {
-        setTableName(foundTable.name);
-        setLists(foundTable.list || [])
-        console.log(Lists);
-      } else {
-        setLists([]); //eviter un crash donner un tableau vide
-      }
-    }
-  }, [userState, decksId]);
+ //je recupere la table dans mon stae user grace au tableid
+  const table = userState.table.find((element) => element.id === parseInt(decksId));
+  console.log(table,userState);
+
       return (
         <section className="deck">
           <div className="deck__add__list">
             <CreateCard tableId={decksId} />
-            <h2>{tableName}</h2>
+            {/* <h2>{table.name}</h2> */}
           </div>
           <div className="deck__board">
            
             {
               // Affichez les listes si elles existent
-              Lists.length > 0 ?
-              Lists.map((list) => {
+              table.list.length > 0 ?
+              table.list.map((elem) => {
                 return (
                   <List
-                    // key={list.id}
-                    title={list.name}
-                    id={list.id}
-                    position={list.position}
+                    key={elem.id}
+                    title={elem.name}
+                    id={elem.id}
+                    position={elem.position}
                     tableId={decksId}
-                    tasks={list.tasks}
+                    tasks={elem.tasks}
                   />
                 );
               })
