@@ -50,7 +50,7 @@ function Decks() {
                 );
               })
               :
-              <p>let's go Connect !!!</p>
+              <p>créer votre Liste !</p>
             }
           </div>
         </section>

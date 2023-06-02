@@ -106,7 +106,7 @@ function CreateCard({ tableId }) {
           onBlur={() => setIsTooltipVisible(false)}
           aria-label="modifier une liste"
         >
-          {/* <IoMdAddCircleOutline className="create__card__button" /> */}
+          <IoMdAddCircleOutline className="create__card__button" />
           {/* // accessibilté au clavier */}
           {isTooltipVisible && (
             <span className="tooltip">créer votre liste</span>

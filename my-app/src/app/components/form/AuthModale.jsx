@@ -22,7 +22,7 @@ function Backdrop() {
         width: "100%",
         height: "100%",
         zIndex: 999, // assurez-vous que le zIndex est supérieur à celui de tous les autres éléments
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // fond semi-transparent
+        // backgroundColor: "rgba(0, 0, 0, 0.5)", // fond semi-transparent
       }}
     />
   );
@@ -145,7 +145,7 @@ function AuthModal() {
   }
 
   return (
-    <div tabindex="0">
+    <div  >
     
       <button className="btn-modal brilliant" onClick={openConnect}>
         <RxAvatar />
@@ -199,9 +199,9 @@ function AuthModal() {
               name="email"
               value={inputValueEmail}
               onChange={(e) => handleInputChange(e, setInputValueEmail)}
-              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
               required
-              oninvalid="this.setCustomValidity('Veuillez remplir ce champ')"
+              onInvalid="this.setCustomValidity('Veuillez remplir ce champ')"
             />
           </label>
           <label>

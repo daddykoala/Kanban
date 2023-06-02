@@ -1,0 +1,33 @@
+.home-page {
+    width: 100%;
+    padding: 1em;
+  }
+  
+  .welcome-message h1 {
+    text-align: center;
+    text-decoration: underline solid 2px;
+  }
+  
+  .tableau-container {
+    display: flex;
+    flex-wrap: wrap;
+    
+    max-width: 60%;
+    margin: 3rem auto;
+    justify-content: center;
+  }
+  
+  .tableau {
+    flex: 1 0 20%;  /* pour des vignettes qui prennent environ 20% de l'espace sur de grands écrans */
+    margin: 1em;
+    background-image: white;
+    /* Ajoutez ici d'autres styles pour les vignettes */
+  }
+  
+  /* Sur les petits écrans, chaque tableau prend toute la largeur */
+  @media (max-width: 768px) {
+    .tableau {
+      flex-basis: 100%;
+    }
+  }
+  
