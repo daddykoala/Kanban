@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../card/Card";
+//react icons
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaPen } from "react-icons/fa";
@@ -65,7 +66,7 @@ e.preventDefault();
       console.log("result", result);
       dispatch(removeList(result.data));
     }
-    //je suprime la lsite en bdd
+    //je suprime la liste en bdd
   };
 
   const handleAdd = () => {};

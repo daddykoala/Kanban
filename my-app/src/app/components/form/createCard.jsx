@@ -20,22 +20,20 @@ function CreateCard({ tableId }) {
   const [isTooltipVisibleSubmit, setIsTooltipVisibleSubmit] = useState(false);
 
   // j'enregistre ma nouvelle liste en bdd
-  async function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    postListbyUser({
+      name: inputValue,
+      tableId: tableId,
+    });
+    if (isSuccess && data) {
+      //je dispatch mon action
+      dispatch(addList(data));
+      closeForm();
+    }
+    setInputValue("");
+  };
 
-    try {
-      await postListbyUser({
-        name: inputValue,
-        tableId: tableId,
-      });
-      if (isSuccess && data) {
-        //je dispatch mon action
-
-        dispatch(addList(data));
-      }
-      setInputValue("");
-    } catch (error) {}
-  }
   function opensForm() {
     setEditing(true);
   }
@@ -53,7 +51,7 @@ function CreateCard({ tableId }) {
         <div>
           <form className="create__card" onSubmit={handleSubmit}>
             <button
-              type="submit"
+              type="button"
               onClick={closeForm}
               // accessibilté au clavier
               onMouseEnter={() => setIsTooltipVisible(true)}
@@ -77,10 +75,11 @@ function CreateCard({ tableId }) {
                 placeholder="ajouter une liste"
                 value={inputValue}
                 onChange={handleInputChange}
+                required
               />
               <button
                 className="create__card__button__input maj"
-                onClick={closeForm}
+                type="submit"
                 //accessibilté au clavier
                 onMouseEnter={() => setIsTooltipVisibleSubmit(true)}
                 onMouseLeave={() => setIsTooltipVisibleSubmit(false)}
