@@ -11,7 +11,7 @@ import "./deckStyles.scss";
 function Decks() {
   const { decksId } = useParams();
   const userState = useSelector((state) => state.user.user);
-  const [tableau, setTableau] = useState(null);
+  const [tableName,setTableName] = useState("");
   const [Lists, setLists] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ function Decks() {
       table.id === parseInt(decksId));
       console.log(foundTable);
       if (foundTable) {
+        setTableName(foundTable.name);
         setLists(foundTable.list || [])
         console.log(Lists);
       } else {
@@ -31,6 +32,7 @@ function Decks() {
         <section className="deck">
           <div className="deck__add__list">
             <CreateCard tableId={decksId} />
+            <h2>{tableName}</h2>
           </div>
           <div className="deck__board">
            
