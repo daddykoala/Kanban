@@ -47,8 +47,9 @@
     background: linear-gradient(
       to bottom right,
       hsl(0, 95%, 76%),
-      vars.$primary-color
+      vars.$background-color
     );
+    z-index: 1;
     align-items: center;
     & h2 {
       margin-top: 2em;
@@ -63,7 +64,7 @@
     top: 1em;
     right: 1em;
     margin: 0.5em;
-    color: vars.$title-color;
+    color: vars.$primary-color;
     padding: 0.5em;
   }
 }

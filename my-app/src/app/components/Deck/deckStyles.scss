@@ -5,6 +5,7 @@
 
   width: 100%;
   align-items: flex-start;
+  justify-content: center;
   &__add__list{
     width : 80%;
     display: flex;
@@ -108,15 +109,20 @@
     }
   }
 @media screen and (max-width: 400px) {
-    
+    .deck__add__list{
+       display: block;
+       & h2{
+        margin-left: 1rem;
+       }
+    }
     .create__card {
         display: flex;
         justify-content: center;
         align-items: center;
       
         &__button {
-          width: 70px;
-          height: 70px;
+          width: 45px;
+          height: 45px;
           margin-left: 1rem;
           margin-top: 1rem;
         
@@ -147,5 +153,7 @@
         align-items: center;
         margin-top: 0.5rem;
       
-}}
+}
+}
+
 
