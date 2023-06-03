@@ -14,15 +14,16 @@ import {
 import { modifyList, removeList } from "../../store/reducer/userSlice";
 import { sanitizedValue } from "../../service/input";
 
-//J'importe mes query;
-
-// import ListModale from './ListModale';
-
 import "./ListStyles.scss";
 
-function List({ id,  title, position, tableId, tasks }) {
-  const dispatch = useDispatch();
+function List({ id, title, position, tableId, tasks }) {
 
+  const userState = useSelector((state) => state.user.user);
+  useEffect(() => {
+    console.log("userState", userState);
+  }, [userState]);
+  
+  const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const [value, setValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -34,6 +35,7 @@ function List({ id,  title, position, tableId, tasks }) {
   useEffect(() => {
     console.log("cardEditing", cardEditing);
   }, [cardEditing]);
+
   //modifie la value de l'input
   const handleTitleChange = (e) => {
     setInput(sanitizedValue(e.target.value));
@@ -49,24 +51,30 @@ function List({ id,  title, position, tableId, tasks }) {
   };
 
   const handleTitleSubmit = async (e) => {
-e.preventDefault();
+    e.preventDefault();
     try {
       const result = await modifyListByTable({ id, name: input });
       if (result) {
-        setIsEditing(false);
         dispatch(modifyList(result.data));
+        setIsEditing(false);
       }
     } catch (error) {}
   };
 
-  const handleDelete = async () => {
-    //je recupere l'id pour dele la liste en bdd
-    const result = await deleteListByTable({id,tableId});
-    if (result.data) {
-      console.log("result", result);
-      dispatch(removeList(result.data));
+  async function handleDelete() {
+   
+    console.log("id", id);
+    try {
+      const result = await deleteListByTable({ id, tableId });
+      console.log("je suis dans le try", result);
+      if (result && result.data) {
+        console.log('je suis ici');
+        dispatch(removeList({id:id, table_id:tableId}))
+      }
+    } catch (error) {
+console.log(error);
     }
-    //je suprime la liste en bdd
+  
   };
 
   const handleAdd = () => {};
@@ -74,7 +82,7 @@ e.preventDefault();
   const handleSubmitCard = async (e) => {
     e.preventDefault();
     //query pour ajouter une carte
-    const result = await modifyListByTable({ id:id, name: input });
+    const result = await modifyListByTable({ id: id, name: input });
     if (result) {
       dispatch(modifyList(result.data));
       setcardEditing(!cardEditing);
