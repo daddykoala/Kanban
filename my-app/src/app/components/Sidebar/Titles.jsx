@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import React, { useState,useEffect } from "react";
 import { BsFillTrash2Fill, BsPencilFill } from "react-icons/bs";
+//gestion de la fermeture du menu
+import { closeSidebar } from "../../store/reducer/sidebarSlice";
 
 function Titles({ names, index, className, tableId, userId }) {
   const dispatch = useDispatch();
@@ -49,7 +51,9 @@ function Titles({ names, index, className, tableId, userId }) {
     setInput(names); // Set current name as the input value
   };
 
-
+const handlecloseSidebar = () => {
+    dispatch(closeSidebar());
+  };
 
   async function handlDeleteTable() {
     try {
@@ -66,7 +70,7 @@ function Titles({ names, index, className, tableId, userId }) {
 
   return (
     <div className="title" key={index}>
-      <Link to={`/decks/${tableId}`}>
+      <Link to={`/decks/${tableId}`} onClick={handlecloseSidebar}>
         {!isEditing && <h3>{names}</h3>}
       </Link>
       {isEditing ? (

@@ -59,7 +59,9 @@ const dispatch = useDispatch();
       backgroundImage: `
       url(${backgroundUrl})`,
     backgroundSize: 'cover',
-      height: '100vh',
+    backgroundRepeat: 'repeat-y',
+      height: 'max-content',
+      minHeight: '100vh',
       width: '100%',
     }}
     >
