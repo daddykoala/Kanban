@@ -12,12 +12,12 @@ header {
 
 /* Styles de base pour mobile */
 .header {
-  background: #00000070;
+  background: vars.$background-color-secondary;
   display: flex;
   flex-direction: row;
   overflow: hidden;
   font-size: 16px;
-  border-bottom: 1px solid vars.$background-color-secondary;
+  border-bottom: 1px solid vars.$primary-color;
   & h1{
     color: vars.$primary-color;
   }

@@ -67,7 +67,7 @@ function Titles({ names, index, className, tableId, userId }) {
   return (
     <div className="title" key={index}>
       <Link to={`/decks/${tableId}`}>
-        {!isEditing && <div>{names}</div>}
+        {!isEditing && <h3>{names}</h3>}
       </Link>
       {isEditing ? (
         <form onSubmit={handleTitleSubmit}>

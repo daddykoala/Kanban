@@ -1,7 +1,7 @@
 $primary-color: #ffffff;
-$background-color: #00000070;
-$background-color-secondary: #00000052;
-$alt-color: #ddd;
+$background-color: #186441eb;
+$background-color-secondary: #186441ec;
+$alt-color: #ddddddd9;
 $dark-color: #101010;
 $light-color: #fff;
 $gradient-color-title: linear-gradient(
@@ -9,7 +9,7 @@ $gradient-color-title: linear-gradient(
     rgba(245, 90, 90, 0.8),
     rgba(255, 0, 0, 0) 80.71%
   ),
-  linear-gradient(127deg, rgba(27, 114, 106, 0.937), rgba(0, 255, 0, 0) 80.71%),
+  linear-gradient(127deg, #186440, rgba(0, 255, 0, 0) 80.71%),
   linear-gradient(336deg, rgba(146, 146, 251, 0.8), rgba(0, 0, 255, 0) 80.71%);
 $gutter: 2rem;
 
@@ -20,7 +20,7 @@ $global-font-weight: 300;
 // Title
 $title-font: 'Oswald', sans-serif;
 $title-font-weight: bold;
-$title-color: #ff00c3;
+$title-color: #186440;
 $title-color-secondary: #5c5e8b;
 $title-color-ternary: #167ac6;
 

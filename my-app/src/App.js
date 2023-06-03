@@ -19,7 +19,7 @@ import "./styles/App.scss";
 function App() {
 const dispatch = useDispatch();
 
-  ///refetch avec token au rafraichissement de la page
+  // //refetch avec token au rafraichissement de la page
   // const [getMe] = useGetMeQuery();
   // useEffect(() => {
   //   const token = JSON.parse(localStorage.getItem('token'));
@@ -85,7 +85,7 @@ const dispatch = useDispatch();
             </div>
           }
         />
-        
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );

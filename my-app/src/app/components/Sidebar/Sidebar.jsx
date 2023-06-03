@@ -46,7 +46,7 @@ function Sidebar() {
         </span>
       ) : null}
       <div>
-        <h2>mes tableaux</h2>
+        <h2>Mes tableaux</h2>
         {userState.table[0] ? (
           userState.table.map((element, index) => (
             <Titles

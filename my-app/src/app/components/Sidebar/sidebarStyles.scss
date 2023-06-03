@@ -10,14 +10,16 @@
   background:vars.$background-color-secondary;
   border-right: vars.$primary-color solid 1px;
 
-  & h1{
+  & h2{
     color: vars.$primary-color;
+    margin-left: 1rem;
   }
   &__title{
 
     & h2{
       color: vars.$primary-color;
     }
+    
   }
 }
 
