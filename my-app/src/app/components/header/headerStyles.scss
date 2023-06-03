@@ -54,16 +54,37 @@ header {
   }
 }
 
-/* Styles pour tablettes et plus (à partir de 768px) */
-@media (min-width: 768px) {
-  .header {
-    font-size: 20px;
-  }
-}
+
 
 /* Styles pour ordinateurs de bureau et plus (à partir de 1200px) */
-@media (min-width: 1200px) {
+@media (max-width: 400px) {
   .header {
     font-size: 22px;
+    justify-content: space-between
+    ;
+
+    &__create{
+      display: none;
+    }
+    &__login__button{
+      color: white;
+      display: flex;
+     
+      margin-top: 1rem;
+      font-size: 1.5rem;
+
+      
+    }
   }
+  .btn-modal {
+    margin-top: 0.5rem;
+    font-family: vars.$title-font;
+    font-size: 1.5rem;
+    color: vars.$primary-color;
+    margin-right: 1rem;
+    &-créer {
+      margin-left: 0.3rem;
+    }
+  }
+  
 }
