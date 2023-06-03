@@ -199,9 +199,9 @@ function AuthModal() {
               name="email"
               value={inputValueEmail}
               onChange={(e) => handleInputChange(e, setInputValueEmail)}
-              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+              // pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
               required
-              onInvalid="this.setCustomValidity('Veuillez remplir ce champ')"
+
             />
           </label>
           <label>

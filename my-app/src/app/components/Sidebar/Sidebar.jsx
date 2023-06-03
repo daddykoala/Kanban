@@ -9,12 +9,14 @@ import "./sidebarStyles.scss";
 
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 function Sidebar() {
   //je recupere le state de user
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user.user);
   const sidebarIsOpen = useSelector((state) => state.sidebar.isOpen);
   useEffect(() => {}, [userState]);
+
   //gestion du small screen
   const { width } = useWindowSize();
   const handleCloseSidebar = () => {

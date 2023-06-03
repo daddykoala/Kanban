@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 
-    token: null,
+    token: JSON.parse(localStorage.getItem('token')) || null,
 	isLoggingActive: true,
     passwordValidity: {
 		minChar: null,
@@ -22,7 +22,10 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         setCredentials: (state, action) => {
-            state.auth = action.payload;
+            state.token = action.payload;
+            console.log(state.token);
+            localStorage.setItem('token', JSON.stringify(state.token));
+            console.log(localStorage.getItem('token'));
         }
         ,
         setPassword:(state, action) => {
@@ -51,10 +54,14 @@ export const authSlice = createSlice({
             };
 
         },
+        setToken: (state, action) => {
+            state.token = action.payload;
+            localStorage.setItem('token', JSON.stringify(state.token));
+          },
     }
 });
 
 
 export const { setCredentials,setPasswordValidity,setPasswordValidationWidth
-     ,setPassword ,clearPassword,clearPasswordValidity} = authSlice.actions;
+     ,setPassword ,clearPassword,clearPasswordValidity,setToken} = authSlice.actions;
 

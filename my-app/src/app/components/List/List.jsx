@@ -9,37 +9,37 @@ import { FaPen } from "react-icons/fa";
 import {
   useModifyListByTableMutation,
   useDeleteListByTableMutation,
+  usePostCardByListMutation
 } from "../../store/api/api";
 
-import { modifyList, removeList } from "../../store/reducer/userSlice";
+import { modifyList, removeList, addCard } from "../../store/reducer/userSlice";
 import { sanitizedValue } from "../../service/input";
 
 import "./ListStyles.scss";
 
 function List({ id, title, position, tableId, tasks }) {
-
+console.log('tasks', tasks);
   const userState = useSelector((state) => state.user.user);
   useEffect(() => {
     console.log("userState", userState);
   }, [userState]);
   
   const dispatch = useDispatch();
-  const [input, setInput] = useState("");
-  const [value, setValue] = useState("");
+  const [inputList, setInputList] = useState("");
+  const [inputCard, setInputCard] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [cardEditing, setcardEditing] = useState(false);
   // const api
   const [deleteListByTable] = useDeleteListByTableMutation();
   const [modifyListByTable] = useModifyListByTableMutation();
+  const [postCardByList] = usePostCardByListMutation();
 
   useEffect(() => {
     console.log("cardEditing", cardEditing);
   }, [cardEditing]);
 
-  //modifie la value de l'input
-  const handleTitleChange = (e) => {
-    setInput(sanitizedValue(e.target.value));
-  };
+  //modifie la value de l'inputList
+  
 
   // va  passer isEditing a true pour modifier le titre de la liste
   const handleTitleClick = () => {
@@ -53,7 +53,7 @@ function List({ id, title, position, tableId, tasks }) {
   const handleTitleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await modifyListByTable({ id, name: input });
+      const result = await modifyListByTable({ id, name: inputList });
       if (result) {
         dispatch(modifyList(result.data));
         setIsEditing(false);
@@ -82,10 +82,13 @@ console.log(error);
   const handleSubmitCard = async (e) => {
     e.preventDefault();
     //query pour ajouter une carte
-    const result = await modifyListByTable({ id: id, name: input });
+    console.log("je passe ici ",id, inputCard,typeof(id), typeof(inputCard));
+    const result = await postCardByList({ list_id: id, name: inputCard });
     if (result) {
-      dispatch(modifyList(result.data));
+      console.log("je passe ici 2",result);
+      dispatch(addCard( result.data));
       setcardEditing(!cardEditing);
+      setInputCard("");
     }
     //dispatch pour ajouter une carte
   };
@@ -96,6 +99,10 @@ console.log(error);
     setcardEditing(!cardEditing);
   };
 
+    //fonction pour tout mes states locaux sur les onchange qui sanitize les valeurs
+  const handleInputChange = (e, stateValue) => {
+    stateValue(sanitizedValue(e.target.value));
+  };
   return (
     <div className="list" key={id} id={id} position={position}>
       <div className="list__header">
@@ -103,8 +110,8 @@ console.log(error);
           <form onSubmit={handleTitleSubmit}>
             <input
               className="list__header__input"
-              value={input}
-              onChange={handleTitleChange}
+              value={inputList}
+              onChange={(e) => handleInputChange(e, setInputList)}
               onBlur={handleTitleBlur}
               autoFocus
             />
@@ -139,8 +146,8 @@ console.log(error);
             } `}
             type="text"
             placeholder="Ajouter une carte"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={inputCard}
+            onChange={(e) => handleInputChange(e, setInputCard)}
           />
           {/* gestion du formulaire de carte */}
           {cardEditing ? (
@@ -159,9 +166,9 @@ console.log(error);
         </form>
       </div>
 
-      {/* {tasks.map((element, index) => (
-        <Card  id={element.id} name={element.name} listId={id} />
-      ))} */}
+      {(tasks || []).map((element, index) => (
+  <Card id={element.id} name={element.name} listId={id} />
+))}
     </div>
   );
 }

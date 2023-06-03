@@ -6,7 +6,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3002",
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.auth;
+      const token = getState().auth.token;
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -90,9 +90,17 @@ export const userApi = createApi({
             body: { tableId: tableId },
           }),
         }),
+        //création d'une liste pour un tableau
+      postCardByList: builder.mutation({
+        query: ({name,list_id}) => ({
+          url: `cards/`,
+          method: "POST",
+          body: { name, list_id },
+      }),
+    }),
     }),
   })
 
 export const { useGetContentByUserQuery, useAddTableByUserMutation , useDeleteTableByUserMutation, useGetListsByTableQuery ,
 useModifyTableByUserMutation , usePostListByUserMutation , useModifyListByTableMutation , useDeleteListByTableMutation ,useLoginUserMutation , useRegisterUserMutation 
-,useGetMeQuery} = userApi;
+,useGetMeQuery , usePostCardByListMutation } = userApi;

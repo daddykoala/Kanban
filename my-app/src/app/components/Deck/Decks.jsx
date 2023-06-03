@@ -11,7 +11,6 @@ import { IoLogIn } from "react-icons/io5";
 
 function Decks() {
   const { decksId } = useParams();
-  console.log(decksId,typeof(decksId));
   const userState = useSelector((state) => state.user.user);
 
   const [tableName,setTableName] = useState("");
@@ -19,13 +18,11 @@ function Decks() {
 
  //je recupere la table dans mon stae user grace au tableid
   const table = userState.table.find((element) => element.id === parseInt(decksId));
-  console.log(table,userState);
-
       return (
         <section className="deck">
           <div className="deck__add__list">
             <CreateCard tableId={decksId} />
-            {/* <h2>{table.name}</h2> */}
+            <h2>{table.name}</h2>
           </div>
           <div className="deck__board">
            
@@ -33,6 +30,7 @@ function Decks() {
               // Affichez les listes si elles existent
               table.list.length > 0 ?
               table.list.map((elem) => {
+                
                 return (
                   <List
                     key={elem.id}
@@ -40,7 +38,7 @@ function Decks() {
                     id={elem.id}
                     position={elem.position}
                     tableId={decksId}
-                    tasks={elem.tasks}
+                    tasks={elem.card}
                   />
                 );
               })
