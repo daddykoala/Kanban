@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import {
   useDeleteTableByUserMutation,
   useModifyTableByUserMutation,
@@ -11,6 +11,8 @@ import { BsFillTrash2Fill, BsPencilFill } from "react-icons/bs";
 
 function Titles({ names, index, className, tableId, userId }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [deleteTableMutation] = useDeleteTableByUserMutation();
   const [modifyTableByUser] = useModifyTableByUserMutation()
   //modifcation du nom de tableau
@@ -55,6 +57,7 @@ function Titles({ names, index, className, tableId, userId }) {
       const result = await deleteTableMutation(tableId);
       if (result) {
         dispatch(removeTable(tableId));
+        navigate("/");
       }
     } catch (error) {
       console.error(error);

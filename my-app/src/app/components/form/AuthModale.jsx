@@ -171,7 +171,7 @@ function AuthModal() {
                   name="firstname"
                   placeholder="lastname"
                   value={inputValueName}
-                  onChange={(e) => handleInputChange(e, setInputValueName)}
+                          
                   pattern="^[a-zA-ZÀ-ÿ ]+$"
                   required
                 />

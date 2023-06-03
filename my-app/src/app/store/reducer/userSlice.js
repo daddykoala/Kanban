@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IoLogoAndroid } from "react-icons/io";
 
 const initialState = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: null,
   status: "idle",
   error: null,
 };
@@ -13,12 +13,13 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
-      localStorage.setItem("user", JSON.stringify(state.user));
+      // localStorage.setItem("user", JSON.stringify(state.user));
     },
     //je push le nouveau tableau dans user
     addTable: (state, action) => {
+      console.log(action.payload);
       state.user.table.push(action.payload);
-      localStorage.setItem("user", JSON.stringify(state.user));
+      // localStorage.setItem("user", JSON.stringify(state.user));
     },
     //je supprime une table
     removeTable: (state, action) => {
@@ -26,7 +27,7 @@ export const userSlice = createSlice({
       state.user.table = state.user.table.filter(
         (table) => table.id !== TableId
       );
-      localStorage.setItem("user", JSON.stringify(state.user));
+      // localStorage.setItem("user", JSON.stringify(state.user));
     },
     modifyTable: (state, action) => {
       //modifier le m du tableau avec l'id spécifié
@@ -41,7 +42,7 @@ export const userSlice = createSlice({
         };
         // Remplacer l'ancien tableau par le nouveau dans l'état
         state.user.table[tableIndex] = updatedTable;
-        localStorage.setItem("user", JSON.stringify(state.user));
+        // localStorage.setItem("user", JSON.stringify(state.user));
       }
     },
 
@@ -59,7 +60,7 @@ export const userSlice = createSlice({
 
         // Remplacer l'ancien tableau par le nouveau dans l'état
         state.user.table[tableIndex] = updatedTable;
-        localStorage.setItem('user', JSON.stringify(state.user));
+        // localStorage.setItem('user', JSON.stringify(state.user));
       }
     },
     //je supprime une liste
@@ -77,7 +78,7 @@ export const userSlice = createSlice({
         state.user.table[tableIndex].list = state.user.table[
           tableIndex
         ].list.filter((e) => e.id !== listId);
-        localStorage.setItem('user', JSON.stringify(state.user));
+        // localStorage.setItem('user', JSON.stringify(state.user));
       } else {
         console.error("Table not found");
       }
@@ -96,7 +97,7 @@ export const userSlice = createSlice({
         if (listIndex !== -1) {
           // Si la liste existe déjà, la remplacer par la nouvelle liste
           state.user.table[tableIndex].list[listIndex] = action.payload;
-          localStorage.setItem('user', JSON.stringify(state.user));
+          localStorage.setItem("user", JSON.stringify(state.user));
         } else {
           // Si la liste n'existe pas, l'ajouter à la fin du tableau
           state.user.table[tableIndex].list.push(action.payload);
@@ -115,15 +116,18 @@ export const userSlice = createSlice({
         );
 
         if (listIndex !== -1) {
+          //je dois créer card = []   si elle n'existe pas
+          if (!table.list[listIndex].card) {
+            table.list[listIndex].card = [];
+          }
+
           table.list[listIndex].card.push(action.payload);
-          localStorage.setItem('user', JSON.stringify(state.user));
+          // localStorage.setItem('user', JSON.stringify(state.user));
           break;
         }
       }
     },
-    
   },
-
 });
 export const {
   setUser,

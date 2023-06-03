@@ -28,7 +28,7 @@ function Decks() {
            
             {
               // Affichez les listes si elles existent
-              table.list.length > 0 ?
+             table.list && table.list.length > 0 ?
               table.list.map((elem) => {
                 
                 return (

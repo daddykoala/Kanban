@@ -1,6 +1,6 @@
 import React, { useEffect ,useState} from "react";
 import { Routes, Route, Navigate,useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 //components
 import Decks from "./app/components/Deck/Decks";
 import Header from "./app/components/header/Header";
@@ -10,11 +10,33 @@ import HomePage from "./app/components/home/Home";
 import { getRandomImage } from '../src/app/store/api/unsplashApi';
 import  Background  from "./ressources/pexels-ave-calvar-martinez-4705113.jpg";
 
+import { useGetMeQuery } from "./app/store/api/api";
+import { setUser } from "./app/store/reducer/userSlice";
+
 import "./styles/App.scss";
 
+
 function App() {
-//   const navigate = useNavigate();
-// const user = useSelector((state) => state.user.user);
+const dispatch = useDispatch();
+
+  ///refetch avec token au rafraichissement de la page
+  // const [getMe] = useGetMeQuery();
+  // useEffect(() => {
+  //   const token = JSON.parse(localStorage.getItem('token'));
+  
+  //   if(token){
+  //     async function fetchData() {
+  //       console.log("je passe bien ici");
+  //       const result = await getMe(token);
+  //       if(result.data){
+  //         dispatch(setUser(result.data));
+  //       }
+  //     }
+      
+  //     fetchData();
+  //   }
+  // }, [dispatch, getMe]);
+
   //gestion du fond
   const [backgroundUrl, setBackgroundUrl] = useState(null);
   useEffect(() => {

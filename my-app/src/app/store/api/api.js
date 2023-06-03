@@ -25,6 +25,7 @@ export const userApi = createApi({
     getMe: builder.query({
       query: () => '/users/me',
     }),
+    
     getContentByUser: builder.query({
       query: (id) => `users/${id}`,
     }),
