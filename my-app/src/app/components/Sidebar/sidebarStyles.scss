@@ -9,10 +9,12 @@
   height: 100vh;
   background:vars.$background-color-secondary;
   border-right: vars.$primary-color solid 1px;
+  font-size: 14px;
 
   & h2{
     color: vars.$primary-color;
     margin-left: 1rem;
+    
   }
   &__title{
 
@@ -42,7 +44,7 @@
   .sidebar {
     position: absolute;
     width: 100%;
-    margin-left: -100%;
+    margin-left: -96%;
     transition: ease-in-out 0.5s;
     background: linear-gradient(
       to bottom right,

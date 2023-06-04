@@ -110,6 +110,7 @@ function AuthModal() {
         password: inputValuePassword,
       });
       if (result && result.data) {
+        console.log(result.data);
         dispatch(setCredentials(result.data.token));
         dispatch(setUser(result.data.user));
         dispatch(clearPassword());
@@ -152,7 +153,6 @@ function AuthModal() {
       </button>
       <Backdrop />
       <div className="auth">
-        <div className="triangle"></div>
         <button  className="auth__button__quit" onClick={closeConnect}>
           <ImCross />
         </button>
@@ -164,25 +164,27 @@ function AuthModal() {
         <form onSubmit= {isLogin ? handleLogin :handleRegister}>
           {!isLogin && (
             <>
-              <label>
+              <label htmlFor="firstname">
                 Prénom
                 <input
                   type="text"
                   name="firstname"
-                  placeholder="lastname"
+                  id="firstname"
+                  placeholder="Votre prénom ici"
                   value={inputValueName}
-                          
+                  onChange={(e) => handleInputChange(e, setInputValueName)}  
                   pattern="^[a-zA-ZÀ-ÿ ]+$"
                   required
                 />
               </label>
             
-              <label>
+              <label hmtlFor="lastname">
                 Nom
                 <input
                   type="text"
                   name="lastname"
-                  placeholder="name"
+                  id="lastname"
+                  placeholder="Votre nom ici"
                   value={inputValueLastname}
                   onChange={(e) => handleInputChange(e, setInputValueLastname)}
                   pattern="^[a-zA-ZÀ-ÿ ]+$"
@@ -191,25 +193,27 @@ function AuthModal() {
               </label>
             </>
           )}
-          <label>
+          <label htmlFor="email">
             Email
             <input
               type="email"
               placeholder="your email"
               name="email"
+              id="email"
               value={inputValueEmail}
               onChange={(e) => handleInputChange(e, setInputValueEmail)}
-              // pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
               required
-
             />
           </label>
-          <label>
+
+          <label htmlFor="password">
             Mot de passe
             <input
               type="password"
               placeholder="text"
               name="password"
+              id="password"
               value={inputValuePassword}
               onChange={(e) => handleInputChange(e, setInputValuePassword)}
               required

@@ -16,7 +16,7 @@ function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { width } = useWindowSize();
   const dispatch = useDispatch();
-  // const sidebarIsOpen = useSelector((state) => state.sidebar.isOpen);
+  
 
   return (
     <header className="header">

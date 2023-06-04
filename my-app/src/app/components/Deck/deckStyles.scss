@@ -2,10 +2,10 @@
 .deck {
   display: flex;
   flex-direction: column;
-
   width: 100%;
   align-items: flex-start;
-  justify-content: center;
+  
+
   &__add__list{
     width : 80%;
     display: flex;
@@ -20,8 +20,7 @@
 .deck__board {
   display: flex;
   flex-wrap: wrap;
-  right: 0;
-  justify-content: space-around;
+  justify-content: space-between;
   // max-width: 800px;
 }
 
