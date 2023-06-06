@@ -29,6 +29,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 1s;
+  transform: rotate(0deg);
 
   &__button {
     width: 100px;
@@ -38,12 +40,10 @@
     color: white;
     background-image: vars.$gradient-color-title;
     align-items: center;
-
-    
-
     border-radius: 100%;
     box-shadow: 0 0 5px vars.$gradient-color-title;
     cursor: pointer;
+    transition: animation 1s;
     
     & .maj{
       height: 100%;
@@ -53,6 +53,10 @@
     &.rotate{
       animation: rotation 1s forwards;
     }
+    &.rotateBack{
+      animation: rotation 1s reverse forwards;
+    }
+    
   }
 
   &__input {
@@ -80,9 +84,10 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(180deg);
+    transform: rotate(135deg);
   }
 }
+
 
 .create__card__button__input{
     background: white;

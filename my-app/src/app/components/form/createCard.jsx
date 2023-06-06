@@ -61,7 +61,7 @@ function CreateCard({ tableId }) {
               aria-label="fermer le formulaire"
             >
               <IoMdAddCircleOutline
-                className={`create__card__button ${Editing ? "rotate" : ""}`}
+                className={`create__card__button ${Editing ? "rotate" : "rotateBack"}`}
               />
               {/* // accessibilté au clavier */}
               {isTooltipVisible && (
