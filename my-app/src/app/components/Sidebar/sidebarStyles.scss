@@ -61,6 +61,10 @@
 }
 .titles__button{
   margin-left: 0.5rem;
+  & img{
+    width:15px;
+    height:15px;
+  }
 }
 
 @media screen and (max-width: 400px) {

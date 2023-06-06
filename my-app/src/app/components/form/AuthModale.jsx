@@ -103,7 +103,7 @@ function AuthModal() {
     e.preventDefault();
     try {
       const result = await loginUser({
-        email: e.target.email.value,
+        email: inputValueEmail,
         password: inputValuePassword,
       });
       if (result && result.data) {
@@ -145,8 +145,8 @@ function AuthModal() {
   return (
     <div  >
     
-      <button className="btn-modal brilliant" onClick={openConnect}>
-        <RxAvatar />
+      <button className="btn-modal brilliant"         onClick={openConnect}>
+        <RxAvatar  />
       </button>
       <Backdrop />
       <div className="auth">

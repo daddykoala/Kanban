@@ -33,7 +33,7 @@ const dispatch = useDispatch();
       } else {
         console.log(result.response);
         const photo = result.response;
-        setBackgroundUrl(photo.urls.full);
+        setBackgroundUrl(photo.urls.full + '&fm=webp');
       }});
     },[]);
 

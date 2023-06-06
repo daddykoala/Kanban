@@ -7,7 +7,11 @@ import { removeTable ,modifyTable} from "../../store/reducer/userSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import React, { useState,useEffect } from "react";
-import { BsFillTrash2Fill, BsPencilFill } from "react-icons/bs";
+
+// import { BsFillTrash2Fill, BsPencilFill } from "react-icons/bs";
+import { ReactComponent as TrashIcon } from "../../../ressources/garbage.svg";
+import { ReactComponent as PencilIcon } from "../../../ressources/pen.svg";
+
 //gestion de la fermeture du menu
 import { closeSidebar } from "../../store/reducer/sidebarSlice";
 
@@ -78,10 +82,16 @@ const handlecloseSidebar = () => {
       </Link>
       <div className="button-container">
       <button className="titles__button" onClick={handleTitleClick}>
-        <BsPencilFill />
+      <img
+              src={require("../../../ressources/pen.png")}
+              alt="Pencil Icon"
+            />
       </button>
       <button className="titles__button" onClick={handlDeleteTable}>
-        <BsFillTrash2Fill />
+      <img
+                src={require("../../../ressources/garbage.png")}
+                alt="Trash Icon"
+              />
       </button>
         </div>
     </div>)
@@ -94,7 +104,10 @@ const handlecloseSidebar = () => {
             autoFocus
           />
           <button type="submit"  className="titles__button__submit">
-            <BsPencilFill />
+          <img
+              src={require("../../../ressources/pen.png")}
+              alt="Pencil Icon"
+            />
           </button>
         </form>
       ) }

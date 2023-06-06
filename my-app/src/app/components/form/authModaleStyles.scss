@@ -1,8 +1,23 @@
 @use'../../../styles/vars.scss' as vars;
+@import'../../../styles/mixins.scss';
+.brilliant{
+  transition: transform 0.3s ease-in-out;
+  border-radius: 50%  ;  
+  width: 40px;
+  height: 40px;
+  // background-color: vars.$primary-color;       
+  overflow: hidden;                   
+}
+
+.brilliant:hover{
+transform: scale(1.1);
+
+@include shiny-effect;
+}
 
 .auth{ 
     width: 350px;
-    height: 350px;
+   height: max-content;
     position: fixed;
     top: 50%;
   left: 50%;
