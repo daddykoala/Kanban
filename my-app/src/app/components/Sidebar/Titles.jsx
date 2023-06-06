@@ -1,4 +1,4 @@
-import { Link ,useNavigate} from "react-router-dom";
+import { Link ,useNavigate,NavLink} from "react-router-dom";
 import {
   useDeleteTableByUserMutation,
   useModifyTableByUserMutation,
@@ -16,15 +16,19 @@ import { ReactComponent as PencilIcon } from "../../../ressources/pen.svg";
 import { closeSidebar } from "../../store/reducer/sidebarSlice";
 
 function Titles({ names, index, className, tableId, userId }) {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [deleteTableMutation] = useDeleteTableByUserMutation();
   const [modifyTableByUser] = useModifyTableByUserMutation()
+
   //modifcation du nom de tableau
   const [isEditing, setIsEditing] = useState(false);
   const [input, setInput] = useState("");
 
+  //gestion du isactive sur le lien 
+  const [linkIsActive, setLinkIsActive] = useState(false);
   const handleTitleChange = (e) => {
     setInput(e.target.value);
   };
@@ -73,13 +77,15 @@ const handlecloseSidebar = () => {
   }
 
   return (
-    <div className="title" key={index}>
+    <div className={`title ${linkIsActive ? "active": ""}`} key={index}>
       {!isEditing && names ? (
-        <div className="title__link">
+        <div className="title__link ">
 
-      <Link to={`/decks/${tableId}`} onClick={handlecloseSidebar}>
+      <NavLink to={`/decks/${tableId}`} onClick={handlecloseSidebar}
+      exact={true}
+      className={({ isActive }) => (isActive ? setLinkIsActive(true) : setLinkIsActive(false))}>
         <h3>{names}</h3>
-      </Link>
+      </NavLink>
       <div className="button-container">
       <button className="titles__button" onClick={handleTitleClick}>
       <img

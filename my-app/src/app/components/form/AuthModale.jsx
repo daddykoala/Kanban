@@ -29,7 +29,7 @@ function Backdrop() {
   );
 }
 
-function AuthModal() {
+function AuthModal({isHomePage}) {
   //gestion de la modale en locale
   const [show, setShow] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
@@ -141,11 +141,11 @@ function AuthModal() {
       </button>
     );
   }
-
+console.log(isHomePage);
   return (
     <div  >
     
-      <button className="btn-modal brilliant"         onClick={openConnect}>
+      <button className={`brilliant btn-modal ${isHomePage ? "btn-modal-homepage" : ""}`}       onClick={openConnect}>
         <RxAvatar  />
       </button>
       <Backdrop />

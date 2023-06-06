@@ -15,7 +15,7 @@ function HomePage() {
         <div className="welcome-message">
           <h1>Prêt à embarquer</h1>
           <p>Connectez-vous pour commencer à travailler. Enjoy!</p>
-          <AuthModale />
+          <AuthModale isHomePage />
           <p>Mettez une flèche</p>
         </div>
       </section>
