@@ -77,6 +77,4 @@ it('should handle modifyTable', () => {
     state = userSlice.reducer(state, modifyList({ id: '1', name: 'Updated List 1', table_id: table.id }));
     expect(state.user.table[0].list).toContainEqual({ id: '1', name: 'Updated List 1',table_id: 1 });
 });
-
- 
 });

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLoginUserMutation , useRegisterUserMutation } from "../../store/api/api";
 import { setUser } from "../../store/reducer/userSlice";
 import { setCredentials } from "../../store/reducer/authSlice";
+
 import { setPasswordValidity,setPasswordValidationWidth,setPassword,clearPassword, clearPasswordValidity} from "../../store/reducer/authSlice";
 import "./authModaleStyles.scss";
 //icone
@@ -49,22 +50,20 @@ function AuthModal() {
   const { passwordValidity, passwordValidationWidth, password } = useSelector(
     (state) => state.auth
   );
+  const user = useSelector((state) => state.user);
+  
 
   useEffect(() => {
     //MAJ mot de passe store
     dispatch(setPassword(inputValuePassword)); 
     //definini le nombre de true 
     dispatch(setPasswordValidity());
-    //definir la largeur de la barre de progressionQQ
+    //definir la largeur de la barre de progression
     let values = Object.values(passwordValidity);
     const validCount = values.filter(Boolean).length;
-    if (validCount === 3) {
-      const count = validCount + 1;
-      dispatch(setPasswordValidationWidth(count * 25));
-    } else {
       dispatch(setPasswordValidationWidth(validCount * 25));
-    }
-}, [inputValuePassword, dispatch]);
+}, [inputValuePassword]);
+
 //gestion de la modale
   const openConnect = () => {
     setModalOpen(true);
@@ -96,11 +95,9 @@ function AuthModal() {
         alert("vous etes bien inscrit vous pouvez vos connecter");
         resetForm();
       }
-    } catch (error) {
-      
+    } catch (error) { 
       throw error;
     }
-
   };
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -202,7 +199,7 @@ function AuthModal() {
               id="email"
               value={inputValueEmail}
               onChange={(e) => handleInputChange(e, setInputValueEmail)}
-              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
               required
             />
           </label>
@@ -236,24 +233,17 @@ function AuthModal() {
               )}
             </div>
             <span>
-              Au moins{" "}
+              Au moins 8 caractères
               <span className={passwordValidity.minChar ? "success" : ""}>
-                8 caractères
               </span>
-              , dont une{" "}
               <span className={passwordValidity.uppercase ? "success" : ""}>
-                {" "}
-                majuscule
+                , dont une majuscule
               </span>
-              , un{" "}
               <span className={passwordValidity.number ? "success" : ""}>
-                {" "}
-                chiffre
+                un chiffre
               </span>
-              , et un
               <span className={passwordValidity.specialChar ? "success" : ""}>
-                {" "}
-                caractère spécial
+                , et un  caractère spécial
               </span>
               .
             </span>

@@ -70,11 +70,23 @@ const handlecloseSidebar = () => {
 
   return (
     <div className="title" key={index}>
+      {!isEditing && names ? (
+        <div className="title__link">
+
       <Link to={`/decks/${tableId}`} onClick={handlecloseSidebar}>
-        {!isEditing && <h3>{names}</h3>}
+        <h3>{names}</h3>
       </Link>
-      {isEditing ? (
-        <form onSubmit={handleTitleSubmit}>
+      <div className="button-container">
+      <button className="titles__button" onClick={handleTitleClick}>
+        <BsPencilFill />
+      </button>
+      <button className="titles__button" onClick={handlDeleteTable}>
+        <BsFillTrash2Fill />
+      </button>
+        </div>
+    </div>)
+      : (
+        <form className="title__editing"onSubmit={handleTitleSubmit}>
           <input
             value={input}
             onChange={handleTitleChange}
@@ -85,16 +97,7 @@ const handlecloseSidebar = () => {
             <BsPencilFill />
           </button>
         </form>
-      ) : (
-        <div className="button-container">
-          <button className="titles__button" onClick={handleTitleClick}>
-            <BsPencilFill />
-          </button>
-          <button className="titles__button" onClick={handlDeleteTable}>
-            <BsFillTrash2Fill />
-          </button>
-        </div>
-      )}
+      ) }
     </div>
   );
       }  

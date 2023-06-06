@@ -70,7 +70,7 @@ function CreateCard({ tableId }) {
             </button>
             <div className="input__anim">
               <input
-                className="create__card__input maj"
+                className="create__card__input"
                 type="text"
                 placeholder="ajouter une liste"
                 value={inputValue}
@@ -78,7 +78,7 @@ function CreateCard({ tableId }) {
                 required
               />
               <button
-                className="create__card__button__input maj"
+                className="create__card__button__input  maj"
                 type="submit"
                 //accessibilté au clavier
                 onMouseEnter={() => setIsTooltipVisibleSubmit(true)}

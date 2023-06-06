@@ -39,11 +39,17 @@
     background-image: vars.$gradient-color-title;
     align-items: center;
 
+    
+
     border-radius: 100%;
     box-shadow: 0 0 5px vars.$gradient-color-title;
     cursor: pointer;
     
-
+    & .maj{
+      height: 100%;
+      border: 1px solid white;
+      background: white;
+    }
     &.rotate{
       animation: rotation 1s forwards;
     }
@@ -57,12 +63,15 @@
     // transition: 0.5s;
     border-bottom: 2px vars.$title-color transparent;
     animation: expand 0.5s forwards;
+    padding-left: 1.2rem;
+    margin-left: -0.9rem;
 
     
     &:focus {
       outline: none;
       border-bottom: vars.$title-color solid;
     }
+    
   }
 }
 
@@ -82,6 +91,7 @@
     font-size: x-large;
     width: 50px;
     border-radius: 0 25px 25px 0  ;
+
     
     ;
 }

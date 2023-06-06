@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "./test-utils";
-import Sidebar from "../app/components/sidebar/sidebar";
+import Sidebar from "../app/components/Sidebar/Sidebar";
 
 describe("sidebar", () => {
   let preloadedState;
@@ -24,7 +24,7 @@ describe("sidebar", () => {
   }; 
   it("should render sidebar", () => {
     renderWithProviders(<Sidebar />, { preloadedState });
-    expect(screen.getByText("mes tableaux")).toBeInTheDocument();
+    expect(screen.getByText("Mes tableaux")).toBeInTheDocument();
   }); 
   // vérifie que les titres sont présents
   it("should render children", () => {
