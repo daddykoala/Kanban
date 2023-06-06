@@ -1,11 +1,10 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect ,useState ,lazy,Suspense} from "react";
 import { Routes, Route, Navigate,useNavigate} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
 
 //components
-import Decks from "./app/components/Deck/Decks";
 import Header from "./app/components/header/Header";
-import Sidebar from "./app/components/Sidebar/Sidebar";
+//ameliorations des performances
 import HomePage from "./app/components/home/Home";
 //gestion fond d'écran
 import { getRandomImage } from '../src/app/store/api/unsplashApi';
@@ -15,29 +14,13 @@ import { useGetMeQuery } from "./app/store/api/api";
 import { setUser } from "./app/store/reducer/userSlice";
 
 import "./styles/App.scss";
+const Sidebar = lazy(() => import('./app/components/Sidebar/Sidebar'));
+const Decks = lazy(() => import('./app/components/Deck/Decks'));
+
 
 
 function App() {
 const dispatch = useDispatch();
-
-  // //refetch avec token au rafraichissement de la page
-  // const [getMe] = useGetMeQuery();
-  // useEffect(() => {
-  //   const token = JSON.parse(localStorage.getItem('token'));
-  
-  //   if(token){
-  //     async function fetchData() {
-  //       console.log("je passe bien ici");
-  //       const result = await getMe(token);
-  //       if(result.data){
-  //         dispatch(setUser(result.data));
-  //       }
-  //     }
-      
-  //     fetchData();
-  //   }
-  // }, [dispatch, getMe]);
-
   //gestion du fond
   const [backgroundUrl, setBackgroundUrl] = useState(null);
   useEffect(() => {
@@ -83,8 +66,11 @@ const dispatch = useDispatch();
           path="/decks/:decksId"
           element={
             <div style={{ display: "flex" }}>
-              <Sidebar />
-              <Decks />
+
+              <Suspense fallback={<div>Loading...</div>}>
+                <Sidebar />
+                <Decks />
+              </Suspense>
             </div>
           }
         />
