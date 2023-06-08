@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IoLogoAndroid } from "react-icons/io";
+
 
 const initialState = {
   user: null,
@@ -17,8 +17,15 @@ export const userSlice = createSlice({
     },
     //je push le nouveau tableau dans user
     addTable: (state, action) => {
-      console.log(action.payload);
-      state.user.table.push(action.payload);
+      console.log("actionlist",action.payload);
+      let table = action.payload.hasOwnProperty('list') ? action.payload : {...action.payload, list: []};
+
+      // if (state.user.table.length === 0) {
+      //   state.user.table.push({ list: [] });
+      // // state.user.table.push(action.payload);const 
+      // }
+
+      state.user.table.push(table);
       // localStorage.setItem("user", JSON.stringify(state.user));
     },
     //je supprime une table
@@ -140,3 +147,4 @@ export const {
   addCard,
 } = userSlice.actions;
 export default userSlice.reducer;
+      

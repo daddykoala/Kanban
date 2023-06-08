@@ -69,7 +69,9 @@ const handlecloseSidebar = () => {
       const result = await deleteTableMutation(tableId);
       if (result) {
         dispatch(removeTable(tableId));
-        navigate("/");
+        if(linkIsActive){
+          navigate("/");
+        }
       }
     } catch (error) {
       console.error(error);

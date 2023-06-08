@@ -14,6 +14,7 @@ function Decks() {
   const table = userState.table.find(
     (element) => element.id === parseInt(decksId)
   );
+  const list = table && table.list ? table.list : [];
   return (
     <section className="deck">
       <div className="deck__add__list">
@@ -23,8 +24,8 @@ function Decks() {
       <div className="deck__board">
         {
           // Affichez les listes si elles existent
-          table.list && table.list.length > 0 ? (
-            table.list.map((elem) => {
+          list && list.length > 0 ? (
+            list.map((elem) => {
               return (
                 <List
                   key={elem.id}

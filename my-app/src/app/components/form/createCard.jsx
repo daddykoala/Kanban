@@ -20,9 +20,9 @@ function CreateCard({ tableId }) {
   const [isTooltipVisibleSubmit, setIsTooltipVisibleSubmit] = useState(false);
 
   // j'enregistre ma nouvelle liste en bdd
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postListbyUser({
+   await postListbyUser({
       name: inputValue,
       tableId: tableId,
     });
