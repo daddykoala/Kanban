@@ -74,14 +74,15 @@ export const userSlice = createSlice({
     removeList: (state, action) => {
       console.log(action);
       const listId = action.payload.id;
-      console.log("je passe bien ici ", action.payload);
+      console.log("je passe bien icisssss ", action.payload);
 
       const tableIndex = state.user.table.findIndex(
-        (t) => t.id === parseInt(action.payload.table_id)
+        (t) => t.id === action.payload.tableId
       );
 
       // Check that the tableIndex is not -1 and that the table at the index exists
       if (tableIndex !== -1 && state.user.table[tableIndex]) {
+        console.log("je passe la");
         state.user.table[tableIndex].list = state.user.table[
           tableIndex
         ].list.filter((e) => e.id !== listId);
