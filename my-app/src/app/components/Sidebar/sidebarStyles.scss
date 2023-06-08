@@ -81,13 +81,18 @@
     height: 15px;
 
   }
+  
 }
-
+.titles__button__submit__img{
+  width: 15px;
+    height: 15px;
+}
 .title:hover {
   transform: scale(1.02);
   transition: transform 0.3s;
 
 }
+
 
 .active {
   color: vars.$background-color-secondary;

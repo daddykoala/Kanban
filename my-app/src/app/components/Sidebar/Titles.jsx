@@ -113,6 +113,8 @@ const handlecloseSidebar = () => {
           />
           <button type="submit"  className="titles__button__submit">
           <img
+          
+          className="titles__button__submit__img"
               src={require("../../../ressources/pen.png")}
               alt="Pencil Icon"
             />
