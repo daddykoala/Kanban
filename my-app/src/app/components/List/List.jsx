@@ -147,11 +147,13 @@ console.log(error);
             type="text"
             placeholder="Ajouter une carte"
             value={inputCard}
-            onChange={(e) => handleInputChange(e, setInputCard)}
+            onChange={(e) => handleInputChange(e, setInputCard)
+            }
+            required
           />
           {/* gestion du formulaire de carte */}
-          {cardEditing ? (
-            <button className="form__add__card__button openInput" type="submit">
+          {!cardEditing ? (
+            <button className="form__add__card__button openInput" type="submit" >
               <IoMdAddCircleOutline />
             </button>
           ) : (
