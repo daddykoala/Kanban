@@ -17,4 +17,4 @@ return (
 
 // Task.defaultProps = {};
 
-export default React.memo(Task);
+export default Task;
