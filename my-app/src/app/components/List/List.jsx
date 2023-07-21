@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../card/Card";
+import Task from "../card/Card";
 //react icons
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
@@ -167,7 +167,7 @@ console.log(error);
       </div>
 
       {(tasks || []).map((element, index) => (
-  <Card id={element.id} name={element.name} listId={id} />
+  <Task id={element.id} name={element.name} listId={id} />
 ))}
     </div>
   );
