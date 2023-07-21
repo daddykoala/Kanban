@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Task from "../card/Card";
+import Task from "../Card/Card";
 //react icons
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
