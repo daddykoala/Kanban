@@ -1,5 +1,5 @@
 # Utilisez l'image officielle de Node.js 18.15.0
-FROM node:18.15.0
+FROM node:16
 
 # Créez un répertoire pour votre application
 WORKDIR /usr/src/app
