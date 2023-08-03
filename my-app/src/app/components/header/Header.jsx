@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useWindowSize } from "../../service/screenSize";
 import { openSidebar, closeSidebar } from "../../store/reducer/sidebarSlice";
 
-// import { GiHamburgerMenu} from "react-icons/gi";
+import { GiHamburgerMenu} from "react-icons/gi";
 
 
 
@@ -31,7 +31,7 @@ function Header() {
         <Modal />
         <AuthModal />
         {width < 768 ? (
-          <div className="header__login__button " onClick={() => dispatch(openSidebar())}><div></div></div>
+          <div className="header__login__button " onClick={() => dispatch(openSidebar())}><div><GiHamburgerMenu/></div></div>
         ) : null}
       </div>
     </header>
