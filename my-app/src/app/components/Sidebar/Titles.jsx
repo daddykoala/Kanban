@@ -69,7 +69,9 @@ const handlecloseSidebar = () => {
       const result = await deleteTableMutation(tableId);
       if (result) {
         dispatch(removeTable(tableId));
-        navigate("/");
+        if(linkIsActive){
+          navigate("/");
+        }
       }
     } catch (error) {
       console.error(error);
@@ -111,6 +113,8 @@ const handlecloseSidebar = () => {
           />
           <button type="submit"  className="titles__button__submit">
           <img
+          
+          className="titles__button__submit__img"
               src={require("../../../ressources/pen.png")}
               alt="Pencil Icon"
             />

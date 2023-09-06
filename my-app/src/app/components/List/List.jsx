@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Card from "../Card/Card";
 import Task from "../Card/Card";
-//react icons
+
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaPen } from "react-icons/fa";
@@ -147,11 +148,13 @@ console.log(error);
             type="text"
             placeholder="Ajouter une carte"
             value={inputCard}
-            onChange={(e) => handleInputChange(e, setInputCard)}
+            onChange={(e) => handleInputChange(e, setInputCard)
+            }
+            required
           />
           {/* gestion du formulaire de carte */}
-          {cardEditing ? (
-            <button className="form__add__card__button openInput" type="submit">
+          {!cardEditing ? (
+            <button className="form__add__card__button openInput" type="submit" >
               <IoMdAddCircleOutline />
             </button>
           ) : (

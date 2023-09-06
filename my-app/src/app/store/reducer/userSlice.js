@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IoLogoAndroid } from "react-icons/io";
+
 
 const initialState = {
   user: null,
@@ -17,8 +17,15 @@ export const userSlice = createSlice({
     },
     //je push le nouveau tableau dans user
     addTable: (state, action) => {
-      console.log(action.payload);
-      state.user.table.push(action.payload);
+      console.log("actionlist",action.payload);
+      let table = action.payload.hasOwnProperty('list') ? action.payload : {...action.payload, list: []};
+
+      // if (state.user.table.length === 0) {
+      //   state.user.table.push({ list: [] });
+      // // state.user.table.push(action.payload);const 
+      // }
+
+      state.user.table.push(table);
       // localStorage.setItem("user", JSON.stringify(state.user));
     },
     //je supprime une table
@@ -67,14 +74,15 @@ export const userSlice = createSlice({
     removeList: (state, action) => {
       console.log(action);
       const listId = action.payload.id;
-      console.log("je passe bien ici ", action.payload);
+      console.log("je passe bien icisssss ", action.payload);
 
       const tableIndex = state.user.table.findIndex(
-        (t) => t.id === parseInt(action.payload.table_id)
+        (t) => t.id === action.payload.tableId
       );
 
       // Check that the tableIndex is not -1 and that the table at the index exists
       if (tableIndex !== -1 && state.user.table[tableIndex]) {
+        console.log("je passe la");
         state.user.table[tableIndex].list = state.user.table[
           tableIndex
         ].list.filter((e) => e.id !== listId);
@@ -140,3 +148,4 @@ export const {
   addCard,
 } = userSlice.actions;
 export default userSlice.reducer;
+      
