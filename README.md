@@ -1,4 +1,3 @@
-
 # Trellite
 
 ## Introduction
@@ -23,6 +22,7 @@ Ce projet est une imitation de Trello, choisi dans le cadre de l'obtention de mo
 ## Installation et Configuration
 
 Pour installer et configurer le projet, suivez les étapes ci-dessous :
+note: [installer la partie back-end](installer la partie back-end)
 
 1. **Clonez le dépôt**
 
@@ -91,6 +91,3 @@ Pour toute question ou information complémentaire, n'hésitez pas à me contact
 - [LinkedIn](https://www.linkedin.com/in/clement-moretti-39ab59220/)
 
 ---
-=======
-
-
