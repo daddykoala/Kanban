@@ -51,7 +51,9 @@ Pour installer et configurer le projet, suivez les étapes ci-dessous :
 
 ## Technologies Utilisées
 
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white) ![Redux](https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=redux&logoColor=white) ![Jest](https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest&logoColor=white) ![React Testing Library](https://img.shields.io/badge/React%20Testing%20Library-E33332?style=flat-square&logo=react&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white) ![Redux](https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=redux&logoColor=white) ![Jest](https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest&logoColor=white) ![React Testing Library](https://img.shields.io/badge/React%20Testing%20Library-E33332?style=flat-square&logo=react&logoColor=white) ![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=flat-square&logo=react-router&logoColor=white) ![Unsplash](https://img.shields.io/badge/Unsplash-000000?style=flat-square&logo=unsplash&logoColor=white)
+
+
 
 Ce projet a été réalisé en utilisant les technologies et bibliothèques suivantes :
 
@@ -60,6 +62,7 @@ Ce projet a été réalisé en utilisant les technologies et bibliothèques suiv
 - [Sass](https://sass-lang.com/)
 - [Jest](https://jestjs.io/fr/)
 - [React Testing Library](https://testing-library.com/)
+- [React Router](https://reactrouter.com/)
 - [Unsplash API](https://unsplash.com/developers)
 
 Pour la partie CSS, j'ai entièrement codé en "CSS maison". J'ai utilisé RTK Query pour gérer mon store Redux et pour hydrater mes composants. Les tests ont été réalisés avec React Testing Library. J'ai également créé une collection sur Unsplash et consommé cette collection dans le projet.
